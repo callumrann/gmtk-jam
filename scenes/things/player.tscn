@@ -26,16 +26,15 @@ height = 26.0
 script = ExtResource("1_ebmdi")
 
 [node name="WallCollider" type="CollisionShape2D" parent="." unique_id=1265118677]
-rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_vld7y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=396237782]
+rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_3hlh7")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=706970332]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=2098933394]
-rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ebmdi")
 debug_color = Color(0.2502731, 0.6246552, 0.34603867, 0.41960785)
 
