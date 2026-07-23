@@ -28,6 +28,10 @@ window/size/viewport_height=540
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
+[global_group]
+
+Button=""
+
 [input]
 
 pause={
