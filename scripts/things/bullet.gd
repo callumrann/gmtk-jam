@@ -13,4 +13,5 @@ func _physics_process(delta: float) -> void:
 	despawn_timer -= delta
 
 func _on_body_entered(body: Node2D) -> void:
-	queue_free()
+	if body.get_class() == "TileMapLayer":
+		queue_free()

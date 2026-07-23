@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 		if left_bullets > 0:
 			var bullet: Area2D = k_bulletScene.instantiate()
 			bullet.global_position = bullet_spawn_left.global_position
-			bullet.rotation = rotation
+			bullet.rotation = (mouse_position - bullet.position).angle()
 			LevelManager.spawn_bullet(bullet)
 
 			left_bullets -= 1
@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 		if right_bullets > 0:
 			var bullet: Area2D = k_bulletScene.instantiate()
 			bullet.global_position = bullet_spawn_right.global_position
-			bullet.rotation = rotation
+			bullet.rotation = (mouse_position - bullet.position).angle()
 			LevelManager.spawn_bullet(bullet)
 
 			right_bullets -= 1
@@ -56,6 +56,5 @@ func _physics_process(delta: float) -> void:
 	velocity = movement_vector * k_movement_speed
 	move_and_slide()
 
-# make bullet despawn on wall hit
 # make bullet damange enemies
-# make bullet go towards cursor
+# consider bullet inside player
