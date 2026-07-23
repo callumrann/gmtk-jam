@@ -3,19 +3,31 @@ extends Node
 @onready var bgm_player: AudioStreamPlayer = AudioStreamPlayer.new()
 
 const SFX := {
-	#"click": preload("res://assets/audio/click.wav"),
-	#"damage": preload("res://assets/audio/damage.wav"),
+	"click": preload("res://assets/audio/click.wav"),
+	"damage": preload("res://assets/audio/damage.wav"),
+	"level_win": preload("res://assets/audio/level_win.wav"),
+	"menu_move_1": preload("res://assets/audio/menu_move_1.wav"),
+	"menu_move_2": preload("res://assets/audio/menu_move_2.wav"),
+	"menu_select": preload("res://assets/audio/menu_select.wav"),
+	"pause_in": preload("res://assets/audio/pause_in.wav"),
+	"pause_out": preload("res://assets/audio/pause_out.wav"),
+	"jump": preload("res://assets/audio/jump.wav"),
+	"wall_jump": preload("res://assets/audio/wall_jump.wav"),
+	"land": preload("res://assets/audio/land.wav"),
+	"saw": preload("res://assets/audio/saw.wav"),
 }
 
 const MUSIC := {
-	#"menu": preload("res://assets/audio/music_2.wav"),
-	#"stage_1": preload("res://assets/audio/music_1.wav"),
+	"menu": preload("res://assets/audio/music_2.wav"),
+	"stage_1": preload("res://assets/audio/music_1.wav"),
+	"stage_2": preload("res://assets/audio/music_3.wav"),
+	"stage_3": preload("res://assets/audio/music_4.wav"),
 }
 
 func _ready() -> void:
 	add_child(bgm_player)
 	bgm_player.bus = "Music"
-	# play_music("menu", -10)
+	play_music("menu", -10)
 
 # So all buttons in all scenes play the same sfx
 func update_button_sfx() -> void:
@@ -28,11 +40,11 @@ func update_button_sfx() -> void:
 
 func _on_button_pressed() -> void:
 	pass
-	#play_sfx("click", -10)
+	play_sfx("click", -10)
 
 func _on_button_hover() -> void:
 	pass
-	#play_sfx("menu_move_1", -15)
+	play_sfx("menu_move_1", -15)
 
 func play_music(track_name: String, volume: float = 0.0) -> void:	
 	if not MUSIC.has(track_name):
