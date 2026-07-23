@@ -11,7 +11,7 @@ script = ExtResource("1_4vcrw")
 
 [node name="HUD" type="CanvasLayer" parent="UI" unique_id=740062671]
 
-[node name="LevelComplateMenu" type="CanvasLayer" parent="UI" unique_id=1837822900]
+[node name="LevelCompleteMenu" type="CanvasLayer" parent="UI" unique_id=1837822900]
 
 [node name="PauseMenu" type="CanvasLayer" parent="UI" unique_id=1422244254]
 
