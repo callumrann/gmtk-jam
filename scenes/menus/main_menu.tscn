@@ -1,5 +1,10 @@
 [gd_scene format=3 uid="uid://cljtsvp47qb6p"]
 
+[ext_resource type="Script" uid="uid://b5e0r7oinnvyg" path="res://scripts/menus/main_menu.gd" id="1_ovrgc"]
+[ext_resource type="Theme" uid="uid://ck2dij0t8alec" path="res://assets/themes/main.tres" id="1_xqga4"]
+
+[sub_resource type="Theme" id="Theme_3o4v0"]
+
 [node name="MainMenu" type="Control" unique_id=1459210894]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +12,48 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ovrgc")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=485257332]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.5
+offset_top = -62.5
+offset_right = 67.5
+offset_bottom = 62.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=2100176731]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_3o4v0")
+alignment = 1
+
+[node name="MainMenu" type="Label" parent="PanelContainer/VBoxContainer" unique_id=826321875]
+layout_mode = 2
+theme = ExtResource("1_xqga4")
+text = "Main Menu"
+horizontal_alignment = 1
+
+[node name="Continue" type="Button" parent="PanelContainer/VBoxContainer" unique_id=447257201 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("1_xqga4")
+text = "Continue"
+
+[node name="LevelSelect" type="Button" parent="PanelContainer/VBoxContainer" unique_id=827729805 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("1_xqga4")
+text = "Level Select"
+
+[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1525177397 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("1_xqga4")
+text = "Quit"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
