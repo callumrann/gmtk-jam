@@ -1,5 +1,8 @@
 extends Control
 
+func _ready() -> void:
+	AudioManager.play_music("menu", -10)
+
 func _on_continue_pressed() -> void:
 	SceneManager.show_scene("res://scenes/levels/levels_loader.tscn")
 
