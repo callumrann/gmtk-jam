@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://blfpidw8xvk3e" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="Shader" uid="uid://cupsbn528lsv3" path="res://assets/shaders/crt.gdshader" id="2_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://16q11hlggi45" path="res://assets/sprites/crosshair.png" id="3_sugp2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0wfyh"]
 shader = ExtResource("2_0wfyh")
@@ -9,6 +10,17 @@ shader = ExtResource("2_0wfyh")
 [sub_resource type="QuadMesh" id="QuadMesh_o5qli"]
 size = Vector2(960, 540)
 center_offset = Vector3(480, 270, 0)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tebl0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_sugp2")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Main" type="Node2D" unique_id=485929088]
 process_mode = 3
@@ -38,3 +50,7 @@ render_target_update_mode = 4
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CRT" unique_id=1115838957]
 material = SubResource("ShaderMaterial_0wfyh")
 mesh = SubResource("QuadMesh_o5qli")
+
+[node name="Cursor" type="AnimatedSprite2D" parent="." unique_id=1339186632]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_tebl0")

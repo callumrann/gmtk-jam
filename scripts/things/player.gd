@@ -55,3 +55,8 @@ func _physics_process(delta: float) -> void:
 	var movement_vector: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = movement_vector * k_movement_speed
 	move_and_slide()
+
+# make bullet despawn on wall hit
+# make bullet damange enemies
+# make bullet go towards cursor
+# add cursor visual, and hide user cursor

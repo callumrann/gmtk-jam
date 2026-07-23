@@ -3,6 +3,7 @@ render_mode unshaded, skip_vertex_transform;
 
 const float curvature = 5.0;
 const float vignette_multiplier = 0.5;
+const float effect_strength = 1.0;
 
 uniform sampler2D screen_texture: hint_screen_texture, filter_linear_mipmap;
 
@@ -16,5 +17,9 @@ void fragment() {
 	
 	vec3 screen_color = textureLod(screen_texture, (warped_uv + 1.0) / 2.0, 0.2).rgb * cutoff * scanlines;
 	screen_color -= vignette * vignette_multiplier;
-	COLOR = vec4(screen_color, 1.0);
+	
+	vec3 original_color = texture(screen_texture, SCREEN_UV).rgb;
+	vec3 final_color = mix(original_color, screen_color, effect_strength);
+	
+	COLOR = vec4(final_color, 1.0); 
 }
