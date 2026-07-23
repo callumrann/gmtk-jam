@@ -6,22 +6,15 @@ const SFX := {
 	"click": preload("res://assets/audio/click.wav"),
 	"damage": preload("res://assets/audio/damage.wav"),
 	"level_win": preload("res://assets/audio/level_win.wav"),
-	"menu_move_1": preload("res://assets/audio/menu_move_1.wav"),
-	"menu_move_2": preload("res://assets/audio/menu_move_2.wav"),
+	"menu_move": preload("res://assets/audio/menu_move.wav"),
 	"menu_select": preload("res://assets/audio/menu_select.wav"),
 	"pause_in": preload("res://assets/audio/pause_in.wav"),
 	"pause_out": preload("res://assets/audio/pause_out.wav"),
-	"jump": preload("res://assets/audio/jump.wav"),
-	"wall_jump": preload("res://assets/audio/wall_jump.wav"),
-	"land": preload("res://assets/audio/land.wav"),
-	"saw": preload("res://assets/audio/saw.wav"),
 }
 
 const MUSIC := {
-	"menu": preload("res://assets/audio/music_2.wav"),
-	"stage_1": preload("res://assets/audio/music_1.wav"),
-	"stage_2": preload("res://assets/audio/music_3.wav"),
-	"stage_3": preload("res://assets/audio/music_4.wav"),
+	"menu": preload("res://assets/audio/menu_music.wav"),
+	"stage_1": preload("res://assets/audio/stage_1_music.wav"),
 }
 
 func _ready() -> void:
@@ -44,7 +37,7 @@ func _on_button_pressed() -> void:
 
 func _on_button_hover() -> void:
 	pass
-	play_sfx("menu_move_1", -15)
+	play_sfx("menu_move", -15)
 
 func play_music(track_name: String, volume: float = 0.0) -> void:	
 	if not MUSIC.has(track_name):

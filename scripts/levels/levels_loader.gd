@@ -9,6 +9,8 @@ extends Node2D
 func _ready() -> void:
 	LevelManager.levelsLoader = self
 	load_level(LevelManager.current_level)
+	
+	AudioManager.play_music("stage_1", -10)
 
 var levels: Array[String] = [
 	"res://scenes/levels/level1.tscn","res://scenes/levels/level2.tscn",
