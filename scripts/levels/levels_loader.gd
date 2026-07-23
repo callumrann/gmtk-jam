@@ -5,6 +5,7 @@ extends Node2D
 '''
 
 @onready var level_container: Node2D = $"LevelContainer"
+var spawned_level: Node2D
 
 func _ready() -> void:
 	LevelManager.levelsLoader = self
@@ -29,6 +30,7 @@ func _do_load_level(level: int) -> void:
 	
 	var new_level = load(levels[level- 1]).instantiate()
 	level_container.add_child(new_level)
+	spawned_level = new_level
 
 '''
 ====== Pause Screen ======

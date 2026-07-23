@@ -34,3 +34,5 @@ tile_set = SubResource("TileSet_83ld5")
 
 [node name="Player" parent="." unique_id=251549957 instance=ExtResource("2_4tcl0")]
 position = Vector2(24, 16)
+
+[node name="BulletContainer" type="Node2D" parent="." unique_id=1336524375]
