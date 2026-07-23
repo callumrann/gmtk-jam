@@ -51,7 +51,7 @@ func _on_resume_pressed() -> void:
 	_toggle_pause()
 
 func _on_restart_pressed() -> void:
-	#LevelManager.player_died()
+	load_level(LevelManager.current_level)
 	_toggle_pause()
 
 func _on_next_level_pressed() -> void:
