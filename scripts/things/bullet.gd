@@ -11,3 +11,6 @@ func _physics_process(delta: float) -> void:
 	if despawn_timer <= 0.0:
 		queue_free()
 	despawn_timer -= delta
+
+func _on_body_entered(body: Node2D) -> void:
+	queue_free()

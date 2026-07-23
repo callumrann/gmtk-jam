@@ -59,4 +59,3 @@ func _physics_process(delta: float) -> void:
 # make bullet despawn on wall hit
 # make bullet damange enemies
 # make bullet go towards cursor
-# add cursor visual, and hide user cursor
