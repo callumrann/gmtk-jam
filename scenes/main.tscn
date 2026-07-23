@@ -11,6 +11,7 @@ size = Vector2(960, 540)
 center_offset = Vector3(480, 270, 0)
 
 [node name="Main" type="Node2D" unique_id=485929088]
+process_mode = 3
 script = ExtResource("1_o5qli")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1199087407]

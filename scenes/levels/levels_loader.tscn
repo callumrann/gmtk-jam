@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://by0fqjhloenay"]
 
 [ext_resource type="Script" uid="uid://do5rw0ria2t3d" path="res://scripts/levels/levels_loader.gd" id="1_4vcrw"]
+[ext_resource type="Theme" uid="uid://ck2dij0t8alec" path="res://assets/themes/main.tres" id="2_vmewy"]
+
+[sub_resource type="Theme" id="Theme_bj081"]
 
 [node name="LevelsLoader" type="Node2D" unique_id=2094749137]
+process_mode = 3
 script = ExtResource("1_4vcrw")
 
 [node name="UI" type="Node2D" parent="." unique_id=2017187425]
@@ -14,5 +18,67 @@ script = ExtResource("1_4vcrw")
 [node name="LevelCompleteMenu" type="CanvasLayer" parent="UI" unique_id=1837822900]
 
 [node name="PauseMenu" type="CanvasLayer" parent="UI" unique_id=1422244254]
+visible = false
+
+[node name="Control" type="Control" parent="UI/PauseMenu" unique_id=1976877116]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/PauseMenu/Control" unique_id=1909420252]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.5
+offset_top = -62.5
+offset_right = 67.5
+offset_bottom = 62.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PauseMenu/Control/PanelContainer" unique_id=382634211]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_bj081")
+alignment = 1
+
+[node name="Paused" type="Label" parent="UI/PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=1671768171]
+layout_mode = 2
+theme = ExtResource("2_vmewy")
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="UI/PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=949905481 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("2_vmewy")
+text = "Resume"
+
+[node name="Restart" type="Button" parent="UI/PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=1946397870 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("2_vmewy")
+text = "Restart"
+
+[node name="NextLevel" type="Button" parent="UI/PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=1033192015 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("2_vmewy")
+text = "Next Level"
+
+[node name="MainMenu" type="Button" parent="UI/PauseMenu/Control/PanelContainer/VBoxContainer" unique_id=1220068813 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("2_vmewy")
+text = "Main Menu"
 
 [node name="LevelContainer" type="Node2D" parent="." unique_id=277064604]
+process_mode = 1
+
+[connection signal="pressed" from="UI/PauseMenu/Control/PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="UI/PauseMenu/Control/PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="UI/PauseMenu/Control/PanelContainer/VBoxContainer/NextLevel" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="UI/PauseMenu/Control/PanelContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
