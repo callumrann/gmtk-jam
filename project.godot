@@ -74,6 +74,7 @@ shoot_right={
 
 2d_physics/layer_1="Collisions"
 2d_physics/layer_2="HurtPlayer"
+2d_physics/layer_3="HurtEnemy"
 
 [physics]
 

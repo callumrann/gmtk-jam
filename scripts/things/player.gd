@@ -56,5 +56,5 @@ func _physics_process(delta: float) -> void:
 	velocity = movement_vector * k_move_speed
 	move_and_slide()
 
-# make bullet damange enemies
+# make bullet damage enemies
 # consider bullet inside player

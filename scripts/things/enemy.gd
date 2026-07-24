@@ -6,6 +6,8 @@ extends CharacterBody2D
 const k_move_speed: float = 50.0
 const k_turn_speed: float = 10.0
 
+var health: int = 3
+
 func _ready() -> void:
 	await get_tree().physics_frame
 
@@ -22,3 +24,9 @@ func _physics_process(delta):
 	
 	velocity = direction * k_move_speed
 	move_and_slide()
+
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	health -= 1
+	if health <= 0:
+		queue_free()
