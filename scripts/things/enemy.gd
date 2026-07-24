@@ -110,5 +110,5 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		dead_body.rotation = rotation
 		dead_body.set_bullet_count(k_starting_health)
 		
-		get_parent().add_child(dead_body)
+		get_parent().call_deferred("add_child", dead_body)
 		queue_free()

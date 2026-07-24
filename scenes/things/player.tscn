@@ -26,6 +26,7 @@ height = 52.0
 radius = 150.0
 
 [node name="Player" type="CharacterBody2D" unique_id=251549957]
+collision_layer = 16
 script = ExtResource("1_ebmdi")
 
 [node name="WallCollider" type="CollisionShape2D" parent="." unique_id=1265118677]

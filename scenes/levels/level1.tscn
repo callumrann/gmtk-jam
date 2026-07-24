@@ -25,11 +25,6 @@ sources/1 = SubResource("TileSetAtlasSource_dd0lh")
 [node name="Level1" type="Node2D" unique_id=1431471405]
 script = ExtResource("1_bfxgj")
 
-[node name="Label" type="Label" parent="." unique_id=707268653]
-offset_right = 54.0
-offset_bottom = 23.0
-text = "Level 1"
-
 [node name="TileMapLayers" type="NavigationRegion2D" parent="." unique_id=732312695]
 navigation_polygon = SubResource("NavigationPolygon_tebl0")
 

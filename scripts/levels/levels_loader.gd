@@ -73,12 +73,15 @@ func _on_main_menu_pressed() -> void:
 '''
 @onready var hud: CanvasLayer = $"UI/HUD"
 
-func update_bullet_ui(side_shot: String = "N/A", bullets_gained: int = 0) -> void:
+func update_bullet_count(count: int) -> void:
+	spawned_level.give_player_bullets(count)
+
+func update_bullet_ui(side_shot: String = "N/A", left_bullets: int = 0, right_bullets: int = 0) -> void:
 	if side_shot != "N/A":
 		hud.consume_bullet(side_shot)
 	
-	if bullets_gained > 0:
-		hud.add_bullets(bullets_gained)
+	if (left_bullets + right_bullets) > 0:
+		hud.add_bullets(left_bullets, right_bullets)
 
 func reduce_player_health() -> void:
 	hud.reduce_health()

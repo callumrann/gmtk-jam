@@ -7,8 +7,11 @@ var current_level: int = 1
 func spawn_bullet(bullet: Node2D) -> void:
 	levelsLoader.spawned_level.get_node("BulletContainer").add_child(bullet)
 
-func update_bullet_ui(side_shot: String = "N/A", bullets_gained: int = 0) -> void:
-	levelsLoader.update_bullet_ui(side_shot, bullets_gained)
+func update_bullet_count(count: int) -> void:
+	levelsLoader.update_bullet_count(count)
+
+func update_bullet_ui(side_shot: String = "N/A", left_bullets: int = 0, right_bullets: int = 0) -> void:
+	levelsLoader.update_bullet_ui(side_shot, left_bullets, right_bullets)
 
 func reduce_player_health() -> void:
 	levelsLoader.reduce_player_health()
