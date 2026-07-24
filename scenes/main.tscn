@@ -2,13 +2,31 @@
 
 [ext_resource type="Script" uid="uid://blfpidw8xvk3e" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="Shader" uid="uid://cupsbn528lsv3" path="res://assets/shaders/crt.gdshader" id="2_0wfyh"]
-[ext_resource type="Texture2D" uid="uid://16q11hlggi45" path="res://assets/sprites/crosshair.png" id="3_sugp2"]
+[ext_resource type="Texture2D" uid="uid://dr8f8ysh1h1uu" path="res://assets/sprites/crosshair_spritesheet.png" id="2_sugp2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyhfs"]
+atlas = ExtResource("2_sugp2")
+region = Rect2(0, 0, 26, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbgi4"]
+atlas = ExtResource("2_sugp2")
+region = Rect2(26, 0, 26, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tefeu"]
+atlas = ExtResource("2_sugp2")
+region = Rect2(52, 0, 26, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tebl0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_sugp2")
+"texture": SubResource("AtlasTexture_jyhfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbgi4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tefeu")
 }],
 "loop": 1,
 "name": &"default",
@@ -49,6 +67,8 @@ render_target_update_mode = 4
 z_index = 4
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tebl0")
+autoplay = "default"
+frame_progress = 0.9350693
 
 [node name="CRT" type="CanvasLayer" parent="." unique_id=1584056119]
 visible = false

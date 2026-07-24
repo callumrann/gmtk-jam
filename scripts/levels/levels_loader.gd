@@ -67,3 +67,16 @@ func _on_main_menu_pressed() -> void:
 	get_tree().paused = false
 	AudioManager.play_music("menu", -10)
 	SceneManager.show_scene("res://scenes/menus/main_menu.tscn")
+
+'''
+====== HUD ======
+'''
+@onready var hud: CanvasLayer = $"UI/HUD"
+
+func update_bullet_ui(side_shot: String = "N/A", bullets_gained: int = 0) -> void:
+	if side_shot != "N/A":
+		hud.consume_bullet(side_shot)
+	
+	if bullets_gained > 0:
+		# distribute
+		pass

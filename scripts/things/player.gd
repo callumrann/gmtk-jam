@@ -36,8 +36,10 @@ func _process(delta: float) -> void:
 			var bullet: Area2D = k_bulletScene.instantiate()
 			bullet.global_position = bullet_spawn_left.global_position
 			bullet.rotation = (mouse_position - bullet.position).angle()
+			
 			LevelManager.spawn_bullet(bullet)
-
+			LevelManager.update_bullet_ui("left")
+			
 			left_bullets -= 1
 			bullet_cooldown_remaining = k_bullet_cooldown
 			
@@ -50,7 +52,9 @@ func _process(delta: float) -> void:
 			var bullet: Area2D = k_bulletScene.instantiate()
 			bullet.global_position = bullet_spawn_right.global_position
 			bullet.rotation = (mouse_position - bullet.position).angle()
+			
 			LevelManager.spawn_bullet(bullet)
+			LevelManager.update_bullet_ui("right")
 
 			right_bullets -= 1
 			bullet_cooldown_remaining = k_bullet_cooldown
@@ -70,7 +74,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	print("ouch")
 	health -= 1
 	if health <= 0:
 		print("man i'm dead")

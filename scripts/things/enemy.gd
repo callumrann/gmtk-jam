@@ -19,7 +19,7 @@ var player_in_vision: bool = false
 var shoot_left: bool = true
 
 const k_shot_variance: float = deg_to_rad(10.0)
-const k_shots_per_sweep: int = 5
+const k_shots_per_sweep: int = 3
 var shot_offset: int = 0
 
 # Other

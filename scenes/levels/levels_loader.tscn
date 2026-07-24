@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://by0fqjhloenay"]
 
 [ext_resource type="Script" uid="uid://do5rw0ria2t3d" path="res://scripts/levels/levels_loader.gd" id="1_4vcrw"]
+[ext_resource type="Texture2D" uid="uid://c3ix24i0qp2bk" path="res://assets/sprites/bullet_background.png" id="2_bj081"]
 [ext_resource type="Theme" uid="uid://ck2dij0t8alec" path="res://assets/themes/main.tres" id="2_vmewy"]
+[ext_resource type="Texture2D" uid="uid://b6svekso7r8dr" path="res://assets/sprites/ui_bullet.png" id="3_07c4a"]
+[ext_resource type="Script" uid="uid://cc0btm8jpo2e1" path="res://scripts/menus/hud.gd" id="3_xk0s0"]
 
 [sub_resource type="Theme" id="Theme_bj081"]
 
@@ -14,6 +17,86 @@ script = ExtResource("1_4vcrw")
 [node name="BackColour" type="CanvasLayer" parent="UI" unique_id=161673725]
 
 [node name="HUD" type="CanvasLayer" parent="UI" unique_id=740062671]
+script = ExtResource("3_xk0s0")
+
+[node name="Control" type="Control" parent="UI/HUD" unique_id=133534697]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BulletBackground" type="TextureRect" parent="UI/HUD/Control" unique_id=1454045197]
+layout_mode = 1
+offset_right = 145.0
+offset_bottom = 41.0
+texture = ExtResource("2_bj081")
+
+[node name="Bullets" type="HBoxContainer" parent="UI/HUD/Control/BulletBackground" unique_id=2134563546]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.5
+offset_top = -21.5
+offset_right = 56.5
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="Bullet1" type="TextureRect" parent="UI/HUD/Control/BulletBackground/Bullets" unique_id=1898090103]
+layout_mode = 2
+texture = ExtResource("3_07c4a")
+stretch_mode = 3
+
+[node name="Bullet2" type="TextureRect" parent="UI/HUD/Control/BulletBackground/Bullets" unique_id=696629630]
+layout_mode = 2
+texture = ExtResource("3_07c4a")
+stretch_mode = 3
+
+[node name="Bullet3" type="TextureRect" parent="UI/HUD/Control/BulletBackground/Bullets" unique_id=1293965096]
+layout_mode = 2
+texture = ExtResource("3_07c4a")
+stretch_mode = 3
+
+[node name="Bullet4" type="TextureRect" parent="UI/HUD/Control/BulletBackground/Bullets" unique_id=789293454]
+layout_mode = 2
+texture = ExtResource("3_07c4a")
+stretch_mode = 3
+
+[node name="Bullet5" type="TextureRect" parent="UI/HUD/Control/BulletBackground/Bullets" unique_id=1644738260]
+layout_mode = 2
+texture = ExtResource("3_07c4a")
+stretch_mode = 3
+
+[node name="Bullet6" type="TextureRect" parent="UI/HUD/Control/BulletBackground/Bullets" unique_id=2138840498]
+layout_mode = 2
+texture = ExtResource("3_07c4a")
+stretch_mode = 3
+
+[node name="Bullet7" type="TextureRect" parent="UI/HUD/Control/BulletBackground/Bullets" unique_id=1121584417]
+layout_mode = 2
+texture = ExtResource("3_07c4a")
+stretch_mode = 3
+
+[node name="Bullet8" type="TextureRect" parent="UI/HUD/Control/BulletBackground/Bullets" unique_id=2095042734]
+layout_mode = 2
+texture = ExtResource("3_07c4a")
+stretch_mode = 3
+
+[node name="Bullet9" type="TextureRect" parent="UI/HUD/Control/BulletBackground/Bullets" unique_id=570823491]
+layout_mode = 2
+texture = ExtResource("3_07c4a")
+stretch_mode = 3
+
+[node name="Bullet10" type="TextureRect" parent="UI/HUD/Control/BulletBackground/Bullets" unique_id=1050856763]
+layout_mode = 2
+texture = ExtResource("3_07c4a")
+stretch_mode = 3
 
 [node name="LevelCompleteMenu" type="CanvasLayer" parent="UI" unique_id=1837822900]
 
