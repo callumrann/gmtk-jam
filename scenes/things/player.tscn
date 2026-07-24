@@ -22,6 +22,9 @@ animations = [{
 radius = 6.0
 height = 26.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_taauc"]
+radius = 75.0
+
 [node name="Player" type="CharacterBody2D" unique_id=251549957]
 script = ExtResource("1_ebmdi")
 
@@ -39,6 +42,14 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=2098933394]
 shape = SubResource("CapsuleShape2D_ebmdi")
 debug_color = Color(0.2502731, 0.6246552, 0.34603867, 0.41960785)
+
+[node name="GunNoise" type="Area2D" parent="." unique_id=1477291346]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GunNoise" unique_id=1463342123]
+shape = SubResource("CircleShape2D_taauc")
+debug_color = Color(0.09276519, 0.54850113, 0.91359544, 0.41960785)
 
 [node name="BulletSpawnerLeft" type="Marker2D" parent="." unique_id=225566511]
 position = Vector2(7, -8)

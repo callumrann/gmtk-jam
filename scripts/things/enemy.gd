@@ -45,10 +45,9 @@ func _check_vision() -> bool:
 	if abs(angle_to_player) > k_vision_angle_degrees / 2.0:
 		return false
 	
-	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsRayQueryParameters2D.create(global_position, player.global_position)
 	query.collision_mask = 1
-	var result = space_state.intersect_ray(query)
+	var result = get_world_2d().direct_space_state.intersect_ray(query)
 	
 	if result and result.collider != player:
 		return false
@@ -61,16 +60,20 @@ func _draw() -> void:
 	var points: PackedVector2Array = PackedVector2Array()
 	points.append(Vector2.ZERO)
 	
-	var segments = 16
+	var segments: int = 16
 	for i in range(segments + 1):
-		var angle = -half_angle + (half_angle * 2.0 * i / segments)
-		var point = facing_dir.rotated(angle) * k_vision_range
+		var angle: float = -half_angle + (half_angle * 2.0 * i / segments)
+		var point: Vector2 = facing_dir.rotated(angle) * k_vision_range
 		points.append(point)
 	
 	var color = Color(1, 0, 0, 0.2)
 	draw_colored_polygon(points, color)
 
+func on_gunshot_heard() -> void:
+	navigation_agent.target_position = player.global_position
+
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	health -= 1
+	on_gunshot_heard()
 	if health <= 0:
 		queue_free()

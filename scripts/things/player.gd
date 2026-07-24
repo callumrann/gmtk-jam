@@ -16,6 +16,9 @@ var right_bullets: int = k_starting_bullets
 const k_bullet_cooldown: float = 0.3
 var bullet_cooldown_remaining: float = 0.0
 
+@onready var gun_noise: Area2D = $"GunNoise"
+
+# Other
 const k_move_speed: float = 200
 
 func _process(delta: float) -> void:
@@ -36,6 +39,8 @@ func _process(delta: float) -> void:
 
 			left_bullets -= 1
 			bullet_cooldown_remaining = k_bullet_cooldown
+			
+			_alert_nearby_enemies(position)
 		else:
 			print("no more left bullets")
 	
@@ -48,8 +53,15 @@ func _process(delta: float) -> void:
 
 			right_bullets -= 1
 			bullet_cooldown_remaining = k_bullet_cooldown
+			
+			_alert_nearby_enemies(position)
 		else:
 			print("no more right bullets")
+
+func _alert_nearby_enemies(origin: Vector2) -> void:
+	var overlapping_areas = gun_noise.get_overlapping_areas()
+	for area in overlapping_areas:
+		area.get_parent().on_gunshot_heard()
 
 func _physics_process(delta: float) -> void:
 	var movement_vector: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -58,4 +70,4 @@ func _physics_process(delta: float) -> void:
 
 # consider bullet inside player
 # enemy vision cone and moving to where last seen
-# enemies move to sound? (gun shots) <- only if in range
+# enemies moving if see dead body or bullet
