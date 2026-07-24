@@ -23,8 +23,8 @@ const k_shots_per_sweep: int = 3
 var shot_offset: int = 0
 
 # Other
-const k_move_speed: float = 50.0
-const k_turn_speed: float = 10.0
+const k_move_speed: float = 100.0
+const k_turn_speed: float = 20.0
 
 var health: int = 3
 

@@ -19,7 +19,7 @@ var bullet_cooldown_remaining: float = 0.0
 @onready var gun_noise: Area2D = $"GunNoise"
 
 # Other
-const k_move_speed: float = 200
+const k_move_speed: float = 400
 var health: int = 7
 
 func _process(delta: float) -> void:

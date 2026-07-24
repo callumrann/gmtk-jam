@@ -31,6 +31,7 @@ grow_vertical = 2
 layout_mode = 1
 offset_right = 145.0
 offset_bottom = 41.0
+scale = Vector2(2, 2)
 texture = ExtResource("2_bj081")
 
 [node name="Bullets" type="HBoxContainer" parent="UI/HUD/Control/BulletBackground" unique_id=2134563546]

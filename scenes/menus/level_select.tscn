@@ -3,16 +3,18 @@
 [ext_resource type="Script" uid="uid://c4g2wb7axun4s" path="res://scripts/menus/level_select.gd" id="1_xqyeo"]
 [ext_resource type="Theme" uid="uid://ck2dij0t8alec" path="res://assets/themes/main.tres" id="2_pymjq"]
 
-[node name="LevelSelect" type="Control" unique_id=606214289]
+[node name="LevelSelect" type="CanvasLayer" unique_id=1026503943]
+script = ExtResource("1_xqyeo")
+
+[node name="Control" type="Control" parent="." unique_id=606214289]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_xqyeo")
 
-[node name="Label" type="Label" parent="." unique_id=1066892889]
+[node name="Label" type="Label" parent="Control" unique_id=1066892889]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -28,7 +30,7 @@ grow_vertical = 2
 theme = ExtResource("2_pymjq")
 text = "Level Select"
 
-[node name="MainMenu" type="Button" parent="." unique_id=847510185 groups=["Button"]]
+[node name="MainMenu" type="Button" parent="Control" unique_id=847510185 groups=["Button"]]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -44,4 +46,5 @@ grow_vertical = 0
 theme = ExtResource("2_pymjq")
 text = "Main Menu"
 
-[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Control/MainMenu" to="Control" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Control/MainMenu" to="." method="_on_main_menu_pressed"]

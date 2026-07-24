@@ -1,15 +1,15 @@
 extends Node
 
-var subviewport: SubViewport
+var scene_spawn: Marker2D
 
 func show_scene(path: String) -> void:
 	call_deferred("_do_show_scene", path)
 
 func _do_show_scene(path: String) -> void:
-	for child in subviewport.get_children():
+	for child in scene_spawn.get_children():
 		if child.name == "Cursor":
 			continue
 		child.queue_free()
 	var new_scene = load(path).instantiate()
-	subviewport.add_child(new_scene)
+	scene_spawn.add_child(new_scene)
 	AudioManager.update_button_sfx()
