@@ -4,13 +4,6 @@
 [ext_resource type="Shader" uid="uid://cupsbn528lsv3" path="res://assets/shaders/crt.gdshader" id="2_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://16q11hlggi45" path="res://assets/sprites/crosshair.png" id="3_sugp2"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wfyh"]
-shader = ExtResource("2_0wfyh")
-
-[sub_resource type="QuadMesh" id="QuadMesh_o5qli"]
-size = Vector2(960, 540)
-center_offset = Vector3(480, 270, 0)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_tebl0"]
 animations = [{
 "frames": [{
@@ -21,6 +14,13 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wfyh"]
+shader = ExtResource("2_0wfyh")
+
+[sub_resource type="QuadMesh" id="QuadMesh_o5qli"]
+size = Vector2(960, 540)
+center_offset = Vector3(480, 270, 0)
 
 [node name="Main" type="Node2D" unique_id=485929088]
 process_mode = 3
@@ -45,14 +45,14 @@ size_2d_override = Vector2i(480, 270)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
+[node name="Cursor" type="AnimatedSprite2D" parent="." unique_id=1339186632]
+z_index = 4
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_tebl0")
+
 [node name="CRT" type="CanvasLayer" parent="." unique_id=1584056119]
 visible = false
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CRT" unique_id=1115838957]
 material = SubResource("ShaderMaterial_0wfyh")
 mesh = SubResource("QuadMesh_o5qli")
-
-[node name="Cursor" type="AnimatedSprite2D" parent="." unique_id=1339186632]
-z_index = 5
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_tebl0")

@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://bsaw3yk6q0f45"]
+
+[ext_resource type="Script" uid="uid://dxatfr7dapfsh" path="res://scripts/things/enemy.gd" id="1_taauc"]
+[ext_resource type="Texture2D" uid="uid://6vtcry25xkc8" path="res://assets/sprites/player.png" id="2_3fn21"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vld7y"]
+radius = 7.0
+height = 26.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3hlh7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3fn21")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ebmdi"]
+radius = 6.0
+height = 26.0
+
+[node name="Enemy" type="CharacterBody2D" unique_id=251549957]
+script = ExtResource("1_taauc")
+
+[node name="WallCollider" type="CollisionShape2D" parent="." unique_id=1265118677]
+shape = SubResource("CapsuleShape2D_vld7y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=396237782]
+modulate = Color(1, 0.015686275, 0, 1)
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_3hlh7")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=706970332]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=2098933394]
+shape = SubResource("CapsuleShape2D_ebmdi")
+debug_color = Color(0.2502731, 0.6246552, 0.34603867, 0.41960785)
+
+[node name="BulletSpawnerLeft" type="Marker2D" parent="." unique_id=225566511]
+position = Vector2(7, -8)
+
+[node name="BulletSpawnerRight" type="Marker2D" parent="." unique_id=1690026887]
+position = Vector2(7, 8)
+
+[node name="Navigation" type="Node2D" parent="." unique_id=970279316]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation" unique_id=1100952668]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="Navigation" unique_id=1243237876]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Navigation/Timer" to="." method="_on_timer_timeout"]
