@@ -1,9 +1,12 @@
 extends CanvasLayer
 
 func _ready() -> void:
+	pass
 	AudioManager.play_music("menu", -10)
 
 func _on_continue_pressed() -> void:
+	AudioManager.play_transition("stage_1_intro", -10)
+	await get_tree().create_timer(4).timeout
 	SceneManager.show_scene("res://scenes/levels/levels_loader.tscn")
 
 func _on_level_select_pressed() -> void:

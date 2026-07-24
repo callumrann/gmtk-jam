@@ -2,6 +2,8 @@ extends Node
 
 @onready var bgm_player: AudioStreamPlayer = AudioStreamPlayer.new()
 
+var current_music := ""
+
 const SFX := {
 	"click": preload("res://assets/audio/click.wav"),
 	"damage": preload("res://assets/audio/damage.wav"),
@@ -13,14 +15,19 @@ const SFX := {
 }
 
 const MUSIC := {
-	"menu": preload("res://assets/audio/menu_music.wav"),
-	"stage_1": preload("res://assets/audio/stage_1_music.wav"),
+	"menu_intro": preload("res://assets/audio/menu_music_intro.wav"),
+	"menu_loop": preload("res://assets/audio/menu_music_loop.wav"),
+	"stage_1_intro": preload("res://assets/audio/stage_1_music_intro.wav"),
+	"stage_1_loop": preload("res://assets/audio/stage_1_music_loop.wav"),
 }
 
 func _ready() -> void:
 	add_child(bgm_player)
+	
 	bgm_player.bus = "Music"
-	play_music("menu", -10)
+	
+	bgm_player.finished.connect(_on_music_finished)
+	play_music("menu_intro", -5)
 
 # So all buttons in all scenes play the same sfx
 func update_button_sfx() -> void:
@@ -44,12 +51,39 @@ func play_music(track_name: String, volume: float = 0.0) -> void:
 		push_warning("Unknown music track: " + track_name)
 		return
 	
+	current_music = track_name
+	
 	var stream = MUSIC[track_name]
 	if bgm_player.stream == stream and bgm_player.playing:
 		return
 	bgm_player.stream = stream
 	bgm_player.volume_db = volume
 	bgm_player.play()
+
+func play_transition(track_name: String, volume: float = 0.0) -> void: # menu --> stage 1 transition player to play OVER bgm
+	if not MUSIC.has(track_name):
+		push_warning("Unknown music track: " + track_name)
+		return
+	
+	var trans_player := AudioStreamPlayer.new()
+	add_child(trans_player)
+	trans_player.stream = MUSIC[track_name]
+	trans_player.volume_db = volume
+	trans_player.bus = "Music"
+	trans_player.play()
+	
+	trans_player.finished.connect(func():
+		play_music("stage_1_loop", -5)
+		trans_player.queue_free()
+	)
+	
+	await get_tree().create_timer(4).timeout
+	stop_music()
+
+func _on_music_finished() -> void:
+	match current_music:
+		"menu_intro":
+			play_music("menu_loop", -5)
 
 func stop_music() -> void:
 	bgm_player.stop()

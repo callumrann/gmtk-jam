@@ -58,9 +58,9 @@ layout_mode = 2
 theme = ExtResource("1_xqga4")
 text = "Quit"
 
-[connection signal="pressed" from="Control/PanelContainer/VBoxContainer/Continue" to="Control" method="_on_continue_pressed"]
 [connection signal="pressed" from="Control/PanelContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="Control/PanelContainer/VBoxContainer/LevelSelect" to="Control" method="_on_level_select_pressed"]
+[connection signal="pressed" from="Control/PanelContainer/VBoxContainer/Continue" to="Control" method="_on_continue_pressed"]
 [connection signal="pressed" from="Control/PanelContainer/VBoxContainer/LevelSelect" to="." method="_on_level_select_pressed"]
-[connection signal="pressed" from="Control/PanelContainer/VBoxContainer/Quit" to="Control" method="_on_quit_pressed"]
+[connection signal="pressed" from="Control/PanelContainer/VBoxContainer/LevelSelect" to="Control" method="_on_level_select_pressed"]
 [connection signal="pressed" from="Control/PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Control/PanelContainer/VBoxContainer/Quit" to="Control" method="_on_quit_pressed"]

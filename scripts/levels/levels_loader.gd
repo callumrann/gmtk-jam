@@ -10,8 +10,6 @@ var spawned_level: Node2D
 func _ready() -> void:
 	LevelManager.levelsLoader = self
 	load_level(LevelManager.current_level)
-	
-	AudioManager.play_music("stage_1", -10)
 
 var levels: Array[String] = [
 	"res://scenes/levels/level1.tscn","res://scenes/levels/level2.tscn",
@@ -65,7 +63,7 @@ func _on_next_level_pressed() -> void:
 
 func _on_main_menu_pressed() -> void:
 	get_tree().paused = false
-	AudioManager.play_music("menu", -10)
+	AudioManager.play_music("menu_music_intro", -10)
 	SceneManager.show_scene("res://scenes/menus/main_menu.tscn")
 
 '''
