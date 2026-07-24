@@ -86,14 +86,14 @@ func _wall_check(area: Area2D) -> void:
 	vision_ray.rotation = -rotation # kinda cheese
 	vision_ray.force_raycast_update()
 	
-	if vision_ray.is_colliding(): # will collide with wall first if present
-		var collider = vision_ray.get_collider()
-		if collider == area:
-			if area.has_method("get_shot_position"):
-				navigation_agent.target_position = area.get_shot_position()
-			else:
-				navigation_agent.target_position = player.global_position
-				player_in_vision = true
+	if vision_ray.is_colliding(): # wall collision
+		return
+
+	if area.has_method("get_shot_position"):
+		navigation_agent.target_position = area.get_shot_position()
+	else:
+		navigation_agent.target_position = player.global_position
+		player_in_vision = true
 
 func on_gunshot_heard() -> void:
 	navigation_agent.target_position = player.global_position

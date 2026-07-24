@@ -54,7 +54,7 @@ shape = SubResource("ConvexPolygonShape2D_tebl0")
 debug_color = Color(0.2502731, 0.6246552, 0.34603867, 0.41960785)
 
 [node name="RayCast2D" type="RayCast2D" parent="VisionCone" unique_id=1347643024]
-collision_mask = 52
+collision_mask = 32
 collide_with_areas = true
 
 [node name="BulletSpawnerLeft" type="Marker2D" parent="." unique_id=225566511]
