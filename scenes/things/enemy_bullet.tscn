@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://cgamqk585l10q"]
+[gd_scene format=3 uid="uid://tk2au5co8v1l"]
 
-[ext_resource type="Texture2D" uid="uid://xky7jixg7xlr" path="res://assets/sprites/bullet.png" id="1_cmncp"]
-[ext_resource type="Script" uid="uid://nrshbyt53tvr" path="res://scripts/things/bullet.gd" id="1_qwocu"]
+[ext_resource type="Script" uid="uid://nrshbyt53tvr" path="res://scripts/things/bullet.gd" id="1_pgwv1"]
+[ext_resource type="Texture2D" uid="uid://xky7jixg7xlr" path="res://assets/sprites/bullet.png" id="2_d7afo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_taauc"]
 radius = 2.0
@@ -11,16 +11,17 @@ height = 10.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_cmncp")
+"texture": ExtResource("2_d7afo")
 }],
 "loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="Bullet" type="Area2D" unique_id=1842137755]
-collision_layer = 4
-script = ExtResource("1_qwocu")
+[node name="EnemyBullet" type="Area2D" unique_id=1842137755]
+modulate = Color(1, 0, 0, 1)
+collision_layer = 2
+script = ExtResource("1_pgwv1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=854320617]
 position = Vector2(3, 0)

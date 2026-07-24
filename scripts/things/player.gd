@@ -7,7 +7,7 @@ const k_camera_percent_to_mouse: float = 0.3
 # Bullet shooting
 @onready var bullet_spawn_left: Marker2D = $"BulletSpawnerLeft"
 @onready var bullet_spawn_right: Marker2D = $"BulletSpawnerRight"
-const k_bulletScene: PackedScene = preload("res://scenes/things/bullet.tscn")
+const k_bulletScene: PackedScene = preload("res://scenes/things/player_bullet.tscn")
 
 const k_starting_bullets = 5
 var left_bullets: int = k_starting_bullets
@@ -20,6 +20,7 @@ var bullet_cooldown_remaining: float = 0.0
 
 # Other
 const k_move_speed: float = 200
+var health: int = 7
 
 func _process(delta: float) -> void:
 	# Camera control
@@ -28,7 +29,7 @@ func _process(delta: float) -> void:
 	rotation = (mouse_position - position).angle()
 	
 	# Bullet shooting
-	if (bullet_cooldown_remaining > 0):
+	if bullet_cooldown_remaining > 0:
 		bullet_cooldown_remaining -= delta
 	elif Input.is_action_just_pressed("shoot_left"):
 		if left_bullets > 0:
@@ -68,5 +69,10 @@ func _physics_process(delta: float) -> void:
 	velocity = movement_vector * k_move_speed
 	move_and_slide()
 
-# consider bullet inside player
-# enemies moving if see dead body or bullet
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	print("ouch")
+	health -= 1
+	if health <= 0:
+		print("man i'm dead")
+
+# consider bullet inside player when pressing on self

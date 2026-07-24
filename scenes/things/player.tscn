@@ -60,3 +60,5 @@ position = Vector2(7, 8)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1111842270]
 process_callback = 0
 position_smoothing_enabled = true
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

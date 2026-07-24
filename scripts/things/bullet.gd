@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var shot_position: Vector2 = position
 
-const k_speed: float = 200
+const k_speed: float = 1000.0
 var despawn_timer: float = 5.0 # only matters if shot outside
 
 func _physics_process(delta: float) -> void:

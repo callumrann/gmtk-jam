@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cgamqk585l10q"]
+
+[ext_resource type="Script" uid="uid://nrshbyt53tvr" path="res://scripts/things/bullet.gd" id="1_hkfbf"]
+[ext_resource type="Texture2D" uid="uid://xky7jixg7xlr" path="res://assets/sprites/bullet.png" id="2_8hems"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_taauc"]
+radius = 2.0
+height = 10.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tebl0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8hems")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="PlayerBullet" type="Area2D" unique_id=1842137755]
+collision_layer = 4
+script = ExtResource("1_hkfbf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=854320617]
+position = Vector2(3, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_taauc")
+debug_color = Color(1, 1, 1, 0.41960785)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=993252015]
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_tebl0")
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
