@@ -7,7 +7,7 @@ const k_camera_percent_to_mouse: float = 0.3
 # Bullet shooting
 @onready var bullet_spawn_left: Marker2D = $"BulletSpawnerLeft"
 @onready var bullet_spawn_right: Marker2D = $"BulletSpawnerRight"
-const k_bulletScene: PackedScene = preload("res://scenes/things/player_bullet.tscn")
+const k_bullet_scene: PackedScene = preload("res://scenes/things/player_bullet.tscn")
 
 const k_starting_bullets = 5
 var left_bullets: int = k_starting_bullets
@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 		bullet_cooldown_remaining -= delta
 	elif Input.is_action_just_pressed("shoot_left"):
 		if left_bullets > 0:
-			var bullet: Area2D = k_bulletScene.instantiate()
+			var bullet: Area2D = k_bullet_scene.instantiate()
 			bullet.global_position = bullet_spawn_left.global_position
 			bullet.rotation = (mouse_position - bullet.position).angle()
 			
@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 	
 	elif Input.is_action_just_pressed("shoot_right"):
 		if right_bullets > 0:
-			var bullet: Area2D = k_bulletScene.instantiate()
+			var bullet: Area2D = k_bullet_scene.instantiate()
 			bullet.global_position = bullet_spawn_right.global_position
 			bullet.rotation = (mouse_position - bullet.position).angle()
 			

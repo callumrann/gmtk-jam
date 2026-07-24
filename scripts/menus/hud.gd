@@ -29,3 +29,22 @@ func consume_bullet(side_shot: String) -> void:
 				bullet.modulate.a = 0
 				right_bullets -= 1
 				break
+
+func add_bullets(count: int) -> void:
+	while count > 0 and (left_bullets < k_max_ammo or right_bullets < k_max_ammo):
+		if right_bullets < left_bullets:
+			right_bullets += 1
+			count -= 1
+		else:
+			left_bullets += 1
+			count -= 1
+
+	for i in range(left_bullets):
+		var bullet: TextureRect = bulletsContainer.get_child(k_max_ammo - 1 - i)
+		if bullet.modulate.a == 0:
+			bullet.modulate.a = 1
+	
+	for i in range(right_bullets):
+		var bullet: TextureRect = bulletsContainer.get_child(k_max_ammo + i)
+		if bullet.modulate.a == 0:
+			bullet.modulate.a = 1

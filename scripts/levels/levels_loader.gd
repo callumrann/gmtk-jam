@@ -78,5 +78,4 @@ func update_bullet_ui(side_shot: String = "N/A", bullets_gained: int = 0) -> voi
 		hud.consume_bullet(side_shot)
 	
 	if bullets_gained > 0:
-		# distribute
-		pass
+		hud.add_bullets(bullets_gained)

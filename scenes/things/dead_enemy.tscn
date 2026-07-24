@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cirtp4nb1ewqv"]
+
+[ext_resource type="Script" uid="uid://l3i0cfkn2rdo" path="res://scripts/things/dead_enemy.gd" id="1_qy353"]
+[ext_resource type="Texture2D" uid="uid://6vtcry25xkc8" path="res://assets/sprites/player.png" id="2_apfos"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vld7y"]
+radius = 14.0
+height = 52.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3hlh7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_apfos")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="DeadEnemy" type="Area2D" unique_id=1593299914]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_qy353")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1265118677]
+shape = SubResource("CapsuleShape2D_vld7y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=396237782]
+modulate = Color(0, 1, 1, 1)
+rotation = 1.5707964
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_3hlh7")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -10,7 +10,7 @@ extends CharacterBody2D
 # Bullet shooting
 @onready var bullet_spawn_left: Marker2D = $"BulletSpawnerLeft"
 @onready var bullet_spawn_right: Marker2D = $"BulletSpawnerRight"
-const k_bulletScene: PackedScene = preload("res://scenes/things/enemy_bullet.tscn")
+const k_bullet_scene: PackedScene = preload("res://scenes/things/enemy_bullet.tscn")
 
 const k_bullet_cooldown: float = 0.1
 var bullet_cooldown_remaining: float = 0.0
@@ -23,10 +23,13 @@ const k_shots_per_sweep: int = 3
 var shot_offset: int = 0
 
 # Other
+const k_dead_scene: PackedScene = preload("res://scenes/things/dead_enemy.tscn")
+
 const k_move_speed: float = 100.0
 const k_turn_speed: float = 20.0
 
-var health: int = 3
+const k_starting_health: int = 3
+var health: int = k_starting_health
 
 func _ready() -> void:
 	await get_tree().physics_frame
@@ -37,7 +40,7 @@ func _process(delta: float) -> void:
 		bullet_cooldown_remaining -= delta
 	elif player_in_vision:
 		# change spray pattern
-		var bullet: Area2D = k_bulletScene.instantiate()
+		var bullet: Area2D = k_bullet_scene.instantiate()
 		
 		if shoot_left:
 			bullet.global_position = bullet_spawn_left.global_position
@@ -102,4 +105,10 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	health -= 1
 	navigation_agent.target_position = area.get_shot_position()
 	if health <= 0:
+		var dead_body: Area2D = k_dead_scene.instantiate()
+		dead_body.global_position = global_position
+		dead_body.rotation = rotation
+		dead_body.set_bullet_count(k_starting_health)
+		
+		get_parent().add_child(dead_body)
 		queue_free()
