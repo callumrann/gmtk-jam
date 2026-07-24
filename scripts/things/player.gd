@@ -56,5 +56,6 @@ func _physics_process(delta: float) -> void:
 	velocity = movement_vector * k_move_speed
 	move_and_slide()
 
-# make bullet damage enemies
 # consider bullet inside player
+# enemy vision cone and moving to where last seen
+# enemies move to sound? (gun shots) <- only if in range
