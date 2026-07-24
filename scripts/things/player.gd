@@ -16,7 +16,7 @@ var right_bullets: int = k_starting_bullets
 const k_bullet_cooldown: float = 0.3
 var bullet_cooldown_remaining: float = 0.0
 
-const k_movement_speed: float = 200
+const k_move_speed: float = 200
 
 func _process(delta: float) -> void:
 	# Camera control
@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	var movement_vector: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = movement_vector * k_movement_speed
+	velocity = movement_vector * k_move_speed
 	move_and_slide()
 
 # make bullet damange enemies
