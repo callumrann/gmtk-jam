@@ -48,3 +48,25 @@ func add_bullets(count: int) -> void:
 		var bullet: TextureRect = bulletsContainer.get_child(k_max_ammo + i)
 		if bullet.modulate.a == 0:
 			bullet.modulate.a = 1
+
+@onready var segmentsContainer: HBoxContainer = $"Control/HealthBarBackground/HealthSegments"
+
+func reduce_health() -> void:
+	var segment_count: int = segmentsContainer.get_child_count()
+	for i in range(segment_count):
+		var segment: TextureRect = segmentsContainer.get_child(segment_count - 1 - i)
+		if segment.modulate.a != 0:
+			segment.modulate.a = 0
+			break
+
+func reset_hud() -> void:
+	left_bullets = k_max_ammo
+	right_bullets = k_max_ammo
+	
+	for i in range(bulletsContainer.get_child_count()):
+		var bullet: TextureRect = bulletsContainer.get_child(i)
+		bullet.modulate.a = 1
+	
+	for i in range(segmentsContainer.get_child_count()):
+		var segment: TextureRect = segmentsContainer.get_child(i)
+		segment.modulate.a = 1

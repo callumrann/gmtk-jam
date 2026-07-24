@@ -79,3 +79,9 @@ func update_bullet_ui(side_shot: String = "N/A", bullets_gained: int = 0) -> voi
 	
 	if bullets_gained > 0:
 		hud.add_bullets(bullets_gained)
+
+func reduce_player_health() -> void:
+	hud.reduce_health()
+
+func reset_hud() -> void:
+	hud.reset_hud()

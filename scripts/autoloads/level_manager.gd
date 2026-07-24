@@ -9,3 +9,9 @@ func spawn_bullet(bullet: Node2D) -> void:
 
 func update_bullet_ui(side_shot: String = "N/A", bullets_gained: int = 0) -> void:
 	levelsLoader.update_bullet_ui(side_shot, bullets_gained)
+
+func reduce_player_health() -> void:
+	levelsLoader.reduce_player_health()
+
+func reset_hud() -> void:
+	levelsLoader.reset_hud()

@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://1vdkdmmfrkrk"]
 
+[ext_resource type="Script" uid="uid://dropbboadu5c" path="res://scripts/levels/level_class.gd" id="1_bfxgj"]
 [ext_resource type="Texture2D" uid="uid://hbs7oi33vvop" path="res://assets/sprites/tilemap.png" id="1_x6ivy"]
 [ext_resource type="PackedScene" uid="uid://cqwiw525p036b" path="res://scenes/things/player.tscn" id="2_4tcl0"]
 [ext_resource type="PackedScene" uid="uid://bsaw3yk6q0f45" path="res://scenes/things/enemy.tscn" id="3_dd0lh"]
@@ -22,6 +23,7 @@ physics_layer_0/collision_layer = 33
 sources/1 = SubResource("TileSetAtlasSource_dd0lh")
 
 [node name="Level1" type="Node2D" unique_id=1431471405]
+script = ExtResource("1_bfxgj")
 
 [node name="Label" type="Label" parent="." unique_id=707268653]
 offset_right = 54.0

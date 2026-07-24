@@ -75,7 +75,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	health -= 1
+	LevelManager.reduce_player_health()
 	if health <= 0:
 		print("man i'm dead")
-
-# consider bullet inside player when pressing on self
