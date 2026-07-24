@@ -76,6 +76,8 @@ shoot_right={
 2d_physics/layer_2="HurtPlayer"
 2d_physics/layer_3="HurtEnemy"
 2d_physics/layer_4="Listen"
+2d_physics/layer_5="IsPlayer"
+2d_physics/layer_6="BlockVision"
 
 [physics]
 

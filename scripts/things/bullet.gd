@@ -1,7 +1,8 @@
 extends Area2D
 
-const k_speed: float = 200
+@onready var shot_position: Vector2 = position
 
+const k_speed: float = 200
 var despawn_timer: float = 5.0 # only matters if shot outside
 
 func _physics_process(delta: float) -> void:
@@ -15,3 +16,6 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.get_class() == "TileMapLayer":
 		queue_free()
+
+func get_shot_position() -> Vector2:
+	return shot_position

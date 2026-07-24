@@ -59,7 +59,7 @@ func _process(delta: float) -> void:
 			print("no more right bullets")
 
 func _alert_nearby_enemies(origin: Vector2) -> void:
-	var overlapping_areas = gun_noise.get_overlapping_areas()
+	var overlapping_areas: Array[Area2D]  = gun_noise.get_overlapping_areas()
 	for area in overlapping_areas:
 		area.get_parent().on_gunshot_heard()
 
@@ -69,5 +69,4 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 # consider bullet inside player
-# enemy vision cone and moving to where last seen
 # enemies moving if see dead body or bullet

@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://xky7jixg7xlr" path="res://assets/sprites/bullet.png" id="1_cmncp"]
 [ext_resource type="Script" uid="uid://nrshbyt53tvr" path="res://scripts/things/bullet.gd" id="1_qwocu"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qwocu"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_taauc"]
 radius = 2.0
+height = 10.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tebl0"]
 animations = [{
@@ -22,8 +23,9 @@ collision_layer = 4
 script = ExtResource("1_qwocu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=854320617]
-position = Vector2(6, 0)
-shape = SubResource("CircleShape2D_qwocu")
+position = Vector2(3, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_taauc")
 debug_color = Color(0.9578864, 0.16581842, 0.32240024, 0.41960785)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=993252015]

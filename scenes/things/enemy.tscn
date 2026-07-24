@@ -22,6 +22,9 @@ animations = [{
 radius = 6.0
 height = 26.0
 
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_tebl0"]
+points = PackedVector2Array(0, 0, 300, 100, 300, -100)
+
 [node name="Enemy" type="CharacterBody2D" unique_id=251549957]
 collision_layer = 9
 script = ExtResource("1_taauc")
@@ -41,6 +44,18 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=2098933394]
 shape = SubResource("CapsuleShape2D_ebmdi")
 debug_color = Color(0.2502731, 0.6246552, 0.34603867, 0.41960785)
+
+[node name="VisionCone" type="Area2D" parent="." unique_id=441568546]
+collision_layer = 0
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionCone" unique_id=1953225920]
+shape = SubResource("ConvexPolygonShape2D_tebl0")
+debug_color = Color(0.2502731, 0.6246552, 0.34603867, 0.41960785)
+
+[node name="RayCast2D" type="RayCast2D" parent="VisionCone" unique_id=1347643024]
+collision_mask = 52
+collide_with_areas = true
 
 [node name="BulletSpawnerLeft" type="Marker2D" parent="." unique_id=225566511]
 position = Vector2(7, -8)
