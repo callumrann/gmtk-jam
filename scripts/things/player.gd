@@ -124,8 +124,14 @@ func level_finished() -> void:
 	level_complete = true
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	health -= 1
-	LevelManager.reduce_player_health()
+	var damage: int
+	if area.name == "Hitbox":
+		damage = 4
+	else:
+		damage = 1
+	health -= damage
+	LevelManager.reduce_player_health(damage)
+	
 	if health <= 0:
 		LevelManager.player_dead()
 		

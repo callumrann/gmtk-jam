@@ -40,7 +40,8 @@ var wound_up: bool = false
 # Other
 const k_dead_scene: PackedScene = preload("res://scenes/things/dead_enemy.tscn")
 
-const k_move_speed: float = 100.0
+const k_patrol_speed: float = 100.0
+var alert_speed: float = 200.0 # not const for melee change (yes sus this way)
 const k_turn_speed: float = 20.0
 const k_slow_turn_speed: float = 5.0 # when not alerted
 
@@ -138,7 +139,11 @@ func _physics_process(delta):
 		var target_angle = (navigation_agent.get_next_path_position() - global_position).angle()
 		rotation = lerp_angle(rotation, target_angle, k_slow_turn_speed * delta)
 	
-	velocity = direction * k_move_speed
+	if is_alerted:
+		velocity = direction * alert_speed
+	else:
+		velocity = direction * k_patrol_speed
+	
 	bottom_animation.global_rotation = velocity.angle()
 	bottom_animation.play("walking")
 	

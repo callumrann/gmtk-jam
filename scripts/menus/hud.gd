@@ -46,13 +46,15 @@ func add_bullets(left: int, right: int) -> void:
 
 @onready var segmentsContainer: HBoxContainer = $"Control/HealthBarBackground/HealthSegments"
 
-func reduce_health() -> void:
+func reduce_health(amount: int) -> void:
 	var segment_count: int = segmentsContainer.get_child_count()
 	for i in range(segment_count):
 		var segment: TextureRect = segmentsContainer.get_child(segment_count - 1 - i)
 		if segment.modulate.a != 0:
 			segment.modulate.a = 0
-			break
+			amount -= 1
+			if amount <= 0:
+				break
 
 @onready var player_dead_hud: PanelContainer = $"Control/PlayerDead"
 

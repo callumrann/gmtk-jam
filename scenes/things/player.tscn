@@ -222,6 +222,7 @@ shape = SubResource("CapsuleShape2D_vld7y")
 [node name="BottomAnimation" type="AnimatedSprite2D" parent="." unique_id=1308893780]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ebmdi")
+animation = &"walking"
 autoplay = "default"
 
 [node name="TopAnimation" type="AnimatedSprite2D" parent="." unique_id=396237782]

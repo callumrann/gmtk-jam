@@ -13,8 +13,8 @@ func update_bullet_count(count: int) -> void:
 func update_bullet_ui(side_shot: String = "N/A", left_bullets: int = 0, right_bullets: int = 0) -> void:
 	levelsLoader.update_bullet_ui(side_shot, left_bullets, right_bullets)
 
-func reduce_player_health() -> void:
-	levelsLoader.reduce_player_health()
+func reduce_player_health(amount: int) -> void:
+	levelsLoader.reduce_player_health(amount)
 
 func player_dead() -> void:
 	levelsLoader.player_dead()

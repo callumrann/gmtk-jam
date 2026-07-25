@@ -17,7 +17,7 @@ var levels: Array[String] = [
 	"res://scenes/newspapers/newspaper_2.tscn", "res://scenes/levels/level2.tscn",
 	]
 
-const k_newspaper_mod: int = 0
+const k_newspaper_mod: int = 1
 
 func load_level(level: int) -> void:
 	await SceneManager.fade_to_black()
@@ -32,7 +32,7 @@ func _do_load_level(level: int) -> void:
 	for child in level_container.get_children():
 		child.queue_free()
 	
-	if level % 2 == k_newspaper_mod:
+	if level % 2 != k_newspaper_mod:
 		hud.visible = true
 	else:
 		hud.visible = false
@@ -54,8 +54,9 @@ func _do_load_level(level: int) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	# can't pause on newspaper
 	if event.is_action_pressed("pause") and LevelManager.current_level % 2 != k_newspaper_mod:
-		get_tree().paused = true
-		pause_menu.visible = true
+		pause_menu.visible = !pause_menu.visible
+		get_tree().paused = pause_menu.visible
+		
 
 func _on_resume_pressed() -> void:
 	AudioManager.play_sfx("pause_out", -15)
@@ -90,8 +91,8 @@ func update_bullet_ui(side_shot: String = "N/A", left_bullets: int = 0, right_bu
 	if (left_bullets + right_bullets) > 0:
 		hud.add_bullets(left_bullets, right_bullets)
 
-func reduce_player_health() -> void:
-	hud.reduce_health()
+func reduce_player_health(amount: int) -> void:
+	hud.reduce_health(amount)
 
 func player_dead() -> void:
 	hud.show_player_dead_popup()

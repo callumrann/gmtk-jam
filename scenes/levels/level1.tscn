@@ -161,6 +161,10 @@ patrol_points = [NodePath("../../PatrolPoints/Marker2D"), NodePath("../../Patrol
 [node name="EnemyMelee" parent="Enemies" unique_id=952456415 node_paths=PackedStringArray("patrol_points") instance=ExtResource("7_8a7m2")]
 patrol_points = [NodePath("../../PatrolPoints/Marker2D6"), NodePath("../../PatrolPoints/Marker2D7")]
 
+[node name="EnemyMelee2" parent="Enemies" unique_id=185286909 node_paths=PackedStringArray("patrol_points") instance=ExtResource("7_8a7m2")]
+position = Vector2(524, -247)
+patrol_points = [NodePath("../../PatrolPoints/Marker2D6"), NodePath("../../PatrolPoints/Marker2D7")]
+
 [node name="PatrolPoints" type="Node2D" parent="." unique_id=1943515548]
 
 [node name="Marker2D" type="Marker2D" parent="PatrolPoints" unique_id=2027795385]

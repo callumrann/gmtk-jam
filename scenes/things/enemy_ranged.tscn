@@ -240,7 +240,7 @@ position = Vector2(32, 0)
 rotation = -1.5707964
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3hlh7")
-animation = &"windup"
+animation = &"shoot"
 autoplay = "default"
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=706970332]
@@ -267,11 +267,12 @@ collide_with_areas = true
 position = Vector2(17, -5)
 
 [node name="BulletSpawnerRight" type="Marker2D" parent="." unique_id=1690026887]
-position = Vector2(17, 5)
+position = Vector2(14, 16)
 
 [node name="Navigation" type="Node2D" parent="." unique_id=970279316]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation" unique_id=1100952668]
 path_desired_distance = 4.0
+target_desired_distance = 30.0
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

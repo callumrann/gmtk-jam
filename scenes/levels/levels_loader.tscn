@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b1c2gu61yl35x" path="res://assets/sprites/segment_5.png" id="10_ej71t"]
 [ext_resource type="Texture2D" uid="uid://bqfl1jn76aa2l" path="res://assets/sprites/segment_6.png" id="11_xq51w"]
 [ext_resource type="Texture2D" uid="uid://clvgxnr75o5sn" path="res://assets/sprites/segment_7.png" id="12_x246r"]
+[ext_resource type="Texture2D" uid="uid://2sjq0wvnahvc" path="res://assets/sprites/paused.png" id="14_21kl8"]
 
 [sub_resource type="Theme" id="Theme_bj081"]
 
@@ -302,6 +303,19 @@ text = "Next Level"
 layout_mode = 2
 theme = ExtResource("2_vmewy")
 text = "Main Menu"
+
+[node name="TextureRect" type="TextureRect" parent="UI/PauseMenu/Control" unique_id=2065412542]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 100.0
+offset_right = -9.0
+offset_bottom = 180.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+texture = ExtResource("14_21kl8")
 
 [node name="LevelCompleteMenu" type="CanvasLayer" parent="UI" unique_id=2076667043]
 visible = false
