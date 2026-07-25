@@ -148,11 +148,30 @@ metadata/_edit_lock_ = true
 
 [node name="Enemies" type="Node2D" parent="." unique_id=2009923957]
 
-[node name="Enemy" parent="Enemies" unique_id=416746935 instance=ExtResource("3_dd0lh")]
+[node name="Enemy" parent="Enemies" unique_id=416746935 node_paths=PackedStringArray("patrol_points") instance=ExtResource("3_dd0lh")]
 position = Vector2(82, 219)
+patrol_points = [NodePath("../../PatrolPoints/Marker2D4"), NodePath("../../PatrolPoints/Marker2D5")]
 
-[node name="Enemy2" parent="Enemies" unique_id=487870424 instance=ExtResource("3_dd0lh")]
+[node name="Enemy2" parent="Enemies" unique_id=487870424 node_paths=PackedStringArray("patrol_points") instance=ExtResource("3_dd0lh")]
 position = Vector2(24, -172)
+patrol_points = [NodePath("../../PatrolPoints/Marker2D"), NodePath("../../PatrolPoints/Marker2D2"), NodePath("../../PatrolPoints/Marker2D3")]
+
+[node name="PatrolPoints" type="Node2D" parent="." unique_id=1943515548]
+
+[node name="Marker2D" type="Marker2D" parent="PatrolPoints" unique_id=2027795385]
+position = Vector2(156, -275)
+
+[node name="Marker2D2" type="Marker2D" parent="PatrolPoints" unique_id=212804056]
+position = Vector2(-181, -278)
+
+[node name="Marker2D3" type="Marker2D" parent="PatrolPoints" unique_id=705836846]
+position = Vector2(-180, 83)
+
+[node name="Marker2D4" type="Marker2D" parent="PatrolPoints" unique_id=887125233]
+position = Vector2(-181, 207)
+
+[node name="Marker2D5" type="Marker2D" parent="PatrolPoints" unique_id=829327067]
+position = Vector2(569, 339)
 
 [node name="OnExit" type="Node2D" parent="." unique_id=1084582327]
 visible = false

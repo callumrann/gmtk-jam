@@ -7,6 +7,12 @@ extends CharacterBody2D
 @onready var vision_cone: Area2D = $"VisionCone"
 @onready var vision_ray: RayCast2D = $"VisionCone/RayCast2D"
 
+@export var patrol_points: Array[Marker2D]
+var current_patrol_index: int = 0
+var is_alerted: bool = false
+const k_wait_before_repatrol: float = 2.0
+var wait_timer: float = 0.0
+
 # Bullet shooting
 @onready var bullet_spawn_left: Marker2D = $"BulletSpawnerLeft"
 @onready var bullet_spawn_right: Marker2D = $"BulletSpawnerRight"
@@ -27,6 +33,7 @@ const k_dead_scene: PackedScene = preload("res://scenes/things/dead_enemy.tscn")
 
 const k_move_speed: float = 100.0
 const k_turn_speed: float = 20.0
+const k_slow_turn_speed: float = 5.0 # when not alerted
 
 const k_starting_health: int = 1
 var health: int = k_starting_health
@@ -34,9 +41,14 @@ var health: int = k_starting_health
 const k_bullets_on_death: int = 2
 
 func _ready() -> void:
-	await get_tree().physics_frame
+	await get_tree().physics_frame # dont remember why this is here, but keep i guess
+	if patrol_points:
+		navigation_agent.target_position = patrol_points[0].position
 
 func _process(delta: float) -> void:
+	if wait_timer > 0:
+		wait_timer -= delta
+	
 	# Bullet shooting
 	if bullet_cooldown_remaining > 0:
 		bullet_cooldown_remaining -= delta
@@ -65,17 +77,31 @@ func _physics_process(delta):
 	# Navigation
 	_check_vision()
 	
-	if navigation_agent.is_navigation_finished():
+	if is_alerted and navigation_agent.is_navigation_finished():
+		is_alerted = false
+		wait_timer = k_wait_before_repatrol
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
+	
+	if navigation_agent.is_navigation_finished() and patrol_points:
+		if wait_timer > 0:
+			velocity = Vector2.ZERO
+			move_and_slide()
+			return
+		current_patrol_index += 1
+		navigation_agent.target_position = patrol_points[current_patrol_index % patrol_points.size()].position
 	
 	var direction = Vector2.ZERO
 	direction = navigation_agent.get_next_path_position() - global_position
 	direction = direction.normalized()
 	
-	var target_angle = (navigation_agent.target_position - global_position).angle()
-	rotation = lerp_angle(rotation, target_angle, k_turn_speed * delta)
+	if is_alerted:
+		var target_angle = (navigation_agent.target_position - global_position).angle()
+		rotation = lerp_angle(rotation, target_angle, k_turn_speed * delta)
+	else: # turn towards next position and turn slower
+		var target_angle = (navigation_agent.get_next_path_position() - global_position).angle()
+		rotation = lerp_angle(rotation, target_angle, k_slow_turn_speed * delta)
 	
 	velocity = direction * k_move_speed
 	move_and_slide()
@@ -93,7 +119,8 @@ func _wall_check(area: Area2D) -> void:
 	
 	if vision_ray.is_colliding(): # wall collision
 		return
-
+	
+	is_alerted = true
 	if area.has_method("get_shot_position"):
 		navigation_agent.target_position = area.get_shot_position()
 	else:

@@ -99,7 +99,6 @@ func _physics_process(delta: float) -> void:
 		var angle_diff: float = angle_difference(walk_angle, mouse_angle)
 		if abs(rad_to_deg(angle_diff)) >= 90:
 			bottom_animation.global_rotation += deg_to_rad(180)
-		print(rad_to_deg(mouse_angle - walk_angle))
 	
 	velocity = movement_vector * k_move_speed
 	move_and_slide()
@@ -124,7 +123,8 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		LevelManager.player_dead()
 		
 		$"Hurtbox/CollisionShape2D".set_deferred("disabled", true)
-		top_animation.modulate = Color(0, 1, 0)
+		top_animation.modulate = Color(0, 1, 0) # replace with animation
+		bottom_animation.play("default")
 		dead = true
 
 func _top_animation_finished() -> void:
