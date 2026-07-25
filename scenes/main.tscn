@@ -68,6 +68,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="CRT" type="CanvasLayer" parent="." unique_id=1584056119]
+layer = 25
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CRT" unique_id=1115838957]
 material = SubResource("ShaderMaterial_0wfyh")

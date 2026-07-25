@@ -24,3 +24,7 @@ func restart_level() -> void:
 
 func reset_hud() -> void:
 	levelsLoader.reset_hud()
+
+func load_next_level() -> void:
+	current_level += 1
+	levelsLoader.load_level(current_level)

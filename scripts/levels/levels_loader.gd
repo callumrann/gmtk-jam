@@ -5,7 +5,7 @@ extends Node2D
 '''
 
 @onready var level_container: Node2D = $"LevelContainer"
-var spawned_level: Node2D
+var spawned_level: Node
 
 func _ready() -> void:
 	LevelManager.levelsLoader = self
@@ -13,7 +13,8 @@ func _ready() -> void:
 	AudioManager.play_music("stage_1_intro", -10)
 
 var levels: Array[String] = [
-	"res://scenes/levels/level1.tscn","res://scenes/levels/level2.tscn",
+	"res://scenes/levels/level1.tscn", "res://scenes/newspapers/newspaper_1.tscn",
+	"res://scenes/levels/level2.tscn",
 	]
 
 func load_level(level: int) -> void:
@@ -28,6 +29,11 @@ func _do_load_level(level: int) -> void:
 	
 	for child in level_container.get_children():
 		child.queue_free()
+	
+	if level % 2 == 0:
+		hud.visible = false
+	else:
+		hud.visible = true
 	
 	var new_level = load(levels[level- 1]).instantiate()
 	level_container.add_child(new_level)
@@ -44,6 +50,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		_toggle_pause()
 
 func _toggle_pause():
+	if LevelManager.current_level % 2 == 0:
+		pause_menu.visible = false
+		get_tree().paused = pause_menu.visible
+		return
+
 	pause_menu.visible = !pause_menu.visible
 	get_tree().paused = pause_menu.visible
 	
