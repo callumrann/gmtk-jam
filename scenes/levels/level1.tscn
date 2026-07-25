@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cu37kq5bq6vu5" path="res://assets/sprites/floortileset_1.png" id="2_dywbp"]
 [ext_resource type="PackedScene" uid="uid://bsaw3yk6q0f45" path="res://scenes/things/enemy.tscn" id="3_dd0lh"]
 [ext_resource type="Texture2D" uid="uid://p4d0x1o38tdj" path="res://assets/sprites/floortileset_2.png" id="4_1seuy"]
+[ext_resource type="PackedScene" uid="uid://bb5jar8kdqcr4" path="res://scenes/things/door.tscn" id="7_2r1tl"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tebl0"]
 vertices = PackedVector2Array(720, -306.1797, 1017.5469, -306.90625, 1006.4297, 500.14844, 720, 304, 304, 304, -513.1406, 507.82813, -256, 400, -515.3203, 32, -512, 32, -512, 64, -480, -128, -516.85156, -303.0703, -272, -303.6875, -272, 176, -464, -96, 256, -305.03125, 304, -305.14844, 304, -240, 256, -80, -496, 64, -496, 96, -480, 96, -480, 128, -464, 128, -464, 160, -448, 160, -448, 192, -432, 192, -432, 224, -416, 224, -416, 256, -400, 256, -400, 288, -384, 288, -384, 320, -368, 320, -368, 352, -352, 352, -352, 384, -336, 384, -336, 400, -256, 320, -272, 320, -272, 288, -288, 288, -288, 256, -304, 256, -304, 224, -320, 224, -320, 192, -336, 192, -336, 160, -352, 160, -352, 128, -368, 128, -368, 96, -384, 96, -384, 64, -400, 64, -400, 32, -416, 32, -416, 0, -432, 0, -432, -32, -448, -32, -448, -64, -464, -64, -480, -96, 176, -48, 176, 96, -192, 96, -192, -288, 176, -288, 176, -80, 256, -48, 384, -240, 384, -288, 640, -288, 640, -192, 384, -192, 384, -208, 304, -208, 256, 176, -516.0469, -128, 640, 224, 384, 224, 384, -112, 640, -112)
@@ -136,7 +137,7 @@ tile_set = SubResource("TileSet_83ld5")
 [node name="Spawn" type="Node2D" parent="." unique_id=1209221057]
 position = Vector2(278, -303)
 
-[node name="Player" parent="Spawn" unique_id=251549957 instance=ExtResource("2_4tcl0")]
+[node name="Player" parent="Spawn" unique_id=251549957 groups=["Player"] instance=ExtResource("2_4tcl0")]
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Spawn" unique_id=2367325]
@@ -148,13 +149,17 @@ metadata/_edit_lock_ = true
 
 [node name="Enemies" type="Node2D" parent="." unique_id=2009923957]
 
-[node name="Enemy" parent="Enemies" unique_id=416746935 node_paths=PackedStringArray("patrol_points") instance=ExtResource("3_dd0lh")]
+[node name="Enemy" parent="Enemies" unique_id=416746935 node_paths=PackedStringArray("patrol_points") groups=["Player"] instance=ExtResource("3_dd0lh")]
 position = Vector2(82, 219)
 patrol_points = [NodePath("../../PatrolPoints/Marker2D4"), NodePath("../../PatrolPoints/Marker2D5")]
 
-[node name="Enemy2" parent="Enemies" unique_id=487870424 node_paths=PackedStringArray("patrol_points") instance=ExtResource("3_dd0lh")]
+[node name="Enemy2" parent="Enemies" unique_id=487870424 node_paths=PackedStringArray("patrol_points") groups=["Player"] instance=ExtResource("3_dd0lh")]
 position = Vector2(24, -172)
 patrol_points = [NodePath("../../PatrolPoints/Marker2D"), NodePath("../../PatrolPoints/Marker2D2"), NodePath("../../PatrolPoints/Marker2D3")]
+
+[node name="Enemy3" parent="Enemies" unique_id=195584718 node_paths=PackedStringArray("patrol_points") groups=["Player"] instance=ExtResource("3_dd0lh")]
+position = Vector2(161, -64)
+patrol_points = [NodePath("../../PatrolPoints/Marker2D6"), NodePath("../../PatrolPoints/Marker2D7")]
 
 [node name="PatrolPoints" type="Node2D" parent="." unique_id=1943515548]
 
@@ -172,6 +177,21 @@ position = Vector2(-181, 207)
 
 [node name="Marker2D5" type="Marker2D" parent="PatrolPoints" unique_id=829327067]
 position = Vector2(569, 339)
+
+[node name="Marker2D6" type="Marker2D" parent="PatrolPoints" unique_id=2063834443]
+position = Vector2(280, -62)
+
+[node name="Marker2D7" type="Marker2D" parent="PatrolPoints" unique_id=1956399596]
+position = Vector2(4, -59)
+
+[node name="Doors" type="Node2D" parent="." unique_id=636906028]
+
+[node name="Door" parent="Doors" unique_id=1927397278 instance=ExtResource("7_2r1tl")]
+position = Vector2(216, -16)
+
+[node name="Door2" parent="Doors" unique_id=2041805985 instance=ExtResource("7_2r1tl")]
+position = Vector2(224, -329)
+rotation = 1.5707964
 
 [node name="OnExit" type="Node2D" parent="." unique_id=1084582327]
 visible = false

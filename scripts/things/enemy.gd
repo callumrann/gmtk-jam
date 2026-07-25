@@ -73,24 +73,30 @@ func _process(delta: float) -> void:
 		LevelManager.spawn_bullet(bullet)
 		bullet_cooldown_remaining = k_bullet_cooldown
 
-func _physics_process(delta):
+func _physics_process(delta):	
 	# Navigation
 	_check_vision()
 	
-	if is_alerted and navigation_agent.is_navigation_finished():
-		is_alerted = false
-		wait_timer = k_wait_before_repatrol
-		velocity = Vector2.ZERO
-		move_and_slide()
-		return
-	
-	if navigation_agent.is_navigation_finished() and patrol_points:
-		if wait_timer > 0:
+	if navigation_agent.is_navigation_finished():
+		if is_alerted:
+			is_alerted = false
+			wait_timer = k_wait_before_repatrol
 			velocity = Vector2.ZERO
 			move_and_slide()
 			return
-		current_patrol_index += 1
-		navigation_agent.target_position = patrol_points[current_patrol_index % patrol_points.size()].position
+		
+		elif patrol_points:
+			if wait_timer > 0:
+				velocity = Vector2.ZERO
+				move_and_slide()
+				return
+			current_patrol_index += 1
+			navigation_agent.target_position = patrol_points[current_patrol_index % patrol_points.size()].position
+		
+		else:
+			velocity = Vector2.ZERO
+			move_and_slide()
+			return
 	
 	var direction = Vector2.ZERO
 	direction = navigation_agent.get_next_path_position() - global_position
@@ -131,8 +137,11 @@ func on_gunshot_heard() -> void:
 	navigation_agent.target_position = player.global_position
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
+	_take_damage()
+
+func _take_damage() -> void:
 	health -= 1
-	navigation_agent.target_position = area.get_shot_position()
+	#navigation_agent.target_position = area.get_shot_position()
 	if health <= 0:
 		LevelManager.enemy_dead()
 		

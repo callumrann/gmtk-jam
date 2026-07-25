@@ -102,6 +102,13 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = movement_vector * k_move_speed
 	move_and_slide()
+	
+	# Door maxing
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider is RigidBody2D:
+			collider.apply_central_impulse(collision.get_normal() * -100.0)
 
 func add_bullets(count: int) -> void:
 	while count > 0 and (left_bullets < k_max_ammo or right_bullets < k_max_ammo):
