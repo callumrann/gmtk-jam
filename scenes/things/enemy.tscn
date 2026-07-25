@@ -68,6 +68,5 @@ position = Vector2(14, 16)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation" unique_id=1100952668]
 path_desired_distance = 4.0
-debug_enabled = true
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

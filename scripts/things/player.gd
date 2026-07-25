@@ -9,19 +9,24 @@ const k_max_ammo = 5
 var left_bullets: int = k_max_ammo
 var right_bullets: int = k_max_ammo
 
+const k_bullet_delay: float = 0.0 # based on animation frame rate
 const k_bullet_cooldown: float = 0.3
 var bullet_cooldown_remaining: float = 0.0
 
 @onready var gun_noise: Area2D = $"GunNoise"
 
 # Other
-@onready var animation: AnimatedSprite2D = $"AnimatedSprite2D"
+@onready var top_animation: AnimatedSprite2D = $"TopAnimation"
+@onready var bottom_animation: AnimatedSprite2D = $"BottomAnimation"
 
 const k_move_speed: float = 400
 var health: int = 7
 var dead: bool = false
 
 var level_complete: bool = false
+
+func _ready() -> void:
+	top_animation.animation_finished.connect(_top_animation_finished)
 
 func _process(delta: float) -> void:
 	if level_complete: return
@@ -39,6 +44,10 @@ func _process(delta: float) -> void:
 		bullet_cooldown_remaining -= delta
 	elif Input.is_action_just_pressed("shoot_left"):
 		if left_bullets > 0:
+			bullet_cooldown_remaining = k_bullet_cooldown
+			top_animation.play("shoot_left")
+			await get_tree().create_timer(k_bullet_delay).timeout
+			
 			var bullet: Area2D = k_bullet_scene.instantiate()
 			bullet.global_position = bullet_spawn_left.global_position
 			bullet.rotation = (mouse_position - bullet.position).angle()
@@ -47,14 +56,16 @@ func _process(delta: float) -> void:
 			LevelManager.update_bullet_ui("left")
 			
 			left_bullets -= 1
-			bullet_cooldown_remaining = k_bullet_cooldown
-			
 			_alert_nearby_enemies(position)
 		else:
 			print("no more left bullets")
 	
 	elif Input.is_action_just_pressed("shoot_right"):
 		if right_bullets > 0:
+			bullet_cooldown_remaining = k_bullet_cooldown
+			top_animation.play("shoot_right")
+			await get_tree().create_timer(k_bullet_delay).timeout
+			
 			var bullet: Area2D = k_bullet_scene.instantiate()
 			bullet.global_position = bullet_spawn_right.global_position
 			bullet.rotation = (mouse_position - bullet.position).angle()
@@ -63,8 +74,6 @@ func _process(delta: float) -> void:
 			LevelManager.update_bullet_ui("right")
 
 			right_bullets -= 1
-			bullet_cooldown_remaining = k_bullet_cooldown
-			
 			_alert_nearby_enemies(position)
 		else:
 			print("no more right bullets")
@@ -77,7 +86,17 @@ func _alert_nearby_enemies(origin: Vector2) -> void:
 func _physics_process(delta: float) -> void:
 	if dead or level_complete: return
 	
+	#var mouse_position: Vector2 = get_global_mouse_position()
+	#rotation = (mouse_position - global_position).angle()
+	
 	var movement_vector: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	
+	if movement_vector == Vector2.ZERO:
+		bottom_animation.play("default")
+	else:
+		bottom_animation.global_rotation = movement_vector.angle()
+		bottom_animation.play("walking")
+	
 	velocity = movement_vector * k_move_speed
 	move_and_slide()
 
@@ -101,5 +120,8 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		LevelManager.player_dead()
 		
 		$"Hurtbox/CollisionShape2D".set_deferred("disabled", true)
-		animation.modulate = Color(0, 1, 0)
+		top_animation.modulate = Color(0, 1, 0)
 		dead = true
+
+func _top_animation_finished() -> void:
+	top_animation.play("default")

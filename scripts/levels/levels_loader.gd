@@ -63,6 +63,9 @@ func _on_resume_pressed() -> void:
 func _on_restart_pressed() -> void:
 	load_level(LevelManager.current_level)
 
+func restart_level() -> void: # for level manager
+	load_level(LevelManager.current_level)
+
 func _on_next_level_pressed() -> void:
 	LevelManager.current_level += 1
 	load_level(LevelManager.current_level)
