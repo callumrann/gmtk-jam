@@ -63,7 +63,6 @@ func _on_next_level_pressed() -> void:
 
 func _on_main_menu_pressed() -> void:
 	get_tree().paused = false
-	AudioManager.play_music("menu_music_intro", -10)
 	SceneManager.show_scene("res://scenes/menus/main_menu.tscn")
 
 '''

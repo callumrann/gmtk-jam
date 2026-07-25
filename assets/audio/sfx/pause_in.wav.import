@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://68kl3lfpuqdm"
-path="res://.godot/imported/level_win.wav-9f76974f8fe224338571673fd01e54d2.sample"
+uid="uid://c8ygnbdud1rq8"
+path="res://.godot/imported/pause_in.wav-978b3548504154b638fe80c061d27c27.sample"
 
 [deps]
 
-source_file="res://assets/audio/level_win.wav"
-dest_files=["res://.godot/imported/level_win.wav-9f76974f8fe224338571673fd01e54d2.sample"]
+source_file="res://assets/audio/sfx/pause_in.wav"
+dest_files=["res://.godot/imported/pause_in.wav-978b3548504154b638fe80c061d27c27.sample"]
 
 [params]
 
