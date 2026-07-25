@@ -46,15 +46,26 @@ script = ExtResource("1_o5qli")
 
 [node name="SceneHolder" type="Marker2D" parent="." unique_id=1172926372]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=925498235]
+[node name="CursorCanvas" type="CanvasLayer" parent="." unique_id=925498235]
 layer = 3
 
-[node name="Cursor" type="AnimatedSprite2D" parent="CanvasLayer" unique_id=1339186632]
+[node name="Cursor" type="AnimatedSprite2D" parent="CursorCanvas" unique_id=1339186632]
 z_index = 4
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tebl0")
 autoplay = "default"
 frame_progress = 0.9350693
+
+[node name="BlackScreen" type="CanvasLayer" parent="." unique_id=1998774293]
+layer = 20
+
+[node name="ColorRect" type="ColorRect" parent="BlackScreen" unique_id=1206732090]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="CRT" type="CanvasLayer" parent="." unique_id=1584056119]
 

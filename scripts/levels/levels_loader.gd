@@ -17,7 +17,9 @@ var levels: Array[String] = [
 	]
 
 func load_level(level: int) -> void:
+	await SceneManager.fade_to_black()
 	call_deferred("_do_load_level", level)
+	await SceneManager.fade_from_black()
 
 func _do_load_level(level: int) -> void:
 	if level > levels.size():
@@ -67,7 +69,7 @@ func _on_next_level_pressed() -> void:
 
 func _on_main_menu_pressed() -> void:
 	get_tree().paused = false
-	SceneManager.show_scene("res://scenes/menus/main_menu.tscn")
+	SceneManager.show_scene("res://scenes/menus/main_menu.tscn", true)
 
 '''
 ====== HUD ======
