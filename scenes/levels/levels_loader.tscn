@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://by0fqjhloenay"]
 
 [ext_resource type="Script" uid="uid://do5rw0ria2t3d" path="res://scripts/levels/levels_loader.gd" id="1_4vcrw"]
-[ext_resource type="Texture2D" uid="uid://c3ix24i0qp2bk" path="res://assets/sprites/bullet_background.png" id="2_bj081"]
 [ext_resource type="Theme" uid="uid://ck2dij0t8alec" path="res://assets/themes/main.tres" id="2_vmewy"]
 [ext_resource type="Texture2D" uid="uid://b6svekso7r8dr" path="res://assets/sprites/ui_bullet.png" id="3_07c4a"]
+[ext_resource type="Texture2D" uid="uid://dygjo7i5revc8" path="res://assets/sprites/bullet_background_v3.png" id="3_x246r"]
 [ext_resource type="Script" uid="uid://cc0btm8jpo2e1" path="res://scripts/menus/hud.gd" id="3_xk0s0"]
-[ext_resource type="Texture2D" uid="uid://bpd44vlyfix5q" path="res://assets/sprites/empty_healthbar.png" id="5_r1ihw"]
+[ext_resource type="Texture2D" uid="uid://if4vejxcsl3f" path="res://assets/sprites/empty_healthbar_v2.png" id="5_x246r"]
 [ext_resource type="Texture2D" uid="uid://it16cdx3dayw" path="res://assets/sprites/segment_1.png" id="6_g106c"]
 [ext_resource type="Texture2D" uid="uid://ditt12qkthasn" path="res://assets/sprites/segment_2.png" id="7_31o82"]
 [ext_resource type="Texture2D" uid="uid://dkhfvk3m35rcc" path="res://assets/sprites/segment_3.png" id="8_jo08o"]
@@ -40,13 +40,13 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -310.0
-offset_top = 440.0
+offset_left = -326.0
+offset_top = 405.0
 offset_right = -165.0
-offset_bottom = 482.0
+offset_bottom = 470.0
 grow_horizontal = 0
 scale = Vector2(2, 2)
-texture = ExtResource("2_bj081")
+texture = ExtResource("3_x246r")
 
 [node name="Bullets" type="HBoxContainer" parent="UI/HUD/Control/BulletBackground" unique_id=2134563546]
 layout_mode = 1
@@ -55,10 +55,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -58.5
-offset_top = -21.0
-offset_right = 56.5
-offset_bottom = 19.0
+offset_left = -61.5
+offset_top = -19.5
+offset_right = 53.5
+offset_bottom = 20.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 5
@@ -152,7 +152,7 @@ offset_top = 15.0
 offset_right = 172.0
 offset_bottom = 60.0
 scale = Vector2(2, 2)
-texture = ExtResource("5_r1ihw")
+texture = ExtResource("5_x246r")
 
 [node name="HealthSegments" type="HBoxContainer" parent="UI/HUD/Control/HealthBarBackground" unique_id=646571607]
 layout_mode = 1
@@ -161,10 +161,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -59.5
-offset_top = -4.5
-offset_right = 73.5
-offset_bottom = 3.5
+offset_left = -64.5
+offset_top = -2.5
+offset_right = 68.5
+offset_bottom = 5.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
