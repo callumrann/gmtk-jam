@@ -13,9 +13,11 @@ func _ready() -> void:
 	AudioManager.play_music("stage_1_intro", -10)
 
 var levels: Array[String] = [
-	"res://scenes/levels/level1.tscn", "res://scenes/newspapers/newspaper_1.tscn",
-	"res://scenes/levels/level2.tscn",
+	"res://scenes/newspapers/newspaper_1.tscn", "res://scenes/levels/level1.tscn", 
+	"res://scenes/newspapers/newspaper_2.tscn", "res://scenes/levels/level2.tscn",
 	]
+
+const k_newspaper_mod: int = 0
 
 func load_level(level: int) -> void:
 	await SceneManager.fade_to_black()
@@ -30,10 +32,10 @@ func _do_load_level(level: int) -> void:
 	for child in level_container.get_children():
 		child.queue_free()
 	
-	if level % 2 == 0:
-		hud.visible = false
-	else:
+	if level % 2 == k_newspaper_mod:
 		hud.visible = true
+	else:
+		hud.visible = false
 	
 	var new_level = load(levels[level- 1]).instantiate()
 	level_container.add_child(new_level)
@@ -51,7 +53,7 @@ func _do_load_level(level: int) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	# can't pause on newspaper
-	if event.is_action_pressed("pause") and LevelManager.current_level % 2 == 1:
+	if event.is_action_pressed("pause") and LevelManager.current_level % 2 != k_newspaper_mod:
 		get_tree().paused = true
 		pause_menu.visible = true
 

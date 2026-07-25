@@ -86,9 +86,6 @@ func _alert_nearby_enemies(origin: Vector2) -> void:
 func _physics_process(delta: float) -> void:
 	if dead or level_complete: return
 	
-	#var mouse_position: Vector2 = get_global_mouse_position()
-	#rotation = (mouse_position - global_position).angle()
-	
 	var movement_vector: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	
 	if movement_vector == Vector2.ZERO:
@@ -96,6 +93,13 @@ func _physics_process(delta: float) -> void:
 	else:
 		bottom_animation.global_rotation = movement_vector.angle()
 		bottom_animation.play("walking")
+		
+		var mouse_angle: float = (get_global_mouse_position() - global_position).angle()
+		var walk_angle: float = movement_vector.angle()
+		var angle_diff: float = angle_difference(walk_angle, mouse_angle)
+		if abs(rad_to_deg(angle_diff)) >= 90:
+			bottom_animation.global_rotation += deg_to_rad(180)
+		print(rad_to_deg(mouse_angle - walk_angle))
 	
 	velocity = movement_vector * k_move_speed
 	move_and_slide()
