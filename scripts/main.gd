@@ -16,26 +16,26 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	cursor.global_position = get_viewport().get_mouse_position()
 
-func fade_from_black() -> void:
+func fade_from_black(fade_time: float = k_fade_duration) -> void:
 	black_screen.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	var tween = create_tween()
 	
 	tween.set_trans(Tween.TRANS_QUAD)
 	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(black_screen, "modulate:a", 0, k_fade_duration)
+	tween.tween_property(black_screen, "modulate:a", 0, fade_time)
 	
 	print("fade from")
 	await tween.finished
 
-func fade_to_black() -> void:
+func fade_to_black(fade_time: float = k_fade_duration) -> void:
 	black_screen.mouse_filter = Control.MOUSE_FILTER_STOP
 	
 	var tween = create_tween()
 	
 	tween.set_trans(Tween.TRANS_QUAD)
 	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(black_screen, "modulate:a", 1, k_fade_duration)
+	tween.tween_property(black_screen, "modulate:a", 1, fade_time)
 	
 	print("fade to")
 	await tween.finished
