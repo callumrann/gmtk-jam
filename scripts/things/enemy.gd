@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # Navigation
 @onready var navigation_agent: NavigationAgent2D = $"Navigation/NavigationAgent2D"
-@onready var player: Node2D = $"../../Player"
+@onready var player: Node2D = $"../../Spawn/Player"
 
 @onready var vision_cone: Area2D = $"VisionCone"
 @onready var vision_ray: RayCast2D = $"VisionCone/RayCast2D"
@@ -107,6 +107,8 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	health -= 1
 	navigation_agent.target_position = area.get_shot_position()
 	if health <= 0:
+		LevelManager.enemy_dead()
+		
 		var dead_body: Area2D = k_dead_scene.instantiate()
 		dead_body.global_position = global_position
 		dead_body.rotation = rotation

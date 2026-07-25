@@ -1,9 +1,5 @@
 extends CharacterBody2D
 
-# Camera control
-@onready var camera: Camera2D = $"Camera2D"
-const k_camera_percent_to_mouse: float = 0.3
-
 # Bullet shooting
 @onready var bullet_spawn_left: Marker2D = $"BulletSpawnerLeft"
 @onready var bullet_spawn_right: Marker2D = $"BulletSpawnerRight"
@@ -25,15 +21,18 @@ const k_move_speed: float = 400
 var health: int = 7
 var dead: bool = false
 
+var level_complete: bool = false
+
 func _process(delta: float) -> void:
-	# Camera control
-	var mouse_position = get_global_mouse_position()
-	camera.global_position = lerp(position, mouse_position, k_camera_percent_to_mouse)
+	if level_complete: return
+	
 	if dead:
 		if Input.is_action_just_pressed("interact"):
 			LevelManager.restart_level()
 		return
-	rotation = (mouse_position - position).angle()
+	
+	var mouse_position: Vector2 = get_global_mouse_position()
+	rotation = (mouse_position - global_position).angle()
 	
 	# Bullet shooting
 	if bullet_cooldown_remaining > 0:
@@ -76,7 +75,7 @@ func _alert_nearby_enemies(origin: Vector2) -> void:
 		area.get_parent().on_gunshot_heard()
 
 func _physics_process(delta: float) -> void:
-	if dead: return
+	if dead or level_complete: return
 	
 	var movement_vector: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = movement_vector * k_move_speed
@@ -90,8 +89,10 @@ func add_bullets(count: int) -> void:
 		else:
 			left_bullets += 1
 			count -= 1
-	print("check")
 	LevelManager.update_bullet_ui("N/A", left_bullets, right_bullets)
+
+func level_finished() -> void:
+	level_complete = true
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	health -= 1

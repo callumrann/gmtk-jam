@@ -28,3 +28,9 @@ func reset_hud() -> void:
 func load_next_level() -> void:
 	current_level += 1
 	levelsLoader.load_level(current_level)
+
+func enemy_dead() -> void:
+	levelsLoader.enemy_dead()
+
+func level_complete() -> void:
+	levelsLoader.level_complete()

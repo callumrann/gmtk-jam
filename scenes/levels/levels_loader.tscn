@@ -302,6 +302,65 @@ layout_mode = 2
 theme = ExtResource("2_vmewy")
 text = "Main Menu"
 
+[node name="LevelCompleteMenu" type="CanvasLayer" parent="UI" unique_id=2076667043]
+visible = false
+
+[node name="Control" type="Control" parent="UI/LevelCompleteMenu" unique_id=30472588]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/LevelCompleteMenu/Control" unique_id=626025115]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.5
+offset_top = -62.5
+offset_right = 67.5
+offset_bottom = 62.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/LevelCompleteMenu/Control/PanelContainer" unique_id=1837716662]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_bj081")
+alignment = 1
+
+[node name="LevelComplete" type="Label" parent="UI/LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=2090815291]
+layout_mode = 2
+theme = ExtResource("2_vmewy")
+text = "Level Complete"
+horizontal_alignment = 1
+
+[node name="Time" type="Label" parent="UI/LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=1066537822]
+layout_mode = 2
+theme = ExtResource("2_vmewy")
+text = "Time"
+horizontal_alignment = 1
+
+[node name="NextLevel" type="Button" parent="UI/LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=1385911004 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("2_vmewy")
+text = "Next Level"
+
+[node name="Restart" type="Button" parent="UI/LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=1638296111 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("2_vmewy")
+text = "Restart"
+
+[node name="MainMenu" type="Button" parent="UI/LevelCompleteMenu/Control/PanelContainer/VBoxContainer" unique_id=2124801619 groups=["Button"]]
+layout_mode = 2
+theme = ExtResource("2_vmewy")
+text = "Main Menu"
+
 [node name="LevelContainer" type="Node2D" parent="." unique_id=277064604]
 process_mode = 1
 
@@ -309,3 +368,6 @@ process_mode = 1
 [connection signal="pressed" from="UI/PauseMenu/Control/PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/Control/PanelContainer/VBoxContainer/NextLevel" to="." method="_on_next_level_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/Control/PanelContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="UI/LevelCompleteMenu/Control/PanelContainer/VBoxContainer/NextLevel" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="UI/LevelCompleteMenu/Control/PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="UI/LevelCompleteMenu/Control/PanelContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

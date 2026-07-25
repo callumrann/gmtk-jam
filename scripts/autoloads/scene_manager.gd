@@ -12,7 +12,6 @@ func show_scene(path: String, fade: bool = false, fade_time: float = 0.0) -> voi
 		call_deferred("_do_show_scene", path)
 
 func _do_show_scene(path: String) -> void:
-	
 	for child in scene_spawn.get_children():
 		if child.name == "Cursor":
 			continue
@@ -20,6 +19,7 @@ func _do_show_scene(path: String) -> void:
 	var new_scene = load(path).instantiate()
 	scene_spawn.add_child(new_scene)
 	AudioManager.update_button_sfx()
+	get_tree().paused = false
 
 func fade_to_black(fade: float = 0.0) -> void:
 	if fade:
