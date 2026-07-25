@@ -212,7 +212,7 @@ height = 52.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_taauc"]
 radius = 150.0
 
-[node name="Player" type="CharacterBody2D" unique_id=251549957]
+[node name="Player" type="CharacterBody2D" unique_id=251549957 groups=["Player"]]
 collision_layer = 16
 script = ExtResource("1_ebmdi")
 

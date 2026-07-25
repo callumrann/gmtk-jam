@@ -1,3 +1,4 @@
+class_name BaseEnemy
 extends CharacterBody2D
 
 # Navigation
@@ -28,6 +29,14 @@ const k_shot_variance: float = deg_to_rad(10.0)
 const k_shots_per_sweep: int = 3
 var shot_offset: int = 0
 
+# Animation
+@onready var top_animation: AnimatedSprite2D = $"TopAnimation"
+@onready var bottom_animation: AnimatedSprite2D = $"BottomAnimation"
+
+const k_wind_up_time: float = 0.17
+var wind_up_timer: float = 0.0
+var wound_up: bool = false
+
 # Other
 const k_dead_scene: PackedScene = preload("res://scenes/things/dead_enemy.tscn")
 
@@ -50,10 +59,20 @@ func _process(delta: float) -> void:
 		wait_timer -= delta
 	
 	# Bullet shooting
-	if bullet_cooldown_remaining > 0:
+	if wind_up_timer > 0:
+		wind_up_timer -= delta
+	
+	elif bullet_cooldown_remaining > 0:
 		bullet_cooldown_remaining -= delta
+	
 	elif player_in_vision:
-		# change spray pattern
+		if !wound_up:
+			wound_up = true
+			wind_up_timer = k_wind_up_time
+			top_animation.play("windup")
+			return
+		
+		top_animation.play("shoot")
 		var bullet: Area2D = k_bullet_scene.instantiate()
 		
 		if shoot_left:
@@ -72,6 +91,13 @@ func _process(delta: float) -> void:
 		
 		LevelManager.spawn_bullet(bullet)
 		bullet_cooldown_remaining = k_bullet_cooldown
+	
+	if not player_in_vision:
+		if wound_up:
+			wound_up = false
+			top_animation.play("winddown")
+			await top_animation.animation_finished
+			top_animation.play("default")
 
 func _physics_process(delta):	
 	# Navigation
@@ -82,12 +108,14 @@ func _physics_process(delta):
 			is_alerted = false
 			wait_timer = k_wait_before_repatrol
 			velocity = Vector2.ZERO
+			bottom_animation.play("default")
 			move_and_slide()
 			return
 		
 		elif patrol_points:
 			if wait_timer > 0:
 				velocity = Vector2.ZERO
+				bottom_animation.play("default")
 				move_and_slide()
 				return
 			current_patrol_index += 1
@@ -95,6 +123,7 @@ func _physics_process(delta):
 		
 		else:
 			velocity = Vector2.ZERO
+			bottom_animation.play("default")
 			move_and_slide()
 			return
 	
@@ -110,6 +139,9 @@ func _physics_process(delta):
 		rotation = lerp_angle(rotation, target_angle, k_slow_turn_speed * delta)
 	
 	velocity = direction * k_move_speed
+	bottom_animation.global_rotation = velocity.angle()
+	bottom_animation.play("walking")
+	
 	move_and_slide()
 
 func _check_vision() -> void:

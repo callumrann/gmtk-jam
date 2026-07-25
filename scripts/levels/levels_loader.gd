@@ -101,7 +101,6 @@ func reset_hud() -> void:
 
 func enemy_dead() -> void:
 	spawned_level.enemy_count -= 1
-	print(spawned_level.enemy_count)
 	if spawned_level.enemy_count <= 0:
 		spawned_level.enable_exit()
 
