@@ -5,7 +5,7 @@ func _ready() -> void:
 
 func _on_continue_pressed() -> void:
 	$"Control".visible = false
-	await AudioManager.play_sfx("transition", -10, true, true)
+	await AudioManager.play_sfx("click", -10, true, true) # click so i dont gotta wait 8 secs
 	SceneManager.show_scene("res://scenes/levels/levels_loader.tscn")
 
 func _on_level_select_pressed() -> void:

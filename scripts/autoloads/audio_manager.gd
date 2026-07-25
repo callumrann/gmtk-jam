@@ -82,7 +82,8 @@ func play_sfx(sfx_name: String, volume: float = 0.0, transition: bool = false, f
 	if transition:
 		if fade_bgm:
 			var tween = create_tween()
-			tween.tween_property(bgm_player, "volume_db", -80.0, sfx_player.stream.get_length())
+			# - 0.1 cause .finished race condition stuff <- kinda cheese but whatevs
+			tween.tween_property(bgm_player, "volume_db", -80.0, sfx_player.stream.get_length() - 0.1)
 			tween.set_trans(Tween.TRANS_QUAD)
 			tween.set_ease(Tween.EASE_OUT)
 		await sfx_player.finished

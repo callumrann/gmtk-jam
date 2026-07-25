@@ -54,6 +54,11 @@ func reduce_health() -> void:
 			segment.modulate.a = 0
 			break
 
+@onready var player_dead_hud: PanelContainer = $"Control/PlayerDead"
+
+func show_player_dead_popup() -> void:
+	player_dead_hud.visible = true
+
 func reset_hud() -> void:
 	left_bullets = k_max_ammo
 	right_bullets = k_max_ammo
@@ -65,3 +70,5 @@ func reset_hud() -> void:
 	for i in range(segmentsContainer.get_child_count()):
 		var segment: TextureRect = segmentsContainer.get_child(i)
 		segment.modulate.a = 1
+	
+	player_dead_hud.visible = false

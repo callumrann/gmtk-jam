@@ -54,10 +54,10 @@ shape = SubResource("CircleShape2D_taauc")
 debug_color = Color(0.09276519, 0.54850113, 0.91359544, 0.41960785)
 
 [node name="BulletSpawnerLeft" type="Marker2D" parent="." unique_id=225566511]
-position = Vector2(7, -8)
+position = Vector2(0, -8)
 
 [node name="BulletSpawnerRight" type="Marker2D" parent="." unique_id=1690026887]
-position = Vector2(7, 8)
+position = Vector2(0, 8)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1111842270]
 process_callback = 0

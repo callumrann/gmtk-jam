@@ -19,13 +19,20 @@ var bullet_cooldown_remaining: float = 0.0
 @onready var gun_noise: Area2D = $"GunNoise"
 
 # Other
+@onready var animation: AnimatedSprite2D = $"AnimatedSprite2D"
+
 const k_move_speed: float = 400
 var health: int = 7
+var dead: bool = false
 
 func _process(delta: float) -> void:
 	# Camera control
 	var mouse_position = get_global_mouse_position()
 	camera.global_position = lerp(position, mouse_position, k_camera_percent_to_mouse)
+	if dead:
+		if Input.is_action_just_pressed("interact"):
+			LevelManager.restart_level()
+		return
 	rotation = (mouse_position - position).angle()
 	
 	# Bullet shooting
@@ -69,6 +76,8 @@ func _alert_nearby_enemies(origin: Vector2) -> void:
 		area.get_parent().on_gunshot_heard()
 
 func _physics_process(delta: float) -> void:
+	if dead: return
+	
 	var movement_vector: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = movement_vector * k_move_speed
 	move_and_slide()
@@ -88,4 +97,8 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	health -= 1
 	LevelManager.reduce_player_health()
 	if health <= 0:
-		print("man i'm dead")
+		LevelManager.player_dead()
+		
+		$"Hurtbox/CollisionShape2D".set_deferred("disabled", true)
+		animation.modulate = Color(0, 1, 0)
+		dead = true

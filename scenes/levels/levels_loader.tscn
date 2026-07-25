@@ -226,7 +226,23 @@ texture = ExtResource("12_x246r")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="LevelCompleteMenu" type="CanvasLayer" parent="UI" unique_id=1837822900]
+[node name="PlayerDead" type="PanelContainer" parent="UI/HUD/Control" unique_id=2106408160]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -122.0
+offset_right = 346.0
+offset_bottom = -42.0
+grow_vertical = 0
+
+[node name="RetryText" type="Label" parent="UI/HUD/Control/PlayerDead" unique_id=489384862]
+layout_mode = 2
+theme = ExtResource("2_vmewy")
+text = "E to Retry"
+horizontal_alignment = 1
 
 [node name="PauseMenu" type="CanvasLayer" parent="UI" unique_id=1422244254]
 visible = false

@@ -10,6 +10,7 @@ var spawned_level: Node2D
 func _ready() -> void:
 	LevelManager.levelsLoader = self
 	load_level(LevelManager.current_level)
+	AudioManager.play_music("stage_1_intro", -10)
 
 var levels: Array[String] = [
 	"res://scenes/levels/level1.tscn","res://scenes/levels/level2.tscn",
@@ -53,8 +54,11 @@ func _on_resume_pressed() -> void:
 	_toggle_pause()
 
 func _on_restart_pressed() -> void:
-	load_level(LevelManager.current_level)
+	restart_level()
 	_toggle_pause()
+
+func restart_level() -> void:
+	load_level(LevelManager.current_level)
 
 func _on_next_level_pressed() -> void:
 	LevelManager.current_level += 1
@@ -82,6 +86,9 @@ func update_bullet_ui(side_shot: String = "N/A", left_bullets: int = 0, right_bu
 
 func reduce_player_health() -> void:
 	hud.reduce_health()
+
+func player_dead() -> void:
+	hud.show_player_dead_popup()
 
 func reset_hud() -> void:
 	hud.reset_hud()

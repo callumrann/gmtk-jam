@@ -28,8 +28,10 @@ const k_dead_scene: PackedScene = preload("res://scenes/things/dead_enemy.tscn")
 const k_move_speed: float = 100.0
 const k_turn_speed: float = 20.0
 
-const k_starting_health: int = 3
+const k_starting_health: int = 1
 var health: int = k_starting_health
+
+const k_bullets_on_death: int = 2
 
 func _ready() -> void:
 	await get_tree().physics_frame
@@ -108,7 +110,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		var dead_body: Area2D = k_dead_scene.instantiate()
 		dead_body.global_position = global_position
 		dead_body.rotation = rotation
-		dead_body.set_bullet_count(k_starting_health)
+		dead_body.set_bullet_count(k_bullets_on_death)
 		
 		get_parent().call_deferred("add_child", dead_body)
 		queue_free()

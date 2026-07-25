@@ -16,5 +16,11 @@ func update_bullet_ui(side_shot: String = "N/A", left_bullets: int = 0, right_bu
 func reduce_player_health() -> void:
 	levelsLoader.reduce_player_health()
 
+func player_dead() -> void:
+	levelsLoader.player_dead()
+
+func restart_level() -> void:
+	levelsLoader.restart_level()
+
 func reset_hud() -> void:
 	levelsLoader.reset_hud()
