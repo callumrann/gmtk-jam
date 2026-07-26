@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b1c2gu61yl35x" path="res://assets/sprites/segment_5.png" id="10_ej71t"]
 [ext_resource type="Texture2D" uid="uid://bqfl1jn76aa2l" path="res://assets/sprites/segment_6.png" id="11_xq51w"]
 [ext_resource type="Texture2D" uid="uid://clvgxnr75o5sn" path="res://assets/sprites/segment_7.png" id="12_x246r"]
+[ext_resource type="Texture2D" uid="uid://dp5ij0okh51tv" path="res://assets/sprites/drac_healthbar_v2.png" id="13_kky7p"]
 [ext_resource type="Script" uid="uid://cthxo65cqvsjk" path="res://scripts/menus/animated_button.gd" id="14_6oaax"]
 [ext_resource type="Texture2D" uid="uid://djt5dvsy4wsab" path="res://assets/sprites/buttons/play_icon_pressed.png" id="15_teog4"]
 [ext_resource type="Texture2D" uid="uid://b1pdg7fgowlaw" path="res://assets/sprites/buttons/play_icon_floating.png" id="16_6oaax"]
@@ -23,6 +24,12 @@
 [ext_resource type="Texture2D" uid="uid://cono05ejmgi8u" path="res://assets/sprites/buttons/skip_icon_pressed.png" id="19_uv0of"]
 [ext_resource type="Texture2D" uid="uid://b6tp57e1mxau0" path="res://assets/sprites/buttons/menu_icon_pressed.png" id="21_kky7p"]
 [ext_resource type="Texture2D" uid="uid://cbbw86v8l6a45" path="res://assets/sprites/longerpauseicon.png" id="23_uv0of"]
+
+[sub_resource type="Gradient" id="Gradient_uv0of"]
+colors = PackedColorArray(0.23569751, 0.0055137444, 0.16156581, 1, 0.061289363, 0.065034285, 0.1594581, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tebl0"]
+gradient = SubResource("Gradient_uv0of")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h1ptj"]
 atlas = ExtResource("15_teog4")
@@ -329,6 +336,15 @@ script = ExtResource("1_4vcrw")
 [node name="UI" type="Node2D" parent="." unique_id=2017187425]
 
 [node name="BackColour" type="CanvasLayer" parent="UI" unique_id=161673725]
+layer = -20
+
+[node name="TextureRect" type="TextureRect" parent="UI/BackColour" unique_id=337762695]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_tebl0")
 
 [node name="HUD" type="CanvasLayer" parent="UI" unique_id=740062671]
 visible = false
@@ -526,6 +542,89 @@ stretch_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="Segment7" type="TextureRect" parent="UI/HUD/Control/HealthBarBackground/HealthSegments" unique_id=391030392]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("12_x246r")
+stretch_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="DracHealth" type="TextureRect" parent="UI/HUD/Control" unique_id=1077404629]
+visible = false
+layout_mode = 0
+offset_left = 928.0
+offset_top = 524.0
+offset_right = 1092.0
+offset_bottom = 601.0
+rotation = 3.1415927
+scale = Vector2(2, 2)
+texture = ExtResource("13_kky7p")
+
+[node name="HealthSegments" type="HBoxContainer" parent="UI/HUD/Control/DracHealth" unique_id=174397113]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -2.5
+offset_right = 68.5
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Segment1" type="TextureRect" parent="UI/HUD/Control/DracHealth/HealthSegments" unique_id=208343646]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_g106c")
+stretch_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Segment2" type="TextureRect" parent="UI/HUD/Control/DracHealth/HealthSegments" unique_id=1611566321]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_31o82")
+stretch_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Segment3" type="TextureRect" parent="UI/HUD/Control/DracHealth/HealthSegments" unique_id=2051838258]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_jo08o")
+stretch_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Segment4" type="TextureRect" parent="UI/HUD/Control/DracHealth/HealthSegments" unique_id=1568044494]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("9_85g66")
+stretch_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Segment5" type="TextureRect" parent="UI/HUD/Control/DracHealth/HealthSegments" unique_id=245037725]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("10_ej71t")
+stretch_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Segment6" type="TextureRect" parent="UI/HUD/Control/DracHealth/HealthSegments" unique_id=1343646886]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("11_xq51w")
+stretch_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="Segment7" type="TextureRect" parent="UI/HUD/Control/DracHealth/HealthSegments" unique_id=2045743828]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

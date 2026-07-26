@@ -18,7 +18,7 @@ var player: CharacterBody2D
 var player_health: int
 
 # dracula related
-var dracula_health: int = 5
+var dracula_health: int = 7
 
 const k_dracula_punch_cooldown: float = 3.0 # average
 const k_punch_cooldown_offset_max: float = 1.0
@@ -78,6 +78,7 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("interact"):
 			info.visible = false
 			LevelManager.toggle_health_ui()
+			LevelManager.drac_toggle_health_ui()
 			
 			var tween: Tween = create_tween()
 			tween.set_parallel(true)
@@ -208,6 +209,7 @@ func _hit_dracula(side: String) -> void:
 			shake_dracula()
 			return
 	dracula_health -= 1
+	LevelManager.drac_reduce_health(1)
 	
 	if dracula_health <= 0:
 		fight = false
@@ -226,7 +228,8 @@ func _hit_dracula(side: String) -> void:
 			AudioManager.play_sfx("count_down")
 			text_instance.position = Vector2(480, 270)
 			await get_tree().create_timer(text_instance.lifetime + 1.0).timeout
-			dracula_health += 2
+			dracula_health += 7
+			LevelManager.drac_reset_hud()
 			dracula_animation.play("default")
 			AudioManager.play_sfx("dracula_revive")
 			fight = true
@@ -308,6 +311,7 @@ func _end_fight() -> void:
 	fight_spawn_collision.set_deferred("disabled", true)
 	fight_visuals.visible = false
 	LevelManager.toggle_bullet_ui()
+	LevelManager.drac_toggle_health_ui()
 	for object in get_tree().get_nodes_in_group("Player"):
 		if object.name == "Player":
 			player = object

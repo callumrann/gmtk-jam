@@ -145,3 +145,12 @@ func toggle_bullet_ui() -> void:
 
 func toggle_health_ui() -> void:
 	hud.toggle_health_ui()
+
+func drac_toggle_health_ui() -> void:
+	hud.drac_toggle_health_ui()
+
+func drac_reduce_health(amount: int) -> void:
+	hud.drac_reduce_health(amount)
+
+func drac_reset_hud() -> void:
+	hud.drac_reset_hud()
