@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 	elif Input.is_action_just_pressed("shoot_left"):
 		if left_bullets > 0:
 			bullet_cooldown_remaining = k_bullet_cooldown
-			top_animation.play("shoot_left")
+			_play_the_animation("shoot_left", true)
 			await get_tree().create_timer(k_bullet_delay).timeout
 			
 			var bullet: Area2D = k_bullet_scene.instantiate()
@@ -63,7 +63,7 @@ func _process(delta: float) -> void:
 	elif Input.is_action_just_pressed("shoot_right"):
 		if right_bullets > 0:
 			bullet_cooldown_remaining = k_bullet_cooldown
-			top_animation.play("shoot_right")
+			_play_the_animation("shoot_right", true)
 			await get_tree().create_timer(k_bullet_delay).timeout
 			
 			var bullet: Area2D = k_bullet_scene.instantiate()
@@ -92,7 +92,7 @@ func _physics_process(delta: float) -> void:
 		bottom_animation.play("default")
 	else:
 		bottom_animation.global_rotation = movement_vector.angle()
-		bottom_animation.play("walking")
+		_play_the_animation("walking", false)
 		
 		var mouse_angle: float = (get_global_mouse_position() - global_position).angle()
 		var walk_angle: float = movement_vector.angle()
@@ -157,4 +157,16 @@ func die() -> void:
 	dead = true
 
 func _top_animation_finished() -> void:
-	top_animation.play("default")
+	_play_the_animation("default", true)
+
+func _play_the_animation(name: String, top: bool) -> void:
+	if top:
+		if health < 4:
+			top_animation.play(name + "_damaged")
+		else:
+			top_animation.play(name)
+	else:
+		if health < 4:
+			bottom_animation.play(name + "_damaged")
+		else:
+			bottom_animation.play(name)
