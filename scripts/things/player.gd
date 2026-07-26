@@ -126,12 +126,14 @@ func add_bullets(count: int) -> void:
 	LevelManager.update_bullet_ui("N/A", left_bullets, right_bullets)
 	
 	var text_instance = k_fancy_text_scene.instantiate()
-	text_instance.global_position = global_position + Vector2(0, -20)
+	text_instance.global_position = global_position + Vector2(0, -40)
 	get_tree().current_scene.add_child(text_instance)
 	text_instance.setup("+ " + str(bullets_recieved) + " BULLETS", 12)
 
 func level_finished() -> void:
 	level_complete = true
+	$"Hurtbox/CollisionShape2D".set_deferred("disabled", true)
+	$"WallCollider".set_deferred("disabled", true)
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	var damage: int

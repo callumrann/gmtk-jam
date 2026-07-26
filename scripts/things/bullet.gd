@@ -18,3 +18,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 func get_shot_position() -> Vector2:
 	return shot_position
+
+
+func _on_area_entered(area: Area2D) -> void:
+	queue_free()
