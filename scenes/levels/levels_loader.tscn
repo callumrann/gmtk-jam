@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://bqfl1jn76aa2l" path="res://assets/sprites/segment_6.png" id="11_xq51w"]
 [ext_resource type="Texture2D" uid="uid://clvgxnr75o5sn" path="res://assets/sprites/segment_7.png" id="12_x246r"]
 [ext_resource type="Script" uid="uid://cthxo65cqvsjk" path="res://scripts/menus/animated_button.gd" id="14_6oaax"]
-[ext_resource type="Texture2D" uid="uid://2sjq0wvnahvc" path="res://assets/sprites/paused.png" id="14_21kl8"]
 [ext_resource type="Texture2D" uid="uid://djt5dvsy4wsab" path="res://assets/sprites/buttons/play_icon_pressed.png" id="15_teog4"]
 [ext_resource type="Texture2D" uid="uid://b1pdg7fgowlaw" path="res://assets/sprites/buttons/play_icon_floating.png" id="16_6oaax"]
 [ext_resource type="Texture2D" uid="uid://l3lik4kgavho" path="res://assets/sprites/buttons/restart_icon_floating.png" id="17_k6sju"]
@@ -23,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://c84x2gkpxa5s" path="res://assets/sprites/buttons/menu_icon_floating.png" id="19_aotpy"]
 [ext_resource type="Texture2D" uid="uid://cono05ejmgi8u" path="res://assets/sprites/buttons/skip_icon_pressed.png" id="19_uv0of"]
 [ext_resource type="Texture2D" uid="uid://b6tp57e1mxau0" path="res://assets/sprites/buttons/menu_icon_pressed.png" id="21_kky7p"]
+[ext_resource type="Texture2D" uid="uid://cbbw86v8l6a45" path="res://assets/sprites/longerpauseicon.png" id="23_uv0of"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h1ptj"]
 atlas = ExtResource("15_teog4")
@@ -552,6 +552,7 @@ text = "E to Retry"
 horizontal_alignment = 1
 
 [node name="PauseMenu" type="CanvasLayer" parent="UI" unique_id=1422244254]
+visible = false
 
 [node name="Control" type="Control" parent="UI/PauseMenu" unique_id=1976877116]
 layout_mode = 3
@@ -659,12 +660,12 @@ autoplay = "default"
 
 [node name="PausedText" type="TextureRect" parent="UI/PauseMenu/Control/Menu" unique_id=2065412542]
 layout_mode = 0
-offset_left = -123.0
-offset_top = -147.0
-offset_right = 18.0
-offset_bottom = -67.0
+offset_left = -243.0
+offset_top = -146.0
+offset_right = -6.0
+offset_bottom = -66.0
 scale = Vector2(2, 2)
-texture = ExtResource("14_21kl8")
+texture = ExtResource("23_uv0of")
 
 [node name="LevelCompleteMenu" type="CanvasLayer" parent="UI" unique_id=2076667043]
 visible = false

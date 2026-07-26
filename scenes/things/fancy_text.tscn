@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b5koc0rba0n6f"]
+
+[ext_resource type="Script" uid="uid://bolyyjqfqlwl7" path="res://scripts/things/fancy_text.gd" id="1_156ra"]
+[ext_resource type="FontFile" uid="uid://dexohdrp7cjco" path="res://assets/fonts/PublicPixel.otf" id="2_156ra"]
+
+[node name="FancyText" type="Node2D" unique_id=732701265]
+script = ExtResource("1_156ra")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1533723015]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.5
+offset_top = -113.0
+offset_right = 204.5
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_156ra")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Level Complete"
+horizontal_alignment = 1
+vertical_alignment = 1
