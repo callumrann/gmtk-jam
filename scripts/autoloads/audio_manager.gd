@@ -132,7 +132,7 @@ func fade_music(duration: float, volume: float) -> void:
 	tween.set_trans(Tween.TRANS_QUAD)
 	tween.set_ease(Tween.EASE_OUT)
 
-func toggle_muffle():
+func toggle_muffle(clearMuffle: bool = False):
 	var bus_idx = AudioServer.get_bus_index(bgm_player.bus)
 	var is_currently_muffled = AudioServer.is_bus_effect_enabled(bus_idx, 0)
 	AudioServer.set_bus_effect_enabled(bus_idx, 0, not is_currently_muffled)
