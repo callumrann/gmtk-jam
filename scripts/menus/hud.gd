@@ -70,6 +70,9 @@ func reduce_health(amount: int) -> void:
 			if amount <= 0:
 				break
 
+func toggle_health_ui() -> void:
+	healthbar.visible = !healthbar.visible
+
 @onready var player_dead_hud: PanelContainer = $"Control/PlayerDead"
 
 func show_player_dead_popup() -> void:
@@ -88,7 +91,6 @@ func reset_hud() -> void:
 		segment.modulate.a = 1
 	
 	player_dead_hud.visible = false
-
 
 '''
 ====== VFX ======

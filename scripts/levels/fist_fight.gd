@@ -38,7 +38,12 @@ var first_down: bool = true
 
 # other
 var fight_spawned: bool = false
+var pre_fight: bool = false
 var fight: bool = false
+
+@onready var info: Control = $"Fight/Control"
+var player_position: Vector2
+var dracula_position: Vector2
 
 # Tween maxing - for blocks
 var player_start_position: Vector2
@@ -57,6 +62,9 @@ func _ready() -> void:
 	
 	player_start_position = player_animation.global_position
 	dracula_start_position =  dracula_animation.global_position
+	
+	player_position = player_animation.global_position
+	dracula_position = dracula_animation.global_position
 
 func _process(delta: float) -> void:
 	if !fight_spawned and get_parent().visible:
@@ -65,6 +73,30 @@ func _process(delta: float) -> void:
 	
 	if dracula_health <= 0:
 		dracula_animation.play("dead")
+	
+	if pre_fight:
+		if Input.is_action_just_pressed("interact"):
+			info.visible = false
+			LevelManager.toggle_health_ui()
+			
+			var tween: Tween = create_tween()
+			tween.set_parallel(true)
+			tween.set_trans(Tween.TRANS_QUAD)
+			tween.set_ease(Tween.EASE_OUT)
+			tween.tween_property(player_animation, "global_position", player_position, 0.5)
+			tween.tween_property(dracula_animation, "global_position", dracula_position, 0.5)
+			
+			await tween.finished
+			
+			var text_instance = k_fancy_text_scene.instantiate()
+			fight_visuals.add_child(text_instance)
+			text_instance.setup("BEGIN!", 50)
+			text_instance.position = Vector2(480, 270)
+			AudioManager.play_sfx("count_down")
+			await get_tree().create_timer(text_instance.lifetime + 1.0).timeout
+			
+			fight = true
+			pre_fight = false
 	
 	if !fight:
 		return
@@ -258,8 +290,11 @@ func _hit_player(side: String) -> void:
 		AudioManager.play_sfx("player_damage")
 	
 func _on_area_entered(area: Area2D) -> void:
+	player_animation.position -= Vector2(500, 0)
+	dracula_animation.position += Vector2(500, 0)
 	fight_visuals.visible = true
 	LevelManager.toggle_bullet_ui()
+	LevelManager.toggle_health_ui()
 	for object in get_tree().get_nodes_in_group("Player"):
 		if object.name == "Player":
 			player = object
@@ -267,7 +302,7 @@ func _on_area_entered(area: Area2D) -> void:
 	
 	player.level_complete = true
 	player_health = player.health
-	fight = true
+	pre_fight = true
 
 func _end_fight() -> void:
 	fight_spawn_collision.set_deferred("disabled", true)

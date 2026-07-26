@@ -142,3 +142,6 @@ func level_complete() -> void:
 # stuff
 func toggle_bullet_ui() -> void:
 	hud.toggle_bullet_ui()
+
+func toggle_health_ui() -> void:
+	hud.toggle_health_ui()

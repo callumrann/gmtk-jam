@@ -36,3 +36,6 @@ func level_complete() -> void:
 
 func toggle_bullet_ui() -> void: # for punchout
 	levelsLoader.toggle_bullet_ui()
+
+func toggle_health_ui() -> void:
+	levelsLoader.toggle_health_ui()
