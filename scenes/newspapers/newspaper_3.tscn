@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b7eq5mnqkljvk"]
 
 [ext_resource type="Script" uid="uid://b3buy7vgr1pl2" path="res://scripts/newspapers/newspaper_class.gd" id="1_cy88m"]
-[ext_resource type="Texture2D" uid="uid://do4abw2itjq84" path="res://assets/sprites/newspaper1_wtext.png" id="2_u7104"]
+[ext_resource type="Texture2D" uid="uid://cbodairdl7c1" path="res://assets/sprites/newspaper3_wtext.png" id="2_cy88m"]
 [ext_resource type="Theme" uid="uid://ck2dij0t8alec" path="res://assets/themes/main.tres" id="3_sdr06"]
 
 [node name="Newspaper1" type="CanvasLayer" unique_id=2143432895]
@@ -24,7 +24,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("2_u7104")
+texture = ExtResource("2_cy88m")
 
 [node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=147723290]
 layout_mode = 0
