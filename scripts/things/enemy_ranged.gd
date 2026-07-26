@@ -74,6 +74,7 @@ func _process(delta: float) -> void:
 			return
 		
 		top_animation.play("shoot")
+		AudioManager.play_sfx("enemy_shoot")
 		var bullet: Area2D = k_bullet_scene.instantiate()
 		
 		if shoot_left:
@@ -181,6 +182,7 @@ func _take_damage() -> void:
 	#navigation_agent.target_position = area.get_shot_position()
 	if health <= 0:
 		LevelManager.enemy_dead()
+		AudioManager.play_sfx("enemy_dead")
 		
 		var dead_body: Area2D = k_dead_scene.instantiate()
 		dead_body.global_position = global_position
@@ -189,3 +191,5 @@ func _take_damage() -> void:
 		
 		get_parent().call_deferred("add_child", dead_body)
 		queue_free()
+	else:
+		AudioManager.play_sfx("enemy_damage")

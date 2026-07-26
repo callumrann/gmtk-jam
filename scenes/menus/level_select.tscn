@@ -1,8 +1,171 @@
 [gd_scene format=3 uid="uid://cfsyprp7tskrt"]
 
 [ext_resource type="Script" uid="uid://c4g2wb7axun4s" path="res://scripts/menus/level_select.gd" id="1_xqyeo"]
-[ext_resource type="Texture2D" uid="uid://cmux77pfhlw2e" path="res://assets/sprites/bg1_v2.png" id="2_1g16o"]
+[ext_resource type="Texture2D" uid="uid://c0ga4sgvt21ar" path="res://assets/sprites/bg_level_select.png" id="2_p7c2r"]
 [ext_resource type="Theme" uid="uid://ck2dij0t8alec" path="res://assets/themes/main.tres" id="2_pymjq"]
+[ext_resource type="Script" uid="uid://cthxo65cqvsjk" path="res://scripts/menus/animated_button.gd" id="4_p7c2r"]
+[ext_resource type="Texture2D" uid="uid://djt5dvsy4wsab" path="res://assets/sprites/buttons/play_icon_pressed.png" id="5_pwdrg"]
+[ext_resource type="Texture2D" uid="uid://b7ufypkj7mxop" path="res://assets/sprites/buttons/map_select_float.png" id="6_p7c2r"]
+[ext_resource type="Texture2D" uid="uid://b6tp57e1mxau0" path="res://assets/sprites/buttons/menu_icon_pressed.png" id="7_tnwi7"]
+[ext_resource type="Texture2D" uid="uid://c84x2gkpxa5s" path="res://assets/sprites/buttons/menu_icon_floating.png" id="8_tyig4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7c2r"]
+bg_color = Color(0.18039216, 0.1882353, 0.3764706, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0.18039216, 0.1882353, 0.3764706, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1ptj"]
+atlas = ExtResource("5_pwdrg")
+region = Rect2(0, 0, 10, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwdrg"]
+atlas = ExtResource("6_p7c2r")
+region = Rect2(0, 0, 34, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnwi7"]
+atlas = ExtResource("6_p7c2r")
+region = Rect2(0, 46, 34, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyig4"]
+atlas = ExtResource("6_p7c2r")
+region = Rect2(0, 92, 34, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng7pr"]
+atlas = ExtResource("6_p7c2r")
+region = Rect2(0, 138, 34, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8khru"]
+atlas = ExtResource("6_p7c2r")
+region = Rect2(0, 184, 34, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl4el"]
+atlas = ExtResource("6_p7c2r")
+region = Rect2(0, 230, 34, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nppjm"]
+atlas = ExtResource("5_pwdrg")
+region = Rect2(0, 16, 10, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p7c2r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1ptj")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwdrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnwi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyig4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ng7pr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8khru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xl4el")
+}],
+"loop": 2,
+"name": &"hover",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nppjm")
+}],
+"loop": 0,
+"name": &"pressed",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd3tc"]
+atlas = ExtResource("7_tnwi7")
+region = Rect2(0, 0, 16, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vmml"]
+atlas = ExtResource("8_tyig4")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1psoq"]
+atlas = ExtResource("8_tyig4")
+region = Rect2(0, 17, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0q2o"]
+atlas = ExtResource("8_tyig4")
+region = Rect2(0, 34, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbado"]
+atlas = ExtResource("8_tyig4")
+region = Rect2(0, 51, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0g8ps"]
+atlas = ExtResource("8_tyig4")
+region = Rect2(0, 68, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_du1y0"]
+atlas = ExtResource("8_tyig4")
+region = Rect2(0, 85, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebx87"]
+atlas = ExtResource("7_tnwi7")
+region = Rect2(0, 13, 16, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ng7pr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd3tc")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vmml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1psoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0q2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbado")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0g8ps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_du1y0")
+}],
+"loop": 1,
+"name": &"hover",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebx87")
+}],
+"loop": 0,
+"name": &"pressed",
+"speed": 5.0
+}]
 
 [node name="LevelSelect" type="CanvasLayer" unique_id=1026503943]
 script = ExtResource("1_xqyeo")
@@ -22,53 +185,59 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_1g16o")
+texture = ExtResource("2_p7c2r")
 
 [node name="Label" type="Label" parent="Control" unique_id=1066892889]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -45.5
-offset_top = -11.5
-offset_right = 45.5
-offset_bottom = 11.5
+offset_left = -140.0
+offset_top = -255.0
+offset_right = 148.0
+offset_bottom = -231.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_pymjq")
 text = "Level Select"
 
-[node name="Level1" type="Button" parent="Control" unique_id=1584721769]
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=4902626]
+visible = false
 layout_mode = 0
-offset_left = 211.0
-offset_top = 171.0
-offset_right = 273.0
-offset_bottom = 202.0
-theme = ExtResource("2_pymjq")
-text = "Level 1"
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_p7c2r")
 
-[node name="Level2" type="Button" parent="Control" unique_id=799533427]
-layout_mode = 0
-offset_left = 429.0
-offset_top = 150.0
-offset_right = 491.0
-offset_bottom = 181.0
+[node name="LevelInfo" type="Label" parent="Control/PanelContainer" unique_id=538970205]
+layout_mode = 2
 theme = ExtResource("2_pymjq")
-text = "Level 2"
+theme_override_font_sizes/font_size = 18
+text = "Level Select"
 
-[node name="Level3" type="Button" parent="Control" unique_id=1512129672]
+[node name="Level1" type="Button" parent="Control" unique_id=687629749 groups=["Button"]]
 layout_mode = 0
-offset_left = 681.0
-offset_top = 205.0
-offset_right = 743.0
-offset_bottom = 236.0
+offset_left = 312.0
+offset_top = 164.0
+offset_right = 342.0
+offset_bottom = 194.0
+scale = Vector2(3, 3)
 theme = ExtResource("2_pymjq")
-text = "Level 3
-"
+flat = true
+script = ExtResource("4_p7c2r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/Level1" unique_id=1501637746]
+position = Vector2(15, 12)
+sprite_frames = SubResource("SpriteFrames_p7c2r")
+animation = &"hover"
+autoplay = "default"
+frame = 4
+frame_progress = 0.3499991
 
 [node name="ThanksScreen" type="Button" parent="Control" unique_id=539576662]
+visible = false
 layout_mode = 0
 offset_left = 444.0
 offset_top = 360.0
@@ -77,24 +246,31 @@ offset_bottom = 391.0
 theme = ExtResource("2_pymjq")
 text = "Thanks Screen"
 
-[node name="MainMenu" type="Button" parent="Control" unique_id=847510185 groups=["Button"]]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = -60.0
-offset_right = 48.0
-offset_bottom = -29.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="MainMenu" type="Button" parent="Control" unique_id=578795033 groups=["Button"]]
+layout_mode = 0
+offset_left = 385.0
+offset_top = 461.0
+offset_right = 415.0
+offset_bottom = 491.0
+scale = Vector2(3, 3)
 theme = ExtResource("2_pymjq")
-text = "Main Menu"
+flat = true
+script = ExtResource("4_p7c2r")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/MainMenu" unique_id=629387510]
+position = Vector2(15, 12)
+sprite_frames = SubResource("SpriteFrames_ng7pr")
+animation = &"pressed"
+autoplay = "default"
+
+[connection signal="button_down" from="Control/Level1" to="Control/Level1" method="_on_button_down"]
+[connection signal="button_up" from="Control/Level1" to="Control/Level1" method="_on_button_up"]
+[connection signal="mouse_entered" from="Control/Level1" to="Control/Level1" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Level1" to="Control/Level1" method="_on_mouse_exited"]
 [connection signal="pressed" from="Control/Level1" to="." method="_on_level_1_pressed"]
-[connection signal="pressed" from="Control/Level2" to="." method="_on_level_2_pressed"]
-[connection signal="pressed" from="Control/Level3" to="." method="_on_level_3_pressed"]
 [connection signal="pressed" from="Control/ThanksScreen" to="." method="_on_thanks_screen_pressed"]
+[connection signal="button_down" from="Control/MainMenu" to="Control/MainMenu" method="_on_button_down"]
+[connection signal="button_up" from="Control/MainMenu" to="Control/MainMenu" method="_on_button_up"]
+[connection signal="mouse_entered" from="Control/MainMenu" to="Control/MainMenu" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Control/MainMenu" to="Control/MainMenu" method="_on_mouse_exited"]
 [connection signal="pressed" from="Control/MainMenu" to="." method="_on_main_menu_pressed"]

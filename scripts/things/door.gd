@@ -26,6 +26,8 @@ func _slam_check(body: Node2D) -> void:
 func slam_door(direction: float) -> void:
 	is_moving = true
 	
+	AudioManager.play_sfx("door")
+	
 	var target_angle: float = start_rotation + (deg_to_rad(k_max_open_angle) * direction)
 	
 	var tween: Tween = create_tween()

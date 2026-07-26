@@ -5,13 +5,38 @@ extends Node
 var current_music := ""
 
 const SFX := {
-	"click": preload("res://assets/audio/sfx/click.wav"),
-	"damage": preload("res://assets/audio/sfx/damage.wav"),
-	"level_win": preload("res://assets/audio/sfx/level_win.wav"),
+	"player_damage": preload("res://assets/audio/sfx/damage.wav"),
+	"player_shoot": preload("res://assets/audio/sfx/click.wav"),
+	"player_die": preload("res://assets/audio/sfx/click.wav"),
+	"player_shoot_no_ammo": preload("res://assets/audio/sfx/click.wav"),
+	"player_footsteps": preload("res://assets/audio/sfx/click.wav"), # didnt implement yet... might not
+	
+	"enemy_damage": preload("res://assets/audio/sfx/damage.wav"),
+	"enemy_shoot": preload("res://assets/audio/sfx/click.wav"),
+	"enemy_swing": preload("res://assets/audio/sfx/click.wav"),
+	"enemy_die": preload("res://assets/audio/sfx/click.wav"),
+	
+	"door": preload("res://assets/audio/sfx/click.wav"),
+	"ammo_pickup": preload("res://assets/audio/sfx/click.wav"),
+	
+	"level_clear": preload("res://assets/audio/sfx/level_win.wav"), # all enemies dead
+	"level_win": preload("res://assets/audio/sfx/level_win.wav"), # leave building
+	
+	"player_punch": preload("res://assets/audio/sfx/click.wav"),
+	"dracula_damage": preload("res://assets/audio/sfx/click.wav"),
+	"dracula_down": preload("res://assets/audio/sfx/click.wav"), # fall down, count start after
+	"dracula_revive": preload("res://assets/audio/sfx/click.wav"),
+	"knock_out": preload("res://assets/audio/sfx/click.wav"),
+	"player_dodge": preload("res://assets/audio/sfx/click.wav"),
+	"dracula_whiff": preload("res://assets/audio/sfx/click.wav"), # miss dodging player
+	"dracula_block": preload("res://assets/audio/sfx/click.wav"),
+	"count_down": preload("res://assets/audio/sfx/click.wav"), # appearance of 3, 2, 1, each makes sound
+	
 	"menu_move": preload("res://assets/audio/sfx/menu_move.wav"),
 	"menu_select": preload("res://assets/audio/sfx/menu_select.wav"),
 	"pause_in": preload("res://assets/audio/sfx/pause_in.wav"),
 	"pause_out": preload("res://assets/audio/sfx/pause_out.wav"),
+	
 	"transition": preload("res://assets/audio/sfx/transition.wav"),
 }
 

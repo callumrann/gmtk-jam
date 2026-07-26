@@ -67,10 +67,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause") and LevelManager.current_level % 2 != k_newspaper_mod:
 		pause_menu.visible = !pause_menu.visible
 		get_tree().paused = pause_menu.visible
+		if pause_menu.visible:
+			AudioManager.play_sfx("pause_in")
+		else:
+			AudioManager.play_sfx("pause_out")
 		
 
 func _on_resume_pressed() -> void:
-	AudioManager.play_sfx("pause_out", -15)
+	AudioManager.play_sfx("pause_out")
 	get_tree().paused = false
 	pause_menu.visible = false
 
@@ -118,6 +122,7 @@ func enemy_dead() -> void:
 	spawned_level.enemy_count -= 1
 	if spawned_level.enemy_count <= 0:
 		spawned_level.enable_exit()
+		AudioManager.play_sfx("level_clear")
 		
 		var text_instance = k_fancy_text_scene.instantiate()
 		#text_instance.global_position = global_position + Vector2(0, -20)
@@ -131,6 +136,7 @@ func enemy_dead() -> void:
 
 func level_complete() -> void:
 	level_complete_menu.visible = true
+	AudioManager.play_sfx("level_win")
 
 
 # stuff

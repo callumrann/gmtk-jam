@@ -46,6 +46,7 @@ func _process(delta: float) -> void:
 		if left_bullets > 0:
 			bullet_cooldown_remaining = k_bullet_cooldown
 			_play_the_animation("shoot_left", true)
+			AudioManager.play_sfx("player_shoot")
 			await get_tree().create_timer(k_bullet_delay).timeout
 			
 			var bullet: Area2D = k_bullet_scene.instantiate()
@@ -58,12 +59,14 @@ func _process(delta: float) -> void:
 			left_bullets -= 1
 			_alert_nearby_enemies(position)
 		else:
+			AudioManager.play_sfx("player_shoot_no_ammo")
 			print("no more left bullets")
 	
 	elif Input.is_action_just_pressed("shoot_right"):
 		if right_bullets > 0:
 			bullet_cooldown_remaining = k_bullet_cooldown
 			_play_the_animation("shoot_right", true)
+			AudioManager.play_sfx("player_shoot")
 			await get_tree().create_timer(k_bullet_delay).timeout
 			
 			var bullet: Area2D = k_bullet_scene.instantiate()
@@ -76,6 +79,7 @@ func _process(delta: float) -> void:
 			right_bullets -= 1
 			_alert_nearby_enemies(position)
 		else:
+			AudioManager.play_sfx("player_shoot_no_ammo")
 			print("no more right bullets")
 
 func _alert_nearby_enemies(origin: Vector2) -> void:
@@ -129,6 +133,9 @@ func add_bullets(count: int) -> void:
 	text_instance.global_position = global_position + Vector2(0, -40)
 	get_tree().current_scene.add_child(text_instance)
 	text_instance.setup("+ " + str(bullets_recieved) + " BULLETS", 12)
+	
+	if bullets_recieved > 0:
+		AudioManager.play_sfx("ammo_pickup")
 
 func level_finished() -> void:
 	level_complete = true
@@ -146,9 +153,12 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	
 	if health <= 0:
 		die()
+	else:
+		AudioManager.play_sfx("player_damage")
 
 func die() -> void:
 	LevelManager.player_dead()
+	AudioManager.play_sfx("player_die")
 		
 	$"Hurtbox/CollisionShape2D".set_deferred("disabled", true)
 	$"WallCollider".set_deferred("disabled", true)

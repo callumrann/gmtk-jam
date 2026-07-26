@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 			top_animation.play("windup")
 			await top_animation.animation_finished
 			top_animation.play("swing")
+			AudioManager.play_sfx("enemy_shoot")
 			hitbox_collision.set_deferred("disabled", false)
 			await top_animation.animation_finished
 			top_animation.play("winddown")

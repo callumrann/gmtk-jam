@@ -71,10 +71,14 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_pressed("move_left"):
 		player_animation.play("dodge_left")
+		if !dodge_left:
+			AudioManager.play_sfx("player_dodge")
 		dodge_left = true
 		dodge_right = false
 	elif Input.is_action_pressed("move_right"):
 		player_animation.play("dodge_right")
+		if !dodge_right:
+			AudioManager.play_sfx("player_dodge")
 		dodge_left = false
 		dodge_right = true
 	else:
@@ -164,29 +168,35 @@ func _hit_dracula(side: String) -> void:
 	
 	if dracula_blocking:
 		if high_block and side == "high":
+			AudioManager.play_sfx("dracula_block")
 			shake_dracula()
 			return
 		elif !high_block and side == "low":
+			AudioManager.play_sfx("dracula_block")
 			shake_dracula()
 			return
 	dracula_health -= 1
+	
 	if dracula_health <= 0:
 		fight = false
 		dracula_animation.play("dead")
-		
+		AudioManager.play_sfx("dracula_down")
 		if first_down:
 			var text_instance = k_fancy_text_scene.instantiate()
 			fight_visuals.add_child(text_instance)
 			text_instance.setup("3", 50)
 			text_instance.position = Vector2(480, 270)
+			AudioManager.play_sfx("count_down")
 			await get_tree().create_timer(text_instance.lifetime + 1.0).timeout
 			text_instance = k_fancy_text_scene.instantiate()
 			fight_visuals.add_child(text_instance)
 			text_instance.setup("2", 50)
+			AudioManager.play_sfx("count_down")
 			text_instance.position = Vector2(480, 270)
 			await get_tree().create_timer(text_instance.lifetime + 1.0).timeout
 			dracula_health += 2
 			dracula_animation.play("default")
+			AudioManager.play_sfx("dracula_revive")
 			fight = true
 			first_down = false
 			return
@@ -194,22 +204,26 @@ func _hit_dracula(side: String) -> void:
 		var text_instance = k_fancy_text_scene.instantiate()
 		fight_visuals.add_child(text_instance)
 		text_instance.setup("3", 50)
+		AudioManager.play_sfx("count_down")
 		text_instance.position = Vector2(480, 270)
 		await get_tree().create_timer(text_instance.lifetime + 1.0).timeout
 		text_instance = k_fancy_text_scene.instantiate()
 		fight_visuals.add_child(text_instance)
 		text_instance.setup("2", 50)
+		AudioManager.play_sfx("count_down")
 		text_instance.position = Vector2(480, 270)
 		await get_tree().create_timer(text_instance.lifetime + 1.0).timeout
 		text_instance = k_fancy_text_scene.instantiate()
 		fight_visuals.add_child(text_instance)
 		text_instance.setup("1", 50)
+		AudioManager.play_sfx("count_down")
 		text_instance.position = Vector2(480, 270)
 		await get_tree().create_timer(text_instance.lifetime + 1.0).timeout
 		text_instance = k_fancy_text_scene.instantiate()
 		text_instance.lifetime += 1
 		fight_visuals.add_child(text_instance)
 		text_instance.setup("KNOCK OUT!", 50)
+		AudioManager.play_sfx("knock_out")
 		text_instance.position = Vector2(480, 270)
 		await get_tree().create_timer(text_instance.lifetime).timeout
 		text_instance = k_fancy_text_scene.instantiate()
@@ -220,13 +234,18 @@ func _hit_dracula(side: String) -> void:
 		await get_tree().create_timer(text_instance.lifetime).timeout
 		LevelManager.load_next_level()
 
+	else:
+		AudioManager.play_sfx("dracula_damage")
+
 func _hit_player(side: String) -> void:
 	if !fight: # stop chain punches after player death
 		return
 	
 	if dodge_left and side == "punch_left":
+		AudioManager.play_sfx("dracula_whiff")
 		return
 	if dodge_right and side == "punch_right":
+		AudioManager.play_sfx("dracula_whiff")
 		return
 	
 	player_health -= 2
@@ -235,7 +254,9 @@ func _hit_player(side: String) -> void:
 	if player_health <= 0 and fight:
 		player.die()
 		_end_fight()
-
+	else:
+		AudioManager.play_sfx("player_damage")
+	
 func _on_area_entered(area: Area2D) -> void:
 	fight_visuals.visible = true
 	LevelManager.toggle_bullet_ui()
@@ -289,8 +310,3 @@ func shake_dracula() -> void:
 		var offset = strength if i % 2 == 0 else -strength
 		dracula_tween.tween_property(dracula_animation, "position:y", dracula_start_position.y + offset, step_time)
 	dracula_tween.tween_property(dracula_animation, "position", dracula_start_position, step_time)
-
-
-# shake on block
-# player win
-# proper animations
