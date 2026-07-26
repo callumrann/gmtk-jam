@@ -525,37 +525,63 @@ metadata/_edit_lock_ = true
 
 [node name="Enemies" type="Node2D" parent="." unique_id=2009923957]
 
-[node name="EnemyRanged" parent="Enemies" unique_id=416746935 node_paths=PackedStringArray("patrol_points") groups=["Player"] instance=ExtResource("10_6igki")]
-position = Vector2(82, 219)
-patrol_points = [NodePath("../../PatrolPoints/Marker2D4"), NodePath("../../PatrolPoints/Marker2D5")]
-
 [node name="EnemyRanged4" parent="Enemies" unique_id=1646557107 groups=["Player"] instance=ExtResource("10_6igki")]
-position = Vector2(248.89, 373.77)
+position = Vector2(242.805, 252.8)
 rotation = -1.5707964
 
-[node name="EnemyRanged2" parent="Enemies" unique_id=487870424 node_paths=PackedStringArray("patrol_points") groups=["Player"] instance=ExtResource("10_6igki")]
-position = Vector2(24, -172)
-patrol_points = [NodePath("../../PatrolPoints/Marker2D"), NodePath("../../PatrolPoints/Marker2D2"), NodePath("../../PatrolPoints/Marker2D3")]
-
-[node name="EnemyRanged3" parent="Enemies" unique_id=1739894532 node_paths=PackedStringArray("patrol_points") groups=["Player"] instance=ExtResource("10_6igki")]
-position = Vector2(24, -172)
-patrol_points = [NodePath("../../PatrolPoints/Marker2D3"), NodePath("../../PatrolPoints/Marker2D4")]
+[node name="EnemyRanged5" parent="Enemies" unique_id=2048587562 groups=["Player"] instance=ExtResource("10_6igki")]
+position = Vector2(266.36, 326.58)
+rotation = -1.5707964
 
 [node name="EnemyMelee" parent="Enemies" unique_id=952456415 node_paths=PackedStringArray("patrol_points") instance=ExtResource("11_hlvfl")]
-patrol_points = [NodePath("../../PatrolPoints/Marker2D6"), NodePath("../../PatrolPoints/Marker2D7")]
+position = Vector2(-3, -68)
+patrol_points = [NodePath("../../PatrolPoints/Marker2D6")]
 
-[node name="EnemyMelee2" parent="Enemies" unique_id=185286909 node_paths=PackedStringArray("patrol_points") instance=ExtResource("11_hlvfl")]
-position = Vector2(445, 179)
-rotation = 3.1415927
-patrol_points = [NodePath("../../PatrolPoints/Marker2D5"), NodePath("../../PatrolPoints/Marker2D7")]
+[node name="EnemyMelee2" parent="Enemies" unique_id=1350374389 node_paths=PackedStringArray("patrol_points") instance=ExtResource("11_hlvfl")]
+position = Vector2(2, 35)
+patrol_points = [NodePath("../../PatrolPoints/Marker2D6")]
 
-[node name="EnemyMelee3" parent="Enemies" unique_id=1447628690 instance=ExtResource("11_hlvfl")]
-position = Vector2(449, -58)
-rotation = 3.1415927
+[node name="EnemyMelee3" parent="Enemies" unique_id=1070188799 node_paths=PackedStringArray("patrol_points") instance=ExtResource("11_hlvfl")]
+position = Vector2(0, 138)
+patrol_points = [NodePath("../../PatrolPoints/Marker2D6")]
 
-[node name="EnemyMelee4" parent="Enemies" unique_id=1724329211 instance=ExtResource("11_hlvfl")]
-position = Vector2(-82, 213)
-rotation = 6.2831855
+[node name="EnemyMelee4" parent="Enemies" unique_id=51395138 node_paths=PackedStringArray("patrol_points") instance=ExtResource("11_hlvfl")]
+position = Vector2(-2, 236)
+patrol_points = [NodePath("../../PatrolPoints/Marker2D6")]
+
+[node name="EnemyMelee5" parent="Enemies" unique_id=281518907 node_paths=PackedStringArray("patrol_points") instance=ExtResource("11_hlvfl")]
+position = Vector2(38, 329)
+patrol_points = [NodePath("../../PatrolPoints/Marker2D6")]
+
+[node name="EnemyMelee6" parent="Enemies" unique_id=267841879 node_paths=PackedStringArray("patrol_points") instance=ExtResource("11_hlvfl")]
+position = Vector2(448, 311)
+rotation = -3.1415927
+patrol_points = [NodePath("../../PatrolPoints/Marker2D6")]
+
+[node name="EnemyMelee7" parent="Enemies" unique_id=2038824472 node_paths=PackedStringArray("patrol_points") instance=ExtResource("11_hlvfl")]
+position = Vector2(442, 218)
+rotation = -3.1415927
+patrol_points = [NodePath("../../PatrolPoints/Marker2D6")]
+
+[node name="EnemyMelee8" parent="Enemies" unique_id=392430217 node_paths=PackedStringArray("patrol_points") instance=ExtResource("11_hlvfl")]
+position = Vector2(446, 131)
+rotation = -3.1415927
+patrol_points = [NodePath("../../PatrolPoints/Marker2D6")]
+
+[node name="EnemyMelee9" parent="Enemies" unique_id=1826413215 node_paths=PackedStringArray("patrol_points") instance=ExtResource("11_hlvfl")]
+position = Vector2(442, 43)
+rotation = -3.1415927
+patrol_points = [NodePath("../../PatrolPoints/Marker2D6")]
+
+[node name="EnemyMelee10" parent="Enemies" unique_id=1060484391 node_paths=PackedStringArray("patrol_points") instance=ExtResource("11_hlvfl")]
+position = Vector2(445, -50)
+rotation = -3.1415927
+patrol_points = [NodePath("../../PatrolPoints/Marker2D6")]
+
+[node name="EnemyMelee11" parent="Enemies" unique_id=100478054 node_paths=PackedStringArray("patrol_points") instance=ExtResource("11_hlvfl")]
+position = Vector2(443, -124)
+rotation = -3.1415927
+patrol_points = [NodePath("../../PatrolPoints/Marker2D6")]
 
 [node name="PatrolPoints" type="Node2D" parent="." unique_id=1943515548]
 
@@ -608,13 +634,6 @@ script = ExtResource("14_r00g1")
 
 [node name="Arrow2" type="AnimatedSprite2D" parent="OnExit/Arrows" unique_id=592062065]
 position = Vector2(280, 95)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_tebl0")
-script = ExtResource("14_r00g1")
-
-[node name="Arrow3" type="AnimatedSprite2D" parent="OnExit/Arrows" unique_id=959000778]
-position = Vector2(9, 223)
-rotation = 1.5707964
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tebl0")
 script = ExtResource("14_r00g1")

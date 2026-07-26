@@ -26,6 +26,7 @@ func _ready() -> void:
 func load_level(level: int, reset: bool = false) -> void: # reset for death or restart
 	if level % 2 != k_newspaper_mod:
 		if !reset:
+			AudioManager.toggle_muffle(true)
 			AudioManager.play_music("battle_intro", 0)
 			await get_tree().create_timer(2.0).timeout
 			await SceneManager.fade_to_black()
