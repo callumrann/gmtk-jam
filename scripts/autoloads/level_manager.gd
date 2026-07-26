@@ -36,3 +36,15 @@ func level_complete() -> void:
 
 func toggle_bullet_ui() -> void: # for punchout
 	levelsLoader.toggle_bullet_ui()
+
+func toggle_health_ui() -> void:
+	levelsLoader.toggle_health_ui()
+
+func drac_toggle_health_ui() -> void:
+	levelsLoader.drac_toggle_health_ui()
+
+func drac_reduce_health(amount: int) -> void:
+	levelsLoader.drac_reduce_health(amount)
+
+func drac_reset_hud() -> void:
+	levelsLoader.drac_reset_hud()

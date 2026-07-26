@@ -70,6 +70,9 @@ func reduce_health(amount: int) -> void:
 			if amount <= 0:
 				break
 
+func toggle_health_ui() -> void:
+	healthbar.visible = !healthbar.visible
+
 @onready var player_dead_hud: PanelContainer = $"Control/PlayerDead"
 
 func show_player_dead_popup() -> void:
@@ -87,8 +90,9 @@ func reset_hud() -> void:
 		var segment: TextureRect = segmentsContainer.get_child(i)
 		segment.modulate.a = 1
 	
+	drac_reset_hud()
+	
 	player_dead_hud.visible = false
-
 
 '''
 ====== VFX ======
@@ -112,6 +116,7 @@ const k_bulletbar_shake_count: int = 6
 func _ready() -> void:
 	health_start_position = healthbar.global_position
 	bulletbar_start_position =  bulletbar.global_position
+	drac_health_start_position = drac_healthbar.global_position
 
 func shake_health() -> void:
 	if health_tween and health_tween.is_valid():
@@ -144,3 +149,51 @@ func shake_bulletbar() -> void:
 		var offset = strength if i % 2 == 0 else -strength
 		bulletbar_tween.tween_property(bulletbar, "position:y", bulletbar_start_position.y + offset, step_time)
 	bulletbar_tween.tween_property(bulletbar, "position", bulletbar_start_position, step_time)
+
+
+# Drac health
+@onready var drac_segmentsContainer: HBoxContainer = $"Control/DracHealth/HealthSegments"
+
+func drac_reduce_health(amount: int) -> void:
+	drac_shake_health()
+	
+	var segment_count: int = drac_segmentsContainer.get_child_count()
+	for i in range(segment_count):
+		var segment: TextureRect = drac_segmentsContainer.get_child(segment_count - 1 - i)
+		if segment.modulate.a != 0:
+			segment.modulate.a = 0
+			amount -= 1
+			if amount <= 0:
+				break
+
+func drac_toggle_health_ui() -> void:
+	drac_healthbar.visible = !drac_healthbar.visible
+
+@onready var drac_healthbar: TextureRect = $"Control/DracHealth"
+var drac_health_start_position: Vector2
+var drac_health_tween: Tween
+
+const k_drac_health_shake_duration: float = 0.4
+const k_drac_health_shake_strength: float = 8.0
+const k_drac_health_shake_count: int = 6
+
+func drac_shake_health() -> void:
+	if drac_health_tween and drac_health_tween.is_valid():
+		drac_health_tween.kill()
+	
+	drac_healthbar.position = drac_health_start_position
+	
+	drac_health_tween = create_tween()
+	var step_time: float = k_drac_health_shake_duration / k_drac_health_shake_count
+	
+	for i in k_drac_health_shake_count:
+		 # decreasing amplitude
+		var strength: float = k_drac_health_shake_strength * (1.0 - float(i) / k_drac_health_shake_count)
+		var offset = strength if i % 2 == 0 else -strength
+		drac_health_tween.tween_property(drac_healthbar, "position:y", drac_health_start_position.y + offset, step_time)
+	drac_health_tween.tween_property(drac_healthbar, "position", drac_health_start_position, step_time)
+
+func drac_reset_hud() -> void:
+	for i in range(drac_segmentsContainer.get_child_count()):
+		var segment: TextureRect = drac_segmentsContainer.get_child(i)
+		segment.modulate.a = 1

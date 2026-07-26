@@ -12,6 +12,8 @@ const k_newspaper_mod: int = 1
 var levels: Array[String] = [
 	"res://scenes/newspapers/newspaper_1.tscn", "res://scenes/levels/level1.tscn", 
 	"res://scenes/newspapers/newspaper_2.tscn", "res://scenes/levels/level2.tscn",
+	"res://scenes/newspapers/newspaper_3.tscn", "res://scenes/levels/level3.tscn",
+	"res://scenes/newspapers/newspaper_4.tscn",
 	]
 
 func _ready() -> void:
@@ -148,3 +150,15 @@ func level_complete() -> void:
 # stuff
 func toggle_bullet_ui() -> void:
 	hud.toggle_bullet_ui()
+
+func toggle_health_ui() -> void:
+	hud.toggle_health_ui()
+
+func drac_toggle_health_ui() -> void:
+	hud.drac_toggle_health_ui()
+
+func drac_reduce_health(amount: int) -> void:
+	hud.drac_reduce_health(amount)
+
+func drac_reset_hud() -> void:
+	hud.drac_reset_hud()

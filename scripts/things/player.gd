@@ -156,17 +156,21 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	else:
 		AudioManager.play_sfx("player_damage")
 
+@onready var dead_bottom_animation: AnimatedSprite2D = $"DeadBottoms"
 func die() -> void:
 	LevelManager.player_dead()
 	AudioManager.play_sfx("player_die")
 		
 	$"Hurtbox/CollisionShape2D".set_deferred("disabled", true)
 	$"WallCollider".set_deferred("disabled", true)
-	top_animation.modulate = Color(0, 1, 0) # replace with animation
+	top_animation.play("dead")
 	bottom_animation.play("default")
+	dead_bottom_animation.play("dead")
 	dead = true
 
 func _top_animation_finished() -> void:
+	if dead:
+		return
 	_play_the_animation("default", true)
 
 func _play_the_animation(name: String, top: bool) -> void:

@@ -5,12 +5,13 @@ func _ready() -> void:
 
 func _on_continue_pressed() -> void:
 	SceneManager.fade_to_black()
-	SceneManager.show_scene("res://scenes/levels/levels_loader.tscn")
+	SceneManager.show_scene("res://scenes/levels/levels_loader.tscn", true)
 
 func _on_level_select_pressed() -> void:
-	SceneManager.show_scene("res://scenes/menus/level_select.tscn")
+	SceneManager.show_scene("res://scenes/menus/level_select.tscn", true)
 
 func _on_quit_pressed() -> void:
+	await get_tree().create_timer(0.5).timeout
 	get_tree().quit()
 
 func _unhandled_input(event: InputEvent) -> void:
