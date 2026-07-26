@@ -5,9 +5,7 @@ func _ready() -> void:
 
 func _on_continue_pressed() -> void:
 	SceneManager.fade_to_black()
-	await AudioManager.play_sfx("click", -10, true, true) # click so i dont gotta wait 8 secs
 	SceneManager.show_scene("res://scenes/levels/levels_loader.tscn")
-	SceneManager.fade_from_black()
 
 func _on_level_select_pressed() -> void:
 	SceneManager.show_scene("res://scenes/menus/level_select.tscn")

@@ -7,21 +7,32 @@ extends Node2D
 @onready var level_container: Node2D = $"LevelContainer"
 var spawned_level: Node
 
-func _ready() -> void:
-	LevelManager.levelsLoader = self
-	load_level(LevelManager.current_level)
-	AudioManager.play_music("stage_1_intro", -10)
+const k_newspaper_mod: int = 1
 
 var levels: Array[String] = [
 	"res://scenes/newspapers/newspaper_1.tscn", "res://scenes/levels/level1.tscn", 
 	"res://scenes/newspapers/newspaper_2.tscn", "res://scenes/levels/level2.tscn",
 	]
 
-const k_newspaper_mod: int = 1
+func _ready() -> void:
+	LevelManager.levelsLoader = self
+	
+	if LevelManager.current_level % 2 != k_newspaper_mod:
+		LevelManager.current_level -= 1 # force start on newspaper
+	load_level(LevelManager.current_level)
 
-func load_level(level: int) -> void:
-	await SceneManager.fade_to_black()
+func load_level(level: int, reset: bool = false) -> void: # reset for death or restart
+	if level % 2 != k_newspaper_mod:
+		if !reset:
+			await AudioManager.play_sfx("transition", -10, true, true)
+		else:
+			await SceneManager.fade_to_black()
+	else:
+		AudioManager.fade_music(SceneManager.fade_duration * 2, -80)
+		await SceneManager.fade_to_black()
 	call_deferred("_do_load_level", level)
+	if level % 2 != k_newspaper_mod and !reset:
+		AudioManager.play_music("stage_1_intro", -10)
 	await SceneManager.fade_from_black()
 
 func _do_load_level(level: int) -> void:
@@ -64,10 +75,10 @@ func _on_resume_pressed() -> void:
 	pause_menu.visible = false
 
 func _on_restart_pressed() -> void:
-	load_level(LevelManager.current_level)
+	load_level(LevelManager.current_level, true)
 
 func restart_level() -> void: # for level manager
-	load_level(LevelManager.current_level)
+	load_level(LevelManager.current_level, true)
 
 func _on_next_level_pressed() -> void:
 	LevelManager.current_level += 1

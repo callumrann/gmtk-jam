@@ -1,7 +1,6 @@
 extends Node2D
 
 var levelsLoader: Node2D
-
 var current_level: int = 1
 
 func spawn_bullet(bullet: Node2D) -> void:
@@ -19,15 +18,15 @@ func reduce_player_health(amount: int) -> void:
 func player_dead() -> void:
 	levelsLoader.player_dead()
 
-func restart_level() -> void:
-	levelsLoader.restart_level()
-
 func reset_hud() -> void:
 	levelsLoader.reset_hud()
 
 func load_next_level() -> void:
 	current_level += 1
 	levelsLoader.load_level(current_level)
+	
+func restart_level() -> void:
+	levelsLoader.restart_level()
 
 func enemy_dead() -> void:
 	levelsLoader.enemy_dead()

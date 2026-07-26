@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cfsyprp7tskrt"]
 
 [ext_resource type="Script" uid="uid://c4g2wb7axun4s" path="res://scripts/menus/level_select.gd" id="1_xqyeo"]
+[ext_resource type="Texture2D" uid="uid://cmux77pfhlw2e" path="res://assets/sprites/bg1_v2.png" id="2_1g16o"]
 [ext_resource type="Theme" uid="uid://ck2dij0t8alec" path="res://assets/themes/main.tres" id="2_pymjq"]
 
 [node name="LevelSelect" type="CanvasLayer" unique_id=1026503943]
@@ -13,6 +14,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="Control" unique_id=1633000432]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1g16o")
 
 [node name="Label" type="Label" parent="Control" unique_id=1066892889]
 layout_mode = 1
@@ -30,6 +40,43 @@ grow_vertical = 2
 theme = ExtResource("2_pymjq")
 text = "Level Select"
 
+[node name="Level1" type="Button" parent="Control" unique_id=1584721769]
+layout_mode = 0
+offset_left = 211.0
+offset_top = 171.0
+offset_right = 273.0
+offset_bottom = 202.0
+theme = ExtResource("2_pymjq")
+text = "Level 1"
+
+[node name="Level2" type="Button" parent="Control" unique_id=799533427]
+layout_mode = 0
+offset_left = 429.0
+offset_top = 150.0
+offset_right = 491.0
+offset_bottom = 181.0
+theme = ExtResource("2_pymjq")
+text = "Level 2"
+
+[node name="Level3" type="Button" parent="Control" unique_id=1512129672]
+layout_mode = 0
+offset_left = 681.0
+offset_top = 205.0
+offset_right = 743.0
+offset_bottom = 236.0
+theme = ExtResource("2_pymjq")
+text = "Level 3
+"
+
+[node name="ThanksScreen" type="Button" parent="Control" unique_id=539576662]
+layout_mode = 0
+offset_left = 444.0
+offset_top = 360.0
+offset_right = 506.0
+offset_bottom = 391.0
+theme = ExtResource("2_pymjq")
+text = "Thanks Screen"
+
 [node name="MainMenu" type="Button" parent="Control" unique_id=847510185 groups=["Button"]]
 layout_mode = 1
 anchors_preset = 7
@@ -46,5 +93,8 @@ grow_vertical = 0
 theme = ExtResource("2_pymjq")
 text = "Main Menu"
 
-[connection signal="pressed" from="Control/MainMenu" to="Control" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Control/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="Control/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Control/Level3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="Control/ThanksScreen" to="." method="_on_thanks_screen_pressed"]
 [connection signal="pressed" from="Control/MainMenu" to="." method="_on_main_menu_pressed"]

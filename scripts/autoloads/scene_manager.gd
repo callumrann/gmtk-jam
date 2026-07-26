@@ -3,6 +3,8 @@ extends Node
 var scene_spawn: Marker2D
 var main_scene: Node2D
 
+var fade_duration: float # for other things to see fade duration
+
 func show_scene(path: String, fade: bool = false, fade_time: float = 0.0) -> void:
 	if fade:
 		await fade_to_black(fade_time)

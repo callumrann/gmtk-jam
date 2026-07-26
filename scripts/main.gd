@@ -10,6 +10,7 @@ func _ready() -> void:
 	
 	SceneManager.scene_spawn = $"SceneHolder"
 	SceneManager.main_scene = self
+	SceneManager.fade_duration = k_fade_duration
 	fade_from_black() # initial fade in
 	SceneManager.show_scene("res://scenes/menus/main_menu.tscn")
 

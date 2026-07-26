@@ -12,13 +12,13 @@ const SFX := {
 	"menu_select": preload("res://assets/audio/sfx/menu_select.wav"),
 	"pause_in": preload("res://assets/audio/sfx/pause_in.wav"),
 	"pause_out": preload("res://assets/audio/sfx/pause_out.wav"),
-	"transition": preload("res://assets/audio/music/stage_1_music_intro.wav"),
+	"transition": preload("res://assets/audio/sfx/transition.wav"),
 }
 
 const MUSIC := {
 	"menu_intro": preload("res://assets/audio/music/menu_music_intro.wav"),
 	"menu_loop": preload("res://assets/audio/music/menu_music_loop.wav"),
-	"stage_1_intro": preload("res://assets/audio/music/stage_1_music_intro.wav"),
+	"stage_1_intro": preload("res://assets/audio/music/stage_1_music_intro_short.wav"),
 	"stage_1_loop": preload("res://assets/audio/music/stage_1_music_loop.wav"),
 }
 
@@ -62,6 +62,8 @@ func play_music(track_name: String, volume: float = 0.0, transition: bool = fals
 	bgm_player.volume_db = volume
 	bgm_player.play()
 	
+	print("check")
+	
 	if transition:
 		await bgm_player.finished
 
@@ -81,11 +83,8 @@ func play_sfx(sfx_name: String, volume: float = 0.0, transition: bool = false, f
 	
 	if transition:
 		if fade_bgm:
-			var tween = create_tween()
-			# - 0.1 cause .finished race condition stuff <- kinda cheese but whatevs
-			tween.tween_property(bgm_player, "volume_db", -80.0, sfx_player.stream.get_length() - 0.1)
-			tween.set_trans(Tween.TRANS_QUAD)
-			tween.set_ease(Tween.EASE_OUT)
+			SceneManager.fade_to_black(sfx_player.stream.get_length())
+			fade_music(sfx_player.stream.get_length() - 0.1, -80.0)
 		await sfx_player.finished
 
 func _on_music_finished() -> void:
@@ -97,3 +96,10 @@ func _on_music_finished() -> void:
 
 func stop_music() -> void:
 	bgm_player.stop()
+
+func fade_music(duration: float, volume: float) -> void:
+	var tween = create_tween()
+	# - 0.1 cause .finished race condition stuff <- kinda cheese but whatevs
+	tween.tween_property(bgm_player, "volume_db", volume, duration)
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_ease(Tween.EASE_OUT)
