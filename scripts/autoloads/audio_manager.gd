@@ -41,10 +41,12 @@ const SFX := {
 }
 
 const MUSIC := {
-	"menu_intro": preload("res://assets/audio/music/menu_music_intro.wav"),
-	"menu_loop": preload("res://assets/audio/music/menu_music_loop.wav"),
-	"stage_1_intro": preload("res://assets/audio/music/stage_1_music_intro_short.wav"),
-	"stage_1_loop": preload("res://assets/audio/music/stage_1_music_loop.wav"),
+	"main_menu_loop": preload("res://assets/audio/music/main_menu_loop.wav"),
+	"newspaper_scene": preload("res://assets/audio/music/newspaper_scene.wav"),
+	"newspaper_waiting": preload("res://assets/audio/music/newspaper_waiting.wav"),
+	"battle_intro": preload("res://assets/audio/music/battle_intro.wav"),
+	"battle_loop": preload("res://assets/audio/music/battle_loop.wav"),
+	"dracula_death": preload("res://assets/audio/music/dracula_death.wav")
 }
 
 func _ready() -> void:
@@ -54,7 +56,7 @@ func _ready() -> void:
 	bgm_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	bgm_player.finished.connect(_on_music_finished)
-	play_music("menu_intro", -5)
+	play_music("main_menu_loop", 10)
 
 # So all buttons in all scenes play the same sfx
 func update_button_sfx() -> void:
@@ -114,10 +116,8 @@ func play_sfx(sfx_name: String, volume: float = 0.0, transition: bool = false, f
 
 func _on_music_finished() -> void:
 	match current_music:
-		"menu_intro":
-			play_music("menu_loop", -5)
-		"stage_1_intro":
-			play_music("stage_1_loop", -10)
+		"battle_intro":
+			play_music("battle_loop", -5)
 
 func stop_music() -> void:
 	bgm_player.stop()
