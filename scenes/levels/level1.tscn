@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://p4d0x1o38tdj" path="res://assets/sprites/floortileset_2.png" id="4_1seuy"]
 [ext_resource type="PackedScene" uid="uid://bb5jar8kdqcr4" path="res://scenes/things/door.tscn" id="7_2r1tl"]
 [ext_resource type="PackedScene" uid="uid://cjtpwxviht228" path="res://scenes/things/enemy_melee.tscn" id="7_8a7m2"]
+[ext_resource type="Texture2D" uid="uid://b3dqfukhwuby1" path="res://assets/sprites/arrow.png" id="9_plydf"]
+[ext_resource type="Script" uid="uid://c4cy6rx6htcqu" path="res://scripts/things/arrow.gd" id="10_5ntmo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tebl0"]
 vertices = PackedVector2Array(720, -306.1797, 1017.5469, -306.90625, 1006.4297, 500.14844, 720, 304, 304, 304, -513.1406, 507.82813, -256, 400, -515.3203, 32, -512, 32, -512, 64, -480, -128, -516.85156, -303.0703, -272, -303.6875, -272, 176, -464, -96, 256, -305.03125, 304, -305.14844, 304, -240, 256, -80, -496, 64, -496, 96, -480, 96, -480, 128, -464, 128, -464, 160, -448, 160, -448, 192, -432, 192, -432, 224, -416, 224, -416, 256, -400, 256, -400, 288, -384, 288, -384, 320, -368, 320, -368, 352, -352, 352, -352, 384, -336, 384, -336, 400, -256, 320, -272, 320, -272, 288, -288, 288, -288, 256, -304, 256, -304, 224, -320, 224, -320, 192, -336, 192, -336, 160, -352, 160, -352, 128, -368, 128, -368, 96, -384, 96, -384, 64, -400, 64, -400, 32, -416, 32, -416, 0, -432, 0, -432, -32, -448, -32, -448, -64, -464, -64, -480, -96, 176, -48, 176, 96, -192, 96, -192, -288, 176, -288, 176, -80, 256, -48, 384, -240, 384, -288, 640, -288, 640, -192, 384, -192, 384, -208, 304, -208, 256, 176, -516.0469, -128, 640, 224, 384, 224, 384, -112, 640, -112)
@@ -105,6 +107,17 @@ sources/1 = SubResource("TileSetAtlasSource_dywbp")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1seuy"]
 size = Vector2(200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tebl0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_plydf")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Level1" type="Node2D" unique_id=1431471405]
 script = ExtResource("1_bfxgj")
@@ -211,5 +224,26 @@ position = Vector2(275, -456)
 shape = SubResource("RectangleShape2D_1seuy")
 disabled = true
 debug_color = Color(0.6525226, 0.51574737, 0.1601206, 0.41960785)
+
+[node name="Arrows" type="Node2D" parent="OnExit" unique_id=710778670]
+
+[node name="Arrow" type="AnimatedSprite2D" parent="OnExit/Arrows" unique_id=58098502]
+position = Vector2(279, -225)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_tebl0")
+script = ExtResource("10_5ntmo")
+
+[node name="Arrow2" type="AnimatedSprite2D" parent="OnExit/Arrows" unique_id=592062065]
+position = Vector2(280, 95)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_tebl0")
+script = ExtResource("10_5ntmo")
+
+[node name="Arrow3" type="AnimatedSprite2D" parent="OnExit/Arrows" unique_id=959000778]
+position = Vector2(9, 223)
+rotation = 1.5707964
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_tebl0")
+script = ExtResource("10_5ntmo")
 
 [connection signal="area_entered" from="OnExit/Exit" to="." method="_on_exit_area_entered"]
