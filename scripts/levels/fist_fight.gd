@@ -233,7 +233,7 @@ func _hit_dracula(side: String) -> void:
 			await get_tree().create_timer(text_instance.lifetime + 1.0).timeout
 			text_instance = k_fancy_text_scene.instantiate()
 			fight_visuals.add_child(text_instance)
-			text_instance.setup("2", 50)
+			#text_instance.setup("2", 50)
 			AudioManager.play_sfx("count_down")
 			text_instance.position = Vector2(480, 270)
 			await get_tree().create_timer(text_instance.lifetime + 1.0).timeout
@@ -260,13 +260,13 @@ func _hit_dracula(side: String) -> void:
 		text_instance = k_fancy_text_scene.instantiate()
 		fight_visuals.add_child(text_instance)
 		text_instance.setup("2", 50)
-		AudioManager.play_sfx("count_down")
+		#AudioManager.play_sfx("count_down")
 		text_instance.position = Vector2(480, 270)
 		await get_tree().create_timer(text_instance.lifetime + 1.0).timeout
 		text_instance = k_fancy_text_scene.instantiate()
 		fight_visuals.add_child(text_instance)
 		text_instance.setup("1", 50)
-		AudioManager.play_sfx("count_down")
+		#AudioManager.play_sfx("count_down")
 		text_instance.position = Vector2(480, 270)
 		await get_tree().create_timer(text_instance.lifetime + 1.0).timeout
 		text_instance = k_fancy_text_scene.instantiate()
