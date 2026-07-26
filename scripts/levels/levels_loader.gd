@@ -100,10 +100,18 @@ func player_dead() -> void:
 func reset_hud() -> void:
 	hud.reset_hud()
 
+
+@onready var level_clear_text_holder: Control = $"UI/LevelClearTextHolder/Control"
+const k_fancy_text_scene: PackedScene = preload("res://scenes/things/fancy_text.tscn")
 func enemy_dead() -> void:
 	spawned_level.enemy_count -= 1
 	if spawned_level.enemy_count <= 0:
 		spawned_level.enable_exit()
+		
+		var text_instance = k_fancy_text_scene.instantiate()
+		#text_instance.global_position = global_position + Vector2(0, -20)
+		level_clear_text_holder.add_child(text_instance)
+		text_instance.setup("LEVEL CLEAR!")
 
 '''
 ====== Level Complete Menu ======

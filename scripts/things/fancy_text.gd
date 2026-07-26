@@ -1,8 +1,8 @@
 extends Node2D
 @onready var rich_label: RichTextLabel = $RichTextLabel
 
-@export var start_colour: Color = Color.WHITE
-@export var flash_colour: Color = Color.PURPLE
+@export var start_colour: Color = Color("2e3060")
+@export var flash_colour: Color = Color("e7305e")
 @export var flash_speed: float = 8.0
 @export var wave_amplitude: float = 80.0
 @export var wave_frequency: float = 5.0
