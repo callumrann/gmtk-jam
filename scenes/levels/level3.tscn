@@ -249,7 +249,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tebl0"]
-size = Vector2(200, 200)
+size = Vector2(200, 117)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6yyo"]
 atlas = ExtResource("20_v6yyo")
@@ -579,8 +579,8 @@ position = Vector2(4, -59)
 position = Vector2(-229, -134)
 
 [node name="Door2" parent="Doors" unique_id=2041805985 instance=ExtResource("12_d1mne")]
-position = Vector2(153, -28)
-rotation = 1.5707964
+position = Vector2(246, -27)
+rotation = -1.5707964
 
 [node name="Door3" parent="Doors" unique_id=1233701341 instance=ExtResource("12_d1mne")]
 position = Vector2(594, 89)
@@ -629,7 +629,7 @@ script = ExtResource("15_5bnxw")
 enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OnExit/FistFight" unique_id=1909905921]
-position = Vector2(577, 217)
+position = Vector2(577, 258.5)
 shape = SubResource("RectangleShape2D_tebl0")
 disabled = true
 debug_color = Color(0.7336839, 0.26599964, 0.9560284, 0.41960785)
