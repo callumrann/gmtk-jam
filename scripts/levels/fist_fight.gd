@@ -164,7 +164,7 @@ func _dracula_do_something() -> void:
 		dracula_block_timer = randf_range(1.0, 2.0) # magic...
 		await get_tree().create_timer(dracula_block_timer).timeout
 		dracula_blocking = false
-		dracula_animation.play("default")
+		#dracula_animation.play("default")
 	else:
 		punches += 1
 		blocks = 0
@@ -174,7 +174,7 @@ func _dracula_do_something() -> void:
 func _dracula_throw_next_punch() -> void:
 	if dracula_punch_queue <= 0:
 		dracula_currently_punching = false
-		dracula_animation.play("default")
+		#dracula_animation.play("default")
 		return
 	
 	if !fight:
@@ -245,7 +245,7 @@ func _hit_dracula(side: String) -> void:
 			punches = 0
 			dracula_punch_cooldown_timer = randf_range(k_dracula_punch_cooldown - k_punch_cooldown_offset_max, k_dracula_punch_cooldown + k_punch_cooldown_offset_max)
 			LevelManager.drac_reset_hud()
-			dracula_animation.play("default")
+			#dracula_animation.play("default")
 			AudioManager.play_sfx("dracula_revive")
 			fight = true
 			first_down = false
@@ -299,7 +299,7 @@ func _hit_player(side: String) -> void:
 		return
 	
 	player_health -= 1
-	LevelManager.reduce_player_health(2)
+	LevelManager.reduce_player_health(1)
 	
 	if player_health <= 0 and fight:
 		player.die()
