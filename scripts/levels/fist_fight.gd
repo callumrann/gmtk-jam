@@ -22,16 +22,17 @@ var player_health: int
 # dracula related
 var dracula_health: int = 7
 
-const k_dracula_punch_cooldown: float = 3.0 # average
-const k_punch_cooldown_offset_max: float = 1.0
+const k_dracula_punch_cooldown: float = 0 # average
+const k_punch_cooldown_offset_max: float = 0 
 var dracula_punch_cooldown_timer: float = randf_range(k_dracula_punch_cooldown - k_punch_cooldown_offset_max, k_dracula_punch_cooldown + k_punch_cooldown_offset_max)
-const k_dracula_punch_damage_delay: float = 0.4 # when implementing anim with damage at end
+const k_dracula_punch_damage_delay: float = 0.8 # when implementing anim with damage at end
 
 var dracula_blocking: bool = false
 var dracula_block_timer: float = 0.0
 var high_block: bool = false
 
 var blocks: int = 0 # stop too many consecutive blocks
+var punches: int = 0
 
 var dracula_punch_queue: int = 0
 var dracula_currently_punching: bool = false
@@ -82,6 +83,7 @@ func _process(delta: float) -> void:
 	if pre_fight:
 		if Input.is_action_just_pressed("interact"):
 			info.visible = false
+			dracula_animation.play("intro")
 			LevelManager.toggle_health_ui()
 			LevelManager.drac_toggle_health_ui()
 			
@@ -148,8 +150,8 @@ func _process(delta: float) -> void:
 
 func _dracula_do_something() -> void:
 	# hardcoding time...
-	var number: int = randi_range(0, 2)
-	if number == 0 and blocks < 2:
+	var number: int = randi_range(0, 1)
+	if (number < 1 or punches >= 1) and blocks < 2:
 		blocks += 1
 		dracula_blocking = true
 		number = randi_range(0, 1)
@@ -159,13 +161,14 @@ func _dracula_do_something() -> void:
 		else:
 			high_block = false
 			dracula_animation.play("low_block")
-		dracula_block_timer = randf_range(0.5, 2.0) # magic...
+		dracula_block_timer = randf_range(1.0, 2.0) # magic...
 		await get_tree().create_timer(dracula_block_timer).timeout
 		dracula_blocking = false
 		dracula_animation.play("default")
 	else:
+		punches += 1
 		blocks = 0
-		dracula_punch_queue = randi_range(1, 5)
+		dracula_punch_queue = randi_range(1, 2)
 		_dracula_throw_next_punch()
 
 func _dracula_throw_next_punch() -> void:
@@ -196,6 +199,7 @@ func _dracula_animation_finished() -> void:
 	elif dracula_currently_punching:
 		_dracula_throw_next_punch()
 	elif not dracula_blocking:
+		pass
 		dracula_animation.play("default")
 
 const k_fancy_text_scene: PackedScene = preload("res://scenes/things/fancy_text.tscn")
@@ -234,6 +238,12 @@ func _hit_dracula(side: String) -> void:
 			text_instance.position = Vector2(480, 270)
 			await get_tree().create_timer(text_instance.lifetime + 1.0).timeout
 			dracula_health += 7
+			dracula_currently_punching = false
+			dracula_blocking = false
+			dracula_punch_queue = 0
+			blocks = 0
+			punches = 0
+			dracula_punch_cooldown_timer = randf_range(k_dracula_punch_cooldown - k_punch_cooldown_offset_max, k_dracula_punch_cooldown + k_punch_cooldown_offset_max)
 			LevelManager.drac_reset_hud()
 			dracula_animation.play("default")
 			AudioManager.play_sfx("dracula_revive")
@@ -288,7 +298,7 @@ func _hit_player(side: String) -> void:
 		AudioManager.play_sfx("dracula_whiff")
 		return
 	
-	player_health -= 2
+	player_health -= 1
 	LevelManager.reduce_player_health(2)
 	
 	if player_health <= 0 and fight:
