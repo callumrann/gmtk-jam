@@ -12,6 +12,8 @@ const k_newspaper_mod: int = 1
 var levels: Array[String] = [
 	"res://scenes/newspapers/newspaper_1.tscn", "res://scenes/levels/level1.tscn", 
 	"res://scenes/newspapers/newspaper_2.tscn", "res://scenes/levels/level2.tscn",
+	"res://scenes/newspapers/newspaper_3.tscn", "res://scenes/levels/level3.tscn",
+	"res://scenes/newspapers/newspaper_4.tscn",
 	]
 
 func _ready() -> void:

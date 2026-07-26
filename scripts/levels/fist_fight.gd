@@ -1,5 +1,7 @@
 extends Area2D
 
+@export var enabled: bool = false
+
 @onready var fight_spawn_collision: CollisionShape2D = $"CollisionShape2D"
 @onready var fight_visuals: CanvasLayer = $"Fight"
 
@@ -67,6 +69,9 @@ func _ready() -> void:
 	dracula_position = dracula_animation.global_position
 
 func _process(delta: float) -> void:
+	if !enabled:
+		return
+	
 	if !fight_spawned and get_parent().visible:
 		fight_spawned = true
 		fight_spawn_collision.set_deferred("disabled", false)

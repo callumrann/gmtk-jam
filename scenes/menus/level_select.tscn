@@ -6,8 +6,7 @@
 [ext_resource type="Script" uid="uid://cthxo65cqvsjk" path="res://scripts/menus/animated_button.gd" id="4_p7c2r"]
 [ext_resource type="Texture2D" uid="uid://cr5je33ewjkld" path="res://assets/sprites/buttons/level_select_clicked.png" id="5_tnwi7"]
 [ext_resource type="Texture2D" uid="uid://b7ufypkj7mxop" path="res://assets/sprites/buttons/map_select_float.png" id="6_p7c2r"]
-[ext_resource type="Texture2D" uid="uid://b6tp57e1mxau0" path="res://assets/sprites/buttons/menu_icon_pressed.png" id="7_tnwi7"]
-[ext_resource type="Texture2D" uid="uid://c84x2gkpxa5s" path="res://assets/sprites/buttons/menu_icon_floating.png" id="8_tyig4"]
+[ext_resource type="Texture2D" uid="uid://c5rjia3x60n4f" path="res://assets/sprites/buttons/back_button_pressed.png" id="7_pwdrg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7c2r"]
 bg_color = Color(0.18039216, 0.1882353, 0.3764706, 1)
@@ -121,43 +120,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jd3tc"]
-atlas = ExtResource("7_tnwi7")
-region = Rect2(0, 0, 16, 13)
+[sub_resource type="AtlasTexture" id="AtlasTexture_if2tv"]
+atlas = ExtResource("7_pwdrg")
+region = Rect2(0, 0, 28, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1vmml"]
-atlas = ExtResource("8_tyig4")
-region = Rect2(0, 0, 16, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1psoq"]
-atlas = ExtResource("8_tyig4")
-region = Rect2(0, 17, 16, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h0q2o"]
-atlas = ExtResource("8_tyig4")
-region = Rect2(0, 34, 16, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kbado"]
-atlas = ExtResource("8_tyig4")
-region = Rect2(0, 51, 16, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0g8ps"]
-atlas = ExtResource("8_tyig4")
-region = Rect2(0, 68, 16, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_du1y0"]
-atlas = ExtResource("8_tyig4")
-region = Rect2(0, 85, 16, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ebx87"]
-atlas = ExtResource("7_tnwi7")
-region = Rect2(0, 13, 16, 13)
+[sub_resource type="AtlasTexture" id="AtlasTexture_10jtx"]
+atlas = ExtResource("7_pwdrg")
+region = Rect2(0, 18, 28, 18)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ng7pr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jd3tc")
+"texture": SubResource("AtlasTexture_if2tv")
 }],
 "loop": 0,
 "name": &"default",
@@ -165,22 +140,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1vmml")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1psoq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h0q2o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kbado")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0g8ps")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_du1y0")
+"texture": SubResource("AtlasTexture_if2tv")
 }],
 "loop": 1,
 "name": &"hover",
@@ -188,7 +148,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ebx87")
+"texture": SubResource("AtlasTexture_10jtx")
 }],
 "loop": 0,
 "name": &"pressed",
