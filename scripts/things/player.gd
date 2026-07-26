@@ -110,15 +110,25 @@ func _physics_process(delta: float) -> void:
 		if collider is RigidBody2D:
 			collider.apply_central_impulse(collision.get_normal() * -100.0)
 
+const k_fancy_text_scene: PackedScene = preload("res://scenes/things/fancy_text.tscn")
+
 func add_bullets(count: int) -> void:
+	var bullets_recieved: int = 0
 	while count > 0 and (left_bullets < k_max_ammo or right_bullets < k_max_ammo):
 		if right_bullets < left_bullets:
 			right_bullets += 1
 			count -= 1
+			bullets_recieved += 1
 		else:
 			left_bullets += 1
 			count -= 1
+			bullets_recieved += 1
 	LevelManager.update_bullet_ui("N/A", left_bullets, right_bullets)
+	
+	var text_instance = k_fancy_text_scene.instantiate()
+	text_instance.global_position = global_position + Vector2(0, -20)
+	get_tree().current_scene.add_child(text_instance)
+	text_instance.setup("+ " + str(bullets_recieved) + " BULLETS", 12)
 
 func level_finished() -> void:
 	level_complete = true
@@ -136,6 +146,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		LevelManager.player_dead()
 		
 		$"Hurtbox/CollisionShape2D".set_deferred("disabled", true)
+		$"WallCollider".set_deferred("disabled", true)
 		top_animation.modulate = Color(0, 1, 0) # replace with animation
 		bottom_animation.play("default")
 		dead = true
