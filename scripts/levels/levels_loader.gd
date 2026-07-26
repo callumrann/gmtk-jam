@@ -131,3 +131,8 @@ func enemy_dead() -> void:
 
 func level_complete() -> void:
 	level_complete_menu.visible = true
+
+
+# stuff
+func toggle_bullet_ui() -> void:
+	hud.toggle_bullet_ui()

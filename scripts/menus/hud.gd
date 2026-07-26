@@ -53,6 +53,9 @@ func add_bullets(left: int, right: int) -> void:
 	if bullets_added:
 		shake_bulletbar()
 
+func toggle_bullet_ui() -> void:
+	bulletbar.visible = !bulletbar.visible
+
 @onready var segmentsContainer: HBoxContainer = $"Control/HealthBarBackground/HealthSegments"
 
 func reduce_health(amount: int) -> void:

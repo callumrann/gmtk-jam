@@ -145,13 +145,16 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	LevelManager.reduce_player_health(damage)
 	
 	if health <= 0:
-		LevelManager.player_dead()
+		die()
+
+func die() -> void:
+	LevelManager.player_dead()
 		
-		$"Hurtbox/CollisionShape2D".set_deferred("disabled", true)
-		$"WallCollider".set_deferred("disabled", true)
-		top_animation.modulate = Color(0, 1, 0) # replace with animation
-		bottom_animation.play("default")
-		dead = true
+	$"Hurtbox/CollisionShape2D".set_deferred("disabled", true)
+	$"WallCollider".set_deferred("disabled", true)
+	top_animation.modulate = Color(0, 1, 0) # replace with animation
+	bottom_animation.play("default")
+	dead = true
 
 func _top_animation_finished() -> void:
 	top_animation.play("default")

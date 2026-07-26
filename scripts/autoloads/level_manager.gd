@@ -33,3 +33,6 @@ func enemy_dead() -> void:
 
 func level_complete() -> void:
 	levelsLoader.level_complete()
+
+func toggle_bullet_ui() -> void: # for punchout
+	levelsLoader.toggle_bullet_ui()

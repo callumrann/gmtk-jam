@@ -1,12 +1,12 @@
 extends Node2D
 @onready var rich_label: RichTextLabel = $RichTextLabel
 
-@export var start_colour: Color = Color("2e3060")
-@export var flash_colour: Color = Color("e7305e")
-@export var flash_speed: float = 8.0
-@export var wave_amplitude: float = 80.0
-@export var wave_frequency: float = 5.0
-@export var lifetime: float = 1.0
+var start_colour: Color = Color("2e3060")
+var flash_colour: Color = Color("e7305e")
+var flash_speed: float = 8.0
+var wave_amplitude: float = 80.0
+var wave_frequency: float = 5.0
+var lifetime: float = 1.0
 
 func setup(text: String, font_size: int = 50, colour: Color = Color.WHITE) -> void:
 	start_colour = colour
