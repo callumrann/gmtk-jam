@@ -24,15 +24,18 @@ func _ready() -> void:
 func load_level(level: int, reset: bool = false) -> void: # reset for death or restart
 	if level % 2 != k_newspaper_mod:
 		if !reset:
-			await AudioManager.play_sfx("transition", -10, true, true)
+			AudioManager.play_music("battle_intro", 0)
+			await get_tree().create_timer(2.0).timeout
+			await SceneManager.fade_to_black()
 		else:
 			await SceneManager.fade_to_black()
 	else:
-		AudioManager.fade_music(SceneManager.fade_duration * 2, -80)
 		await SceneManager.fade_to_black()
+
 	call_deferred("_do_load_level", level)
-	if level % 2 != k_newspaper_mod and !reset:
-		AudioManager.play_music("stage_1_intro", -10)
+	
+	if level == k_newspaper_mod and !reset: # so that it plays the newspaper scene only on the first newspaper
+		AudioManager.play_music("newspaper_scene", 0)
 	await SceneManager.fade_from_black()
 
 func _do_load_level(level: int) -> void:
@@ -68,8 +71,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		pause_menu.visible = !pause_menu.visible
 		get_tree().paused = pause_menu.visible
 		if pause_menu.visible:
+			AudioManager.toggle_muffle()
 			AudioManager.play_sfx("pause_in")
 		else:
+			AudioManager.toggle_muffle()
 			AudioManager.play_sfx("pause_out")
 		
 
@@ -94,7 +99,7 @@ func _on_main_menu_pressed() -> void:
 '''
 ====== HUD ======
 '''
-@onready var hud: CanvasLayer = $"UI/HUD"
+@onready var hud: CanvasLayer = $"UI/HUD" 
 
 func update_bullet_count(count: int) -> void:
 	spawned_level.give_player_bullets(count)
@@ -136,6 +141,7 @@ func enemy_dead() -> void:
 
 func level_complete() -> void:
 	level_complete_menu.visible = true
+	AudioManager.toggle_muffle()
 	AudioManager.play_sfx("level_win")
 
 

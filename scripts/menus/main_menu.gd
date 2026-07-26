@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 func _ready() -> void:
-	AudioManager.play_music("menu_intro", -10)
+	AudioManager.play_music("main_menu_loop", 10)
 
 func _on_continue_pressed() -> void:
 	SceneManager.fade_to_black()

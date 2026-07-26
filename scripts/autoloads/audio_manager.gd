@@ -5,32 +5,32 @@ extends Node
 var current_music := ""
 
 const SFX := {
-	"player_damage": preload("res://assets/audio/sfx/damage.wav"),
-	"player_shoot": preload("res://assets/audio/sfx/click.wav"),
-	"player_die": preload("res://assets/audio/sfx/click.wav"),
-	"player_shoot_no_ammo": preload("res://assets/audio/sfx/click.wav"),
-	"player_footsteps": preload("res://assets/audio/sfx/click.wav"), # didnt implement yet... might not
+	"player_damage": preload("res://assets/audio/sfx/player_damage.wav"),
+	"player_shoot": preload("res://assets/audio/sfx/player_shoot.wav"),
+	"player_die": preload("res://assets/audio/sfx/player_die.wav"),
+	"player_shoot_no_ammo": preload("res://assets/audio/sfx/player_shoot_no_ammo.wav"),
+	"player_footsteps": preload("res://assets/audio/sfx/nothing.wav"), # didnt implement yet... might not
 	
-	"enemy_damage": preload("res://assets/audio/sfx/damage.wav"),
-	"enemy_shoot": preload("res://assets/audio/sfx/click.wav"),
-	"enemy_swing": preload("res://assets/audio/sfx/click.wav"),
-	"enemy_die": preload("res://assets/audio/sfx/click.wav"),
+	"enemy_damage": preload("res://assets/audio/sfx/enemy_damage.wav"),
+	"enemy_shoot": preload("res://assets/audio/sfx/enemy_shoot.wav"),
+	"enemy_swing": preload("res://assets/audio/sfx/enemy_swing.wav"),
+	"enemy_die": preload("res://assets/audio/sfx/enemy_die.wav"),
 	
-	"door": preload("res://assets/audio/sfx/click.wav"),
-	"ammo_pickup": preload("res://assets/audio/sfx/click.wav"),
+	"door": preload("res://assets/audio/sfx/door.wav"),
+	"ammo_pickup": preload("res://assets/audio/sfx/ammo_pickup.wav"),
 	
 	"level_clear": preload("res://assets/audio/sfx/level_win.wav"), # all enemies dead
 	"level_win": preload("res://assets/audio/sfx/level_win.wav"), # leave building
 	
-	"player_punch": preload("res://assets/audio/sfx/click.wav"),
-	"dracula_damage": preload("res://assets/audio/sfx/click.wav"),
-	"dracula_down": preload("res://assets/audio/sfx/click.wav"), # fall down, count start after
-	"dracula_revive": preload("res://assets/audio/sfx/click.wav"),
-	"knock_out": preload("res://assets/audio/sfx/click.wav"),
-	"player_dodge": preload("res://assets/audio/sfx/click.wav"),
-	"dracula_whiff": preload("res://assets/audio/sfx/click.wav"), # miss dodging player
-	"dracula_block": preload("res://assets/audio/sfx/click.wav"),
-	"count_down": preload("res://assets/audio/sfx/click.wav"), # appearance of 3, 2, 1, each makes sound
+	"player_punch": preload("res://assets/audio/sfx/player_punch.wav"),
+	"dracula_damage": preload("res://assets/audio/sfx/dracula_damage.wav"),
+	"dracula_down": preload("res://assets/audio/sfx/dracula_down.wav"), # fall down, count start after
+	"dracula_revive": preload("res://assets/audio/sfx/dracula_revive.wav"),
+	"knock_out": preload("res://assets/audio/sfx/knock_out.wav"),
+	"player_dodge": preload("res://assets/audio/sfx/nothing.wav"),
+	"dracula_whiff": preload("res://assets/audio/sfx/dracula_whiff.wav"), # miss dodging player
+	"dracula_block": preload("res://assets/audio/sfx/dracula_block.wav"),
+	"count_down": preload("res://assets/audio/sfx/count_down.wav"), # appearance of 3, 2, 1, each makes sound
 	
 	"menu_move": preload("res://assets/audio/sfx/menu_move.wav"),
 	"menu_select": preload("res://assets/audio/sfx/menu_select.wav"),
@@ -42,8 +42,10 @@ const SFX := {
 
 const MUSIC := {
 	"main_menu_loop": preload("res://assets/audio/music/main_menu_loop.wav"),
+	
 	"newspaper_scene": preload("res://assets/audio/music/newspaper_scene.wav"),
 	"newspaper_waiting": preload("res://assets/audio/music/newspaper_waiting.wav"),
+	
 	"battle_intro": preload("res://assets/audio/music/battle_intro.wav"),
 	"battle_loop": preload("res://assets/audio/music/battle_loop.wav"),
 	"dracula_death": preload("res://assets/audio/music/dracula_death.wav")
@@ -51,12 +53,11 @@ const MUSIC := {
 
 func _ready() -> void:
 	add_child(bgm_player)
-	
 	bgm_player.bus = "Music"
 	bgm_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	bgm_player.finished.connect(_on_music_finished)
-	play_music("main_menu_loop", 10)
+
 
 # So all buttons in all scenes play the same sfx
 func update_button_sfx() -> void:
@@ -117,7 +118,9 @@ func play_sfx(sfx_name: String, volume: float = 0.0, transition: bool = false, f
 func _on_music_finished() -> void:
 	match current_music:
 		"battle_intro":
-			play_music("battle_loop", -5)
+			play_music("battle_loop", 0)
+		"newspaper_scene":
+			play_music("newspaper_waiting", 0)
 
 func stop_music() -> void:
 	bgm_player.stop()
@@ -128,3 +131,8 @@ func fade_music(duration: float, volume: float) -> void:
 	tween.tween_property(bgm_player, "volume_db", volume, duration)
 	tween.set_trans(Tween.TRANS_QUAD)
 	tween.set_ease(Tween.EASE_OUT)
+
+func toggle_muffle():
+	var bus_idx = AudioServer.get_bus_index(bgm_player.bus)
+	var is_currently_muffled = AudioServer.is_bus_effect_enabled(bus_idx, 0)
+	AudioServer.set_bus_effect_enabled(bus_idx, 0, not is_currently_muffled)
